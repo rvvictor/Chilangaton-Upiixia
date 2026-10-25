@@ -1,4 +1,4 @@
-// Sample data for Doña Lupe, used ONLY when GET /api/negocio/alta-dona-lupe fails.
+// Sample data for Doña Lupe, used ONLY when GET /api/negocio/alta-puesto-de-dona-lupe fails.
 // Mirrors app/fixtures/negocio_detalle.json (PB-002). demo_data: true, every figure is "simulado".
 // It never stands in for another business: other ids show an error instead.
 const simulada = (valor: number) => ({
@@ -8,7 +8,8 @@ const simulada = (valor: number) => ({
   periodo: "últimos 7 días",
 });
 
-export const DONA_LUPE_ID = "alta-dona-lupe";
+// Same id the bot and scripts/simular_alta.py create: "alta-" + slug of "Puesto de Doña Lupe" (PB-008).
+export const DONA_LUPE_ID = "alta-puesto-de-dona-lupe";
 
 export const mockDonaLupe = {
   demo_data: true,

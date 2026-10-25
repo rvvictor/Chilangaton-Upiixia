@@ -1,6 +1,7 @@
 import json
 import time
 
+import h3
 import pytest
 from fastapi.testclient import TestClient
 
@@ -97,3 +98,13 @@ def test_compre_aqui(client, vivo_temporal) -> None:
     r = client.post("/api/eventos", json={"tipo": "compre_aqui", "negocio_id": "neg-0001"})
     assert r.status_code == 200
     assert "compre_aqui" in (vivo_temporal / "eventos.jsonl").read_text()
+
+
+def test_alta_sin_h3_toma_el_hexagono_de_su_ubicacion(client, vivo_temporal) -> None:
+    alta = {"id": "alta-sin-h3", "lat": SEDE["lat"], "lng": SEDE["lng"], "h3": None,
+            "ficha": {"nombre": "Puesto sin h3", "clase_scian": "461130", "productos": [{"nombre": "nopales"}],
+                      "dias": [], "abre": "00:00", "cierra": "23:59", "formas_pago": ["efectivo"]}}
+    (vivo_temporal / "altas.jsonl").write_text(json.dumps(alta) + "\n")
+    datos = client.post("/api/ruta", json={"origen": SEDE, "texto_lista": "nopales", "hora": "10:00"}).json()
+    parada = next(p for p in datos["paradas"] if p["negocio"]["id"] == "alta-sin-h3")
+    assert parada["negocio"]["h3"] == h3.latlng_to_cell(SEDE["lat"], SEDE["lng"], 9)
