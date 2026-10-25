@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
-@import "mapbox-gl/dist/mapbox-gl.css";
+/* En una capa: sin layer(), la regla .mapboxgl-map { position: relative } gana a las utilidades de Tailwind v4
+   (que viven en @layer utilities) y el contenedor "absolute inset-0" del mapa queda con 0 px de alto. */
+@import "mapbox-gl/dist/mapbox-gl.css" layer(components);
 
 @theme {
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
