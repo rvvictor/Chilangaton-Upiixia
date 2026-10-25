@@ -1,0 +1,32 @@
+{
+ "nombre": "Puesto de Doña Lupe",
+ "tipo": "puesto",
+ "clase_scian": "461130",
+ "clase_nombre": "Comercio al por menor de frutas y verduras frescas",
+ "descripcion": "Nopales y jitomate frescos en el Tianguis de San Lucas. Abro de 7 a 3. Acepto transferencia.",
+ "productos": [
+  {
+   "nombre": "nopales",
+   "precio": 20.0,
+   "unidad": "kg"
+  },
+  {
+   "nombre": "jitomate",
+   "precio": 25.0,
+   "unidad": "kg"
+  }
+ ],
+ "dias": [
+  0
+ ],
+ "abre": "07:00",
+ "cierra": "15:00",
+ "formas_pago": [
+  "efectivo",
+  "transferencia"
+ ],
+ "acepta_mercomuna": null,
+ "whatsapp": null,
+ "colonia": "San Lucas",
+ "tianguis_id": "tia-001"
+}

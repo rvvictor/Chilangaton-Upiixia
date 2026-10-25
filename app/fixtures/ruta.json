@@ -1,0 +1,186 @@
+{
+ "paradas": [
+  {
+   "orden": 1,
+   "negocio": {
+    "id": "alta-dona-lupe",
+    "nombre": "Puesto de Doña Lupe",
+    "tipo": "puesto",
+    "clase_nombre": "Comercio al por menor de frutas y verduras frescas",
+    "lat": 19.3481,
+    "lng": -99.1625,
+    "h3": "89499585d2fffff",
+    "es_barrial": true,
+    "impulso": 0.778,
+    "formas_pago": [
+     "efectivo",
+     "transferencia"
+    ],
+    "acepta_mercomuna": null,
+    "horario_verificado": true,
+    "slug": "dona-lupe"
+   },
+   "articulos": [
+    "jitomate"
+   ],
+   "por_que": [
+    "Se dio de alta hoy con una nota de voz",
+    "Abierto ahora (domingo 7:00–15:00)",
+    "Acepta transferencia"
+   ]
+  },
+  {
+   "orden": 2,
+   "negocio": {
+    "id": "neg-0001",
+    "nombre": "Tortillería La Guadalupana",
+    "tipo": "negocio",
+    "clase_nombre": "Elaboración de tortillas de maíz y molienda de nixtamal",
+    "lat": 19.34773,
+    "lng": -99.158847,
+    "h3": "89499585d2bffff",
+    "es_barrial": true,
+    "impulso": 0.535,
+    "formas_pago": [
+     "efectivo",
+     "transferencia"
+    ],
+    "acepta_mercomuna": false,
+    "horario_verificado": false,
+    "slug": null
+   },
+   "articulos": [
+    "tortillas"
+   ],
+   "por_que": [
+    "La tortillería de barrio más cercana a tu ruta"
+   ]
+  },
+  {
+   "orden": 3,
+   "negocio": {
+    "id": "neg-0009",
+    "nombre": "Chiles y Semillas Coyoacán",
+    "tipo": "negocio",
+    "clase_nombre": "Comercio al por menor de otros alimentos",
+    "lat": 19.347318,
+    "lng": -99.164553,
+    "h3": "89499585d23ffff",
+    "es_barrial": true,
+    "impulso": 0.515,
+    "formas_pago": [
+     "efectivo",
+     "transferencia"
+    ],
+    "acepta_mercomuna": true,
+    "horario_verificado": false,
+    "slug": null
+   },
+   "articulos": [
+    "chiles secos"
+   ],
+   "por_que": [
+    "Zona con poco movimiento de pago digital (impulso 0.52, estimado)"
+   ]
+  },
+  {
+   "orden": 4,
+   "negocio": {
+    "id": "neg-0014",
+    "nombre": "Celulares y Pilas Hidalgo",
+    "tipo": "negocio",
+    "clase_nombre": "Comercio al por menor de artículos de telefonía y comunicaciones",
+    "lat": 19.342262,
+    "lng": -99.162936,
+    "h3": "89499585d33ffff",
+    "es_barrial": true,
+    "impulso": 0.271,
+    "formas_pago": [
+     "efectivo"
+    ],
+    "acepta_mercomuna": false,
+    "horario_verificado": false,
+    "slug": null
+   },
+   "articulos": [
+    "pilas"
+   ],
+   "por_que": [
+    "Cubre 1 de tus artículos",
+    "Horario no verificado"
+   ]
+  },
+  {
+   "orden": 5,
+   "negocio": {
+    "id": "neg-0004",
+    "nombre": "Zapatería El Paso Firme",
+    "tipo": "negocio",
+    "clase_nombre": "Comercio al por menor de calzado",
+    "lat": 19.34987,
+    "lng": -99.161082,
+    "h3": "89499585d2fffff",
+    "es_barrial": true,
+    "impulso": 0.778,
+    "formas_pago": [
+     "efectivo"
+    ],
+    "acepta_mercomuna": false,
+    "horario_verificado": false,
+    "slug": null
+   },
+   "articulos": [
+    "tenis para niño"
+   ],
+   "por_que": [
+    "Zapatería de barrio a 6 min a pie"
+   ]
+  }
+ ],
+ "geometria": {
+  "type": "LineString",
+  "coordinates": [
+   [
+    -99.1617,
+    19.3467
+   ],
+   [
+    -99.1625,
+    19.3481
+   ],
+   [
+    -99.158847,
+    19.34773
+   ],
+   [
+    -99.164553,
+    19.347318
+   ],
+   [
+    -99.162936,
+    19.342262
+   ],
+   [
+    -99.161082,
+    19.34987
+   ],
+   [
+    -99.1617,
+    19.3467
+   ]
+  ]
+ },
+ "distancia_m": 3950.0,
+ "minutos": 49.4,
+ "metodo": "linea_recta",
+ "aviso": "Sin red: la ruta se dibuja en líneas rectas",
+ "resumen": {
+  "barrial_pct": 100.0,
+  "cadenas": 0,
+  "paradas_impulso": 4
+ },
+ "sin_resultado": [
+  "cartucho de impresora"
+ ],
+ "demo_data": true
+}

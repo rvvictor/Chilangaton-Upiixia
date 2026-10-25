@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "texto": "jitomate",
+   "cantidad": 2.0,
+   "unidad": "kg",
+   "clases": [
+    "461130"
+   ],
+   "fuente": "exacto"
+  },
+  {
+   "texto": "tortillas",
+   "cantidad": null,
+   "unidad": null,
+   "clases": [
+    "311830"
+   ],
+   "fuente": "exacto"
+  },
+  {
+   "texto": "chiles secos",
+   "cantidad": null,
+   "unidad": null,
+   "clases": [
+    "461190",
+    "461130"
+   ],
+   "fuente": "sinonimo"
+  },
+  {
+   "texto": "tenis para niño",
+   "cantidad": null,
+   "unidad": null,
+   "clases": [
+    "463310"
+   ],
+   "fuente": "difuso"
+  },
+  {
+   "texto": "pilas",
+   "cantidad": null,
+   "unidad": null,
+   "clases": [
+    "466410",
+    "467111"
+   ],
+   "fuente": "exacto"
+  }
+ ],
+ "sin_resultado": [
+  "cartucho de impresora"
+ ]
+}

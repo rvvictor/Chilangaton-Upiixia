@@ -1,0 +1,211 @@
+{
+ "serie_trimestral": [
+  {
+   "cvegeo": "09003",
+   "municipio": "Coyoacán",
+   "trimestre": "2022-T3",
+   "transacciones_tpv": 9100000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "municipio": "Coyoacán",
+   "trimestre": "2022-T4",
+   "transacciones_tpv": 9464000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "municipio": "Coyoacán",
+   "trimestre": "2023-T1",
+   "transacciones_tpv": 9828000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "municipio": "Coyoacán",
+   "trimestre": "2023-T2",
+   "transacciones_tpv": 10192000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "municipio": "Iztapalapa",
+   "trimestre": "2022-T3",
+   "transacciones_tpv": 13300000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "municipio": "Iztapalapa",
+   "trimestre": "2022-T4",
+   "transacciones_tpv": 13832000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "municipio": "Iztapalapa",
+   "trimestre": "2023-T1",
+   "transacciones_tpv": 14364000.0,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "municipio": "Iztapalapa",
+   "trimestre": "2023-T2",
+   "transacciones_tpv": 14896000.0,
+   "tipo_dato": "simulado"
+  }
+ ],
+ "altas_denue_por_anio": [
+  {
+   "cvegeo": "09003",
+   "anio": 2019,
+   "altas": 1083,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "anio": 2020,
+   "altas": 555,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "anio": 2021,
+   "altas": 1165,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "anio": 2022,
+   "altas": 426,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "anio": 2023,
+   "altas": 1162,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09003",
+   "anio": 2024,
+   "altas": 1235,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2019,
+   "altas": 974,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2020,
+   "altas": 981,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2021,
+   "altas": 408,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2022,
+   "altas": 1112,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2023,
+   "altas": 367,
+   "tipo_dato": "simulado"
+  },
+  {
+   "cvegeo": "09007",
+   "anio": 2024,
+   "altas": 960,
+   "tipo_dato": "simulado"
+  }
+ ],
+ "altas_plataforma_hoy": {
+  "valor": 1,
+  "tipo_dato": "real",
+  "fuente": "data/live/altas.jsonl",
+  "periodo": "hoy"
+ },
+ "rutas_por_hex": [
+  {
+   "h3": "89499584a43ffff",
+   "rutas": 5,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499584a57ffff",
+   "rutas": 4,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499584acbffff",
+   "rutas": 1,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499584adbffff",
+   "rutas": 9,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585993ffff",
+   "rutas": 10,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d03ffff",
+   "rutas": 3,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d0fffff",
+   "rutas": 4,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d27ffff",
+   "rutas": 12,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d33ffff",
+   "rutas": 7,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d63ffff",
+   "rutas": 11,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585d73ffff",
+   "rutas": 3,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585da7ffff",
+   "rutas": 8,
+   "tipo_dato": "simulado"
+  },
+  {
+   "h3": "89499585dbbffff",
+   "rutas": 11,
+   "tipo_dato": "simulado"
+  }
+ ],
+ "alcaldias": [
+  "09003",
+  "09007"
+ ]
+}
