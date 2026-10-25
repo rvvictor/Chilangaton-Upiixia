@@ -61,3 +61,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - tzdata: la app no arranca en Windows (ZoneInfo America/Mexico_City)
 - **Verify:** `bash .uak/bin/smoke`
+
+## PB-022 · Vista Negocio usa el id real del alta de Doña Lupe y lista altas en vivo (follow-up of PB-012)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-012
+- **Follow-up of:** PB-012
+- **Paths:** web/src/features/negocio/
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Vista Negocio usa el id real del alta de Doña Lupe y lista altas en vivo
+- **Verify:** `npm --prefix web run build`
