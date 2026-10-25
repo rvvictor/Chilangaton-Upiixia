@@ -7,6 +7,22 @@ import type { Punto, Ruta } from "./tipos";
 
 const VACIO: FeatureCollection = { type: "FeatureCollection", features: [] };
 
+/** Mapbox paint cannot read CSS variables, so resolve the design tokens once at layer creation. */
+function token(nombre: string, respaldo: string): string {
+  if (typeof document === "undefined") return respaldo;
+  return getComputedStyle(document.documentElement).getPropertyValue(nombre).trim() || respaldo;
+}
+
+// Progressive dash sequence (Mapbox "animate a line" pattern): the dashes appear to walk along the route.
+const PASOS_GUION: number[][] = [
+  [0, 4, 3], [0.5, 4, 2.5], [1, 4, 2], [1.5, 4, 1.5], [2, 4, 1], [2.5, 4, 0.5], [3, 4, 0],
+  [0, 0.5, 3, 3.5], [0, 1, 3, 3], [0, 1.5, 3, 2.5], [0, 2, 3, 2], [0, 2.5, 3, 1.5], [0, 3, 3, 1], [0, 3.5, 3, 0.5],
+];
+
+function sinMovimiento(): boolean {
+  return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+}
+
 function paradasGeoJSON(ruta: Ruta | null, origen: Punto): FeatureCollection {
   const origenF: Feature = {
     type: "Feature",
@@ -29,6 +45,8 @@ function paradasGeoJSON(ruta: Ruta | null, origen: Punto): FeatureCollection {
 
 export function MapaRuta({ ruta, origen }: { ruta: Ruta | null; origen: Punto }) {
   const mapa = useRef<MapboxMap | null>(null);
+  const animacion = useRef(0);
+  useEffect(() => () => cancelAnimationFrame(animacion.current), []);
 
   const pintar = useCallback(() => {
     const map = mapa.current;
@@ -56,24 +74,56 @@ export function MapaRuta({ ruta, origen }: { ruta: Ruta | null; origen: Punto })
       mapa.current = map;
       map.addSource("ruta-linea", { type: "geojson", data: VACIO });
       map.addSource("ruta-paradas", { type: "geojson", data: VACIO });
+      const acento = token("--pb-acento", "#db2777");
+      const alta = token("--pb-real-texto", "#14532d");
+      const origenColor = token("--pb-texto", "#1f2937");
+      map.addLayer({
+        id: "ruta-linea-base",
+        type: "line",
+        source: "ruta-linea",
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: { "line-color": acento, "line-width": 7, "line-opacity": 0.3 },
+      });
       map.addLayer({
         id: "ruta-linea",
         type: "line",
         source: "ruta-linea",
         layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": "#c2410c", "line-width": 5, "line-opacity": 0.85 },
+        paint: { "line-color": acento, "line-width": 5, "line-dasharray": [0, 4, 3] },
       });
       map.addLayer({
         id: "ruta-paradas",
         type: "circle",
         source: "ruta-paradas",
         paint: {
-          "circle-radius": ["case", ["==", ["get", "origen"], 1], 11, 15],
-          "circle-color": ["case", ["==", ["get", "origen"], 1], "#1d4ed8", ["==", ["get", "alta"], 1], "#14532d", "#c2410c"],
+          "circle-radius": ["case", ["==", ["get", "origen"], 1], 10, ["==", ["get", "alta"], 1], 19, 15],
+          "circle-color": ["case", ["==", ["get", "origen"], 1], origenColor, ["==", ["get", "alta"], 1], alta, acento],
           "circle-stroke-color": "#ffffff",
-          "circle-stroke-width": 3,
+          "circle-stroke-width": ["case", ["==", ["get", "alta"], 1], 4, 3],
         },
       });
+      map.addLayer({
+        id: "ruta-alta-nombre",
+        type: "symbol",
+        source: "ruta-paradas",
+        filter: ["==", ["get", "alta"], 1],
+        layout: { "text-field": "Nuevo", "text-size": 13, "text-offset": [0, 2.1], "text-allow-overlap": true },
+        paint: { "text-color": alta, "text-halo-color": "#ffffff", "text-halo-width": 2 },
+      });
+      if (!sinMovimiento()) {
+        let paso = 0;
+        let ultimo = 0;
+        const animar = (t: number) => {
+          if (!map.getLayer("ruta-linea")) return;
+          if (t - ultimo > 60) {
+            ultimo = t;
+            paso = (paso + 1) % PASOS_GUION.length;
+            map.setPaintProperty("ruta-linea", "line-dasharray", PASOS_GUION[paso]);
+          }
+          animacion.current = requestAnimationFrame(animar);
+        };
+        animacion.current = requestAnimationFrame(animar);
+      }
       map.addLayer({
         id: "ruta-numeros",
         type: "symbol",
