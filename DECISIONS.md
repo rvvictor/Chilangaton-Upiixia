@@ -16,3 +16,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792955726 | PB-020 | follow-up of PB-012 by yojan-2: Selector de Negocio: altas en vivo primero y id real de Doña Lupe | Why: same Paths, no scope change
 - 1792956122 | PB-021 | follow-up of PB-001 by cris-1: tzdata: la app no arranca en Windows (ZoneInfo America/Mexico_City) | Why: same Paths, no scope change
 - 1792956331 | PB-022 | follow-up of PB-012 by alexis-1: Vista Negocio usa el id real del alta de Doña Lupe y lista altas en vivo | Why: same Paths, no scope change
+- 1792956839 | plan | victor/victor | tasks added: PB-029 PB-023 PB-024 PB-025 PB-026 PB-027 PB-028 | Why: backlog without PR (Plan-Channel: claims)
