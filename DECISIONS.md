@@ -24,3 +24,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792958269 | deadline freeze/event/1792958220 | FREEZE_DEMO_FIXES_ONLY | New claims only with Freeze-Allowed: yes; respect authorization.
 - 1792958368 | allow | JoahanMorales | freeze exception: PB-017 | Why: La ruta de la demo pasa por zonas que necesitan clientes (5/5 paradas)
 - 1792958662 | PB-031 | follow-up of PB-002 by victor-2: Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada | Why: same Paths, no scope change
+- 1792958669 | allow | victor | freeze exception: PB-031 | Why: Victor autorizó regenerar el fixture de crecimiento con el nombre colonIA después del freeze
