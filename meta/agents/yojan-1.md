@@ -1,11 +1,11 @@
 # yojan-1
 Agent: yojan-1
 Started: 1792951883
-Events: 4
-Events-Since-Checkpoint: 4
-Checkpoints: 0
+Events: 5
+Events-Since-Checkpoint: 0
+Checkpoints: 1
 Sessions: 2
-Last-Checkpoint: 0
+Last-Checkpoint: 1792952724
 Human: JoahanMorales
 Last-Session: yojan-1-1792951883
-Updated: 1792952672
+Updated: 1792952724
