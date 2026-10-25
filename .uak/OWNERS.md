@@ -5,16 +5,16 @@ An owner is not a prerequisite for everyone: consumers work on published contrac
 
 | Pattern | Owner task |
 |---|---|
-| pyproject.toml | PB-001 |
-| uv.lock | PB-001 |
-| web/package.json | PB-001 |
-| web/package-lock.json | PB-001 |
-| app/main.py | PB-001 |
-| app/config.py | PB-001 |
-| web/src/App.tsx | PB-001 |
-| web/src/index.css | PB-001 |
-| .env.example | PB-001 |
-| .gitignore | PB-001 |
+| pyproject.toml | PB-021 |
+| uv.lock | PB-021 |
+| web/package.json | PB-021 |
+| web/package-lock.json | PB-021 |
+| app/main.py | PB-021 |
+| app/config.py | PB-021 |
+| web/src/App.tsx | PB-021 |
+| web/src/index.css | PB-021 |
+| .env.example | PB-021 |
+| .gitignore | PB-021 |
 | .github/workflows/ | PB-001 |
 | .uak/PROJECT.md | PB-001 |
 | app/schemas/ | PB-002 |
