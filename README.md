@@ -1,8 +1,8 @@
-# Pulso Barrial
+# colonIA
 
 **The living network of the neighborhood economy.** Built at Chilangatón 2026 (Reto 1 · Comercio popular y barrial), Mexico City.
 
-Pulso Barrial connects three people around Mexico City's street commerce:
+colonIA connects three people around Mexico City's street commerce:
 
 - **SEDECO (city government):** an H3 hexagon map of Coyoacán and Iztapalapa showing where card payments move, where
   people live and where neighborhood commerce is missing, by day and hour (tianguis open and close).
@@ -21,7 +21,7 @@ bash scripts/demo.sh          # builds the web app and serves everything at http
 DEMO_MODE=1 bash scripts/demo.sh   # no internet, no keys: recorded responses (plan B)
 ```
 
-Views: `#/sedeco` · `#/usuario` (neighbor) · `#/negocio/<id>` (vendor) · `#/crecimiento` (growth panel).
+Views: `#/inicio` (landing) · `#/sedeco` · `#/usuario` (neighbor) · `#/negocio/<id>` (vendor) · `#/crecimiento` (growth panel).
 Without a network the vendor sign-up can be injected with
 `uv run python scripts/simular_alta.py --caso dona-lupe --url http://127.0.0.1:8000`.
 The 3D map needs `VITE_MAPBOX_TOKEN` at build time; without it the views show a notice instead of the map.

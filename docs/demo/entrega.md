@@ -7,7 +7,7 @@
 
 ## Lista para el formulario
 
-- [ ] Nombre del proyecto: **Pulso Barrial** · tagline: "La red viva de la economía de barrio"
+- [ ] Nombre del proyecto: **colonIA** · tagline: "La red viva de la economía de barrio"
 - [ ] Reto: **Reto 1 · Comercio popular y barrial**
 - [ ] Equipo: Cris, Alexis, Yojan, Saus, Victor
 - [ ] Link del repositorio (arriba) y README en inglés (`README.md`)
