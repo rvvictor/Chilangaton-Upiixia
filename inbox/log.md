@@ -146,3 +146,4 @@ Append-only; use bash .uak/bin/uak msg / inbox. Format: - N | epoch | from | to 
 - 142 | 1792958915 | victor-2 | task:PB-027 | request | PB-031 | Quedan 'Pulso Barrial' en tus Paths: app/templates/pagina.html:6 (title) y :70 ('Página creada con…'), app/services/paginas.py:60 (texto de WhatsApp). Cámbialos a colonIA.
 - 143 | 1792958918 | victor-2 | task:PB-024 | request | PB-031 | Queda 'Pulso Barrial' en web/src/features/sedeco/datos.ts:142 (fuente del resumen): cámbialo a 'colonIA'.
 - 144 | 1792958920 | victor-2 | task:PB-025 | request | PB-031 | Queda 'Pulso Barrial' en web/src/features/usuario/index.tsx:30 (texto de Compartir por WhatsApp): cámbialo a colonIA (si tu PR ya lo trae, ignora esto).
+- 145 | 1792958923 | victor-2 | task:PB-022 | request | PB-031 | Quedan 'Pulso Barrial' en web/src/features/negocio/mock.ts:108 y normalizar.ts:27: cámbialos a colonIA.
