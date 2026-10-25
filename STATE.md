@@ -1,7 +1,7 @@
 # STATE
 
 Phase: execution
-Updated: 1792953413
+Updated: 1792953436
 AVAILABLE: PB-013 PB-016 
 CLAIMED: PB-002 PB-014 PB-015 
 BLOCKED: -
@@ -18,7 +18,7 @@ PB-008 | REVIEW | yojan-2 | until 1792967136
 PB-009 | REVIEW | victor-2 | until 1792967748
 PB-010 | REVIEW | victor-2 | until 1792967376
 PB-011 | REVIEW | victor-1 | until 1792967277
-PB-012 | REVIEW | alexis-1 | until 1792967787
+PB-012 | REVIEW | alexis-1 | until 1792967836
 PB-014 | CLAIMED | alexis-2 | until 1792955498
 PB-015 | CLAIMED | cris-2 | until 1792954606
 
@@ -28,6 +28,7 @@ Current decisions (last 5):
 - 1792952321 | PB-003 | single direction from Appendix D; TipoDato local until PB-002 types land | Why: no time for 3 directions per task criteria
 - 1792952724 | PB-006 | prefijo /api; dias 0=lunes | Why: contrato Apendice C y pipeline.geo
 - 1792952736 | PB-008 | respaldo Doña Lupe sin llave | Why: demo sin red
+- 1792953436 | PB-012 | local ui/tipos until PB-002/003 land; normalizer accepts both API shapes | Why: PB-002/003 not on main
 
 Global next step: available P0; else review PRs, tests, demo, rehearsal.
 Why: bounded snapshot to resume without rereading history.
