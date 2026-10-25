@@ -36,6 +36,11 @@ def slug_para(rec: dict) -> str:
     return "-".join(p for p in (base, ident) if p)[:120].strip("-")
 
 
+def slug_de(rec: dict) -> str:
+    """Slug público: el ya asignado, luego el slug del alta del bot (PB-008), y si no, nombre-id."""
+    return rec.get("pagina_slug") or rec.get("slug") or slug_para(rec)
+
+
 def qr_data_uri(url: str, box_size: int = 8) -> str:
     qr = qrcode.QRCode(box_size=box_size, border=2, error_correction=qrcode.constants.ERROR_CORRECT_M)
     qr.add_data(url)
@@ -62,7 +67,7 @@ def _carpeta() -> Path:
 
 def generar_pagina(rec: dict, base_url: str) -> dict:
     ficha = svc.ficha_publica(rec)
-    slug = rec.get("pagina_slug") or slug_para(rec)
+    slug = slug_de(rec)
     url_completa = f"{base_url.rstrip('/')}/n/{slug}"
     html = _env.get_template("pagina.html").render(
         ficha=ficha,
@@ -109,6 +114,28 @@ def leer_html(slug: str) -> str | None:
         return None
     ruta = _carpeta() / f"{slug}.html"
     return ruta.read_text(encoding="utf-8") if ruta.is_file() else None
+
+
+def negocio_por_slug(slug: str) -> dict | None:
+    """Negocio cuyo slug público es `slug` (directorio o alta), con su ficha completa."""
+    for rec in svc.registros_base():
+        if slug_de(rec) == slug:
+            return svc.get_negocio(str(rec["id"]))
+    return None
+
+
+def pagina_o_generar(slug: str, base_url: str) -> dict | None:
+    """Metadatos de la página; si aún no existe, la genera en el primer acceso. None = no hay negocio."""
+    if not SLUG_RE.match(slug):
+        return None
+    meta = meta_pagina(slug)
+    if meta is not None and leer_html(slug) is not None:
+        return meta
+    rec = negocio_por_slug(slug)
+    if rec is None:
+        return None
+    generar_pagina(rec, base_url)
+    return meta_pagina(slug)
 
 
 def render_cartel(slug: str, nombre: str, base_url: str) -> str:

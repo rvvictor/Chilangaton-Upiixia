@@ -69,6 +69,9 @@ def _leer_jsonl(path: Path) -> list[dict]:
 
 
 def _parse_ts(texto: Any) -> datetime | None:
+    # eventos.jsonl (PB-007) guarda ts como epoch; las filas antiguas como ISO.
+    if isinstance(texto, (int, float)) and not isinstance(texto, bool):
+        return datetime.fromtimestamp(texto, UTC)
     if not isinstance(texto, str):
         return None
     try:
@@ -76,6 +79,34 @@ def _parse_ts(texto: Any) -> datetime | None:
     except ValueError:
         return None
     return ts if ts.tzinfo else ts.replace(tzinfo=UTC)
+
+
+DIAS_NOMBRE = ("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")
+
+
+def horario_desde_ficha(dias: Any, abre: Any, cierra: Any) -> str | None:
+    """Texto de horario a partir de la ficha del bot: días 0 = lunes … 6 = domingo.
+
+    [0, 1, 2, 3, 4], "07:00", "15:00" -> "lunes a viernes de 07:00 a 15:00".
+    """
+    if not abre or not cierra:
+        return None
+    hora = f"{abre} a {cierra}"
+    ok = sorted({d for d in (dias if isinstance(dias, list) else []) if isinstance(d, int) and 0 <= d <= 6})
+    if not ok:
+        return hora
+    tramos: list[tuple[int, int]] = []
+    ini = prev = ok[0]
+    for d in ok[1:] + [None]:
+        if d is not None and d == prev + 1:
+            prev = d
+            continue
+        tramos.append((ini, prev))
+        if d is not None:
+            ini = prev = d
+    partes = [DIAS_NOMBRE[a] if a == b else f"{DIAS_NOMBRE[a]} a {DIAS_NOMBRE[b]}" for a, b in tramos]
+    texto = partes[0] if len(partes) == 1 else ", ".join(partes[:-1]) + " y " + partes[-1]
+    return f"{texto} de {hora}"
 
 
 def _base_directorio() -> dict[str, dict]:
@@ -109,11 +140,24 @@ def _altas() -> dict[str, dict]:
             **ficha,
             "id": str(fila["id"]),
             "origen": "alta",
+            "slug": fila.get("slug") or None,
+            # Horario: el texto de la ficha si existe; si no, se arma desde dias/abre/cierra del bot.
+            "horario": ficha.get("horario") or horario_desde_ficha(
+                ficha.get("dias"), ficha.get("abre"), ficha.get("cierra")
+            ),
             "h3": fila.get("h3"),
             "lat": fila.get("lat"),
             "lng": fila.get("lng"),
         }
     return altas
+
+
+def registros_base() -> list[dict]:
+    """Directorio + altas combinados, sin ediciones de ficha (para buscar por slug)."""
+    combinados = _base_directorio()
+    for id_, alta in _altas().items():
+        combinados[id_] = {**combinados.get(id_, {}), **alta}
+    return list(combinados.values())
 
 
 def _overrides(negocio_id: str) -> dict:
@@ -283,7 +327,7 @@ def ficha_completa(negocio_id: str, ahora: datetime | None = None) -> dict | Non
     if rec is None:
         return None
     ficha = ficha_publica(rec)
-    slug = rec.get("pagina_slug")
+    slug = rec.get("pagina_slug") or rec.get("slug")
     return {
         "id": negocio_id,
         "origen": rec.get("origen"),
@@ -297,17 +341,3 @@ def ficha_completa(negocio_id: str, ahora: datetime | None = None) -> dict | Non
         ),
     }
 
-
-def registrar_evento(tipo: str, negocio_id: str, h3: str | None = None) -> None:
-    """Agrega una línea a eventos.jsonl (evento real, no simulado)."""
-    carpeta = config.LIVE_DIR
-    carpeta.mkdir(parents=True, exist_ok=True)
-    linea = {
-        "ts": datetime.now(UTC).isoformat(),
-        "tipo": tipo,
-        "negocio_id": negocio_id,
-        "h3": h3,
-        "demo_data": False,
-    }
-    with (carpeta / "eventos.jsonl").open("a", encoding="utf-8") as f:
-        f.write(json.dumps(linea, ensure_ascii=False) + "\n")

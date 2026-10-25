@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 
 from app import config
 from app.main import app
+from app.services.negocio import horario_desde_ficha
 
 
 @pytest.fixture
@@ -48,6 +49,15 @@ def _alta(live, id_, ficha):
     linea = {"id": id_, "ts": datetime.now(UTC).isoformat(), "ficha": ficha,
              "lat": 19.31, "lng": -99.12, "h3": "89499585e9bffff", "origen": "telegram",
              "demo_data": False}
+    with (live / "altas.jsonl").open("a", encoding="utf-8") as f:
+        f.write(json.dumps(linea, ensure_ascii=False) + "\n")
+
+
+def _alta_bot(live, id_, slug, ficha):
+    """Fila como la escribe PB-008 (app/services/altas.py: Alta.model_dump())."""
+    linea = {"id": id_, "slug": slug, "ts": datetime.now(UTC).timestamp(), "ficha": ficha,
+             "lat": 19.31, "lng": -99.12, "h3": "89499585e9bffff", "origen": "telegram",
+             "confirmado": True, "demo_data": False}
     with (live / "altas.jsonl").open("a", encoding="utf-8") as f:
         f.write(json.dumps(linea, ensure_ascii=False) + "\n")
 
@@ -196,3 +206,42 @@ def test_descripcion_es_plantilla_fija_y_sin_datos_de_venta(client):
         "Carnicería Doña Toña es un negocio de carnicería en Santa Úrsula Coapa. "
         "Vende Nopal, Chile. Horario: 7 a 3. Acepta efectivo."
     )
+
+
+def test_alta_del_bot_se_sirve_por_su_slug_con_horario_de_la_ficha(tmp_datos, client):
+    _alta_bot(tmp_datos, "alta-tortas-x", "tortas-x", {
+        "nombre": "Tortas Doña Chela", "giro": "Taquería", "clase_scian": "722514",
+        "productos": [{"nombre": "Torta de milanesa", "precio": 45, "unidad": "pieza"}],
+        "dias": [0, 1, 2, 3, 4], "abre": "07:00", "cierra": "15:00",
+        "formas_pago": ["efectivo", "transferencia"], "telefono": "5512345678",
+        "acepta_mercomuna": False,
+    })
+    r = client.get("/n/tortas-x")
+    assert r.status_code == 200
+    assert "Tortas Doña Chela" in r.text
+    assert "lunes a viernes de 07:00 a 15:00" in r.text
+    assert "Torta de milanesa" in r.text
+    ficha = client.get("/api/negocio/alta-tortas-x").json()
+    assert ficha["pagina"]["url"] == "/n/tortas-x"
+    assert ficha["ficha"]["horario"] == "lunes a viernes de 07:00 a 15:00"
+    assert ficha["avance"]["tipo_dato"] == "real"
+    assert ficha["avance"]["conteos"]["visitas_pagina"] == 1
+    assert (tmp_datos / "paginas" / "tortas-x.html").is_file()
+
+
+def test_slug_de_negocio_del_directorio_se_genera_en_el_primer_acceso(tmp_datos, client):
+    r = client.get("/n/carniceria-dona-tona-neg-0001")
+    assert r.status_code == 200
+    assert "Carnicería Doña Toña" in r.text
+    assert (tmp_datos / "paginas" / "carniceria-dona-tona-neg-0001.html").is_file()
+    assert client.get("/n/carniceria-dona-tona-neg-0001/cartel").status_code == 200
+
+
+def test_horario_desde_dias_abre_cierra():
+    assert horario_desde_ficha([0, 1, 2, 3, 4], "07:00", "15:00") == "lunes a viernes de 07:00 a 15:00"
+    assert horario_desde_ficha([5, 6], "08:00", "14:00") == "sábado a domingo de 08:00 a 14:00"
+    assert horario_desde_ficha([0, 2, 3, 4, 6], "07:00", "15:00") == (
+        "lunes, miércoles a viernes y domingo de 07:00 a 15:00"
+    )
+    assert horario_desde_ficha([], "07:00", "15:00") == "07:00 a 15:00"
+    assert horario_desde_ficha([0], None, "15:00") is None
