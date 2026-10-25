@@ -10,7 +10,12 @@ import h3
 import pytest
 
 from pipeline.geo import ALCALDIAS, build
-from pipeline.geo.generar import PERIODO_CNBV, UMBRAL_CLUSTER, UMBRAL_OCULTO
+from pipeline.geo.generar import (
+    CENTRO_DEMO,
+    PERIODO_CNBV,
+    UMBRAL_CLUSTER,
+    UMBRAL_OCULTO,
+)
 
 RAIZ = Path(__file__).resolve().parents[2]
 CAMPOS_HEX = {
@@ -182,3 +187,13 @@ def test_geo_md_declara_simulado_y_fuentes_reales():
     texto = (RAIZ / "data" / "fuentes" / "geo.md").read_text(encoding="utf-8")
     for palabra in ("simulado", "real", "CNBV", "Censo 2020", "SEDECO", "aproximad"):
         assert palabra in texto, palabra
+
+
+def test_bolsa_de_impulso_junto_a_la_sede(hexes):
+    """La ruta de la demo pasa por zonas que necesitan clientes (impulso >= p70) cerca de la sede."""
+    props = {p["h3"]: p for p in _props(hexes)}
+    valores = sorted(p["impulso"] for p in props.values() if p["impulso"] > 0)
+    p70 = valores[int(len(valores) * 0.7)]
+    cerca = [props[c] for c in h3.grid_disk(h3.latlng_to_cell(*CENTRO_DEMO, 9), 6) if c in props]
+    altos = [p for p in cerca if p["impulso"] >= p70]
+    assert len(altos) >= len(cerca) // 3
