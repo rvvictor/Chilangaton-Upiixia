@@ -140,6 +140,25 @@ def test_tianguis_60_con_dias_y_horarios(tianguis):
         assert h3.get_resolution(t["h3"]) == 9
 
 
+def test_domingo_abren_mas_tianguis_que_martes(tianguis):
+    """Demo paso 2: el domingo abren muchos tianguis y el martes cierran casi todos."""
+    tianguis_dia = [t for t in tianguis if t["tipo"] == "tianguis"]
+    domingo = sum(6 in t["dias"] for t in tianguis_dia)
+    martes = sum(1 in t["dias"] for t in tianguis_dia)
+    assert domingo >= 2 * martes + 5, (domingo, martes)
+    assert domingo >= 0.35 * len(tianguis_dia)
+    assert all(6 in t["dias"] for t in tianguis if t["tipo"] == "mercado")
+
+
+def test_oculto_entre_3_y_5_por_ciento(hexes):
+    ocultos = sum(p["oculto"] for p in _props(hexes))
+    assert 0.03 <= ocultos / len(hexes) <= 0.05, (ocultos, len(hexes))
+    for p in _props(hexes):
+        if p["oculto"]:
+            assert p["negocios_total"] <= 2
+            assert p["negocios_barriales"] <= p["negocios_total"]
+
+
 def test_tianguis_reales_desde_csv(tmp_path):
     csv_path = tmp_path / "tianguis_verificados.csv"
     csv_path.write_text(

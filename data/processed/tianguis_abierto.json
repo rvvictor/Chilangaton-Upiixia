@@ -11,7 +11,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -51,7 +52,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -80,12 +82,12 @@
   },
   {
     "abre": "06:00",
-    "acepta_mercomuna": false,
+    "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09003",
-    "cierra": "13:00",
+    "cierra": "14:00",
     "colonia": "Pueblo de Los Reyes",
     "dias": [
-      3
+      5
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -93,8 +95,8 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "nevería",
+      "estética",
+      "tortillería",
       "papelería"
     ],
     "h3": "894995840c3ffff",
@@ -103,10 +105,10 @@
     "lng": -99.158246,
     "nombre": "Tianguis Pueblo de Los Reyes",
     "productos": [
-      "tortilla",
-      "limón",
       "refresco",
-      "elote"
+      "elote",
+      "frijol",
+      "jitomate"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -116,7 +118,7 @@
     "abre": "07:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
-    "cierra": "18:00",
+    "cierra": "19:00",
     "colonia": "Campestre Churubusco",
     "dias": [
       0,
@@ -124,69 +126,29 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
-      "CoDi",
       "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "tortillería",
-      "carnicería",
-      "nevería"
+      "zapatería",
+      "panadería",
+      "ferretería"
     ],
-    "h3": "8949958403bffff",
+    "h3": "89499584ccbffff",
     "id": "sim-09003-04",
-    "lat": 19.296659,
-    "lng": -99.166623,
+    "lat": 19.314756,
+    "lng": -99.194899,
     "nombre": "Mercado Campestre Churubusco",
     "productos": [
-      "jabón",
-      "arroz",
       "elote",
-      "tortilla"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "18:00",
-    "colonia": "Carrasco",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "ferretería",
-      "abarrotes",
-      "carnicería"
-    ],
-    "h3": "89499585d53ffff",
-    "id": "sim-09003-05",
-    "lat": 19.335706,
-    "lng": -99.149752,
-    "nombre": "Mercado Carrasco",
-    "productos": [
-      "café",
-      "pan dulce",
-      "chiles secos",
+      "tortilla",
+      "nopales",
       "queso"
     ],
     "tipo": "mercado",
@@ -195,304 +157,34 @@
   },
   {
     "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "19:00",
-    "colonia": "Covadonga",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "pollería",
-      "recaudería",
-      "florería"
-    ],
-    "h3": "894995840d7ffff",
-    "id": "sim-09003-06",
-    "lat": 19.282832,
-    "lng": -99.162328,
-    "nombre": "Mercado Covadonga",
-    "productos": [
-      "limón",
-      "clavos",
-      "bolillo",
-      "pilas"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
-    "cierra": "14:00",
-    "colonia": "Pedregal de Santo Domingo",
+    "cierra": "13:00",
+    "colonia": "Carrasco",
     "dias": [
-      2,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "panadería",
-      "papelería",
-      "zapatería"
-    ],
-    "h3": "89499585c73ffff",
-    "id": "sim-09003-07",
-    "lat": 19.32951,
-    "lng": -99.135295,
-    "nombre": "Tianguis Pedregal de Santo Domingo",
-    "productos": [
-      "tenis",
-      "chiles secos",
-      "huevo",
-      "pan dulce"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "19:00",
-    "colonia": "Los Reyes",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "papelería",
-      "panadería",
-      "carnicería"
-    ],
-    "h3": "89499585cd7ffff",
-    "id": "sim-09003-08",
-    "lat": 19.31679,
-    "lng": -99.134731,
-    "nombre": "Mercado Los Reyes",
-    "productos": [
-      "refresco",
-      "frijol",
-      "jabón",
-      "café"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "14:00",
-    "colonia": "Villa Coapa",
-    "dias": [
-      1,
-      4
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "farmacia",
-      "panadería",
-      "nevería"
-    ],
-    "h3": "89499584e4fffff",
-    "id": "sim-09003-09",
-    "lat": 19.334666,
-    "lng": -99.17192,
-    "nombre": "Tianguis Villa Coapa",
-    "productos": [
-      "huevo",
-      "aguacate",
-      "queso",
-      "refresco"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "15:00",
-    "colonia": "Del Carmen",
-    "dias": [
-      1,
       3
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
-      "CoDi",
       "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "mercería",
-      "pollería",
-      "frutas y verduras"
-    ],
-    "h3": "89499585d0bffff",
-    "id": "sim-09003-10",
-    "lat": 19.340676,
-    "lng": -99.154601,
-    "nombre": "Tianguis Del Carmen",
-    "productos": [
-      "aguacate",
-      "elote",
-      "queso",
-      "cuadernos"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "18:00",
-    "colonia": "Santa Úrsula",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "farmacia",
-      "papelería",
-      "ferretería"
-    ],
-    "h3": "89499585c3bffff",
-    "id": "sim-09003-11",
-    "lat": 19.331126,
-    "lng": -99.140281,
-    "nombre": "Mercado Santa Úrsula",
-    "productos": [
-      "clavos",
-      "café",
-      "queso",
-      "refresco"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "19:00",
-    "colonia": "Culhuacán CTM",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "frutas y verduras",
-      "recaudería",
-      "nevería"
-    ],
-    "h3": "89499585cb3ffff",
-    "id": "sim-09003-12",
-    "lat": 19.321198,
-    "lng": -99.146457,
-    "nombre": "Mercado Culhuacán CTM",
-    "productos": [
-      "tenis",
-      "frijol",
-      "huevo",
-      "aceite"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "06:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "14:00",
-    "colonia": "Copilco",
-    "dias": [
-      0,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
+      "zapatería",
       "ferretería",
-      "fonda",
-      "abarrotes"
+      "estética"
     ],
-    "h3": "89499585807ffff",
-    "id": "sim-09003-13",
-    "lat": 19.349167,
-    "lng": -99.137642,
-    "nombre": "Tianguis Copilco",
+    "h3": "89499585cd3ffff",
+    "id": "sim-09003-05",
+    "lat": 19.315469,
+    "lng": -99.133538,
+    "nombre": "Tianguis Carrasco",
     "productos": [
-      "aguacate",
-      "frijol",
+      "queso",
       "bolillo",
-      "queso"
+      "jitomate",
+      "café"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -502,11 +194,11 @@
     "abre": "06:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
-    "cierra": "14:00",
-    "colonia": "Acuilotla",
+    "cierra": "13:00",
+    "colonia": "Covadonga",
     "dias": [
-      0,
-      1
+      3,
+      4
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -514,19 +206,19 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "pollería",
-      "recaudería"
+      "fonda",
+      "recaudería",
+      "carnicería"
     ],
-    "h3": "89499585d0bffff",
-    "id": "sim-09003-14",
-    "lat": 19.339808,
-    "lng": -99.153924,
-    "nombre": "Tianguis Acuilotla",
+    "h3": "89499584277ffff",
+    "id": "sim-09003-06",
+    "lat": 19.306824,
+    "lng": -99.139362,
+    "nombre": "Tianguis Covadonga",
     "productos": [
-      "limón",
-      "chiles secos",
+      "frijol",
       "pan dulce",
+      "elote",
       "clavos"
     ],
     "tipo": "tianguis",
@@ -538,9 +230,43 @@
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
     "cierra": "13:00",
-    "colonia": "Huipulco",
+    "colonia": "Pedregal de Santo Domingo",
     "dias": [
-      5
+      4
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "farmacia",
+      "pollería",
+      "tortillería"
+    ],
+    "h3": "89499584393ffff",
+    "id": "sim-09003-07",
+    "lat": 19.302862,
+    "lng": -99.166754,
+    "nombre": "Tianguis Pedregal de Santo Domingo",
+    "productos": [
+      "aguacate",
+      "bolillo",
+      "clavos",
+      "nopales"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "15:00",
+    "colonia": "Los Reyes",
+    "dias": [
+      3
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -549,22 +275,277 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "frutas y verduras",
-      "nevería",
-      "abarrotes"
+      "estética",
+      "zapatería",
+      "papelería"
     ],
-    "h3": "89499584223ffff",
-    "id": "sim-09003-15",
-    "lat": 19.308758,
-    "lng": -99.145353,
-    "nombre": "Tianguis Huipulco",
+    "h3": "8949958406bffff",
+    "id": "sim-09003-08",
+    "lat": 19.302872,
+    "lng": -99.157513,
+    "nombre": "Tianguis Los Reyes",
     "productos": [
+      "tenis",
+      "pilas",
       "café",
-      "aguacate",
-      "tortilla",
-      "pan dulce"
+      "nopales"
     ],
     "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "18:00",
+    "colonia": "Villa Coapa",
+    "dias": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "tarjeta"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "papelería",
+      "mercería",
+      "estética"
+    ],
+    "h3": "89499584057ffff",
+    "id": "sim-09003-09",
+    "lat": 19.290523,
+    "lng": -99.156544,
+    "nombre": "Mercado Villa Coapa",
+    "productos": [
+      "limón",
+      "queso",
+      "nopales",
+      "frijol"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "13:00",
+    "colonia": "Del Carmen",
+    "dias": [
+      2
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "papelería",
+      "fonda",
+      "carnicería"
+    ],
+    "h3": "89499584abbffff",
+    "id": "sim-09003-10",
+    "lat": 19.350198,
+    "lng": -99.183937,
+    "nombre": "Tianguis Del Carmen",
+    "productos": [
+      "elote",
+      "aguacate",
+      "nopales",
+      "huevo"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "13:00",
+    "colonia": "Santa Úrsula",
+    "dias": [
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "fonda",
+      "zapatería",
+      "mercería"
+    ],
+    "h3": "8949958438fffff",
+    "id": "sim-09003-11",
+    "lat": 19.31117,
+    "lng": -99.164125,
+    "nombre": "Tianguis Santa Úrsula",
+    "productos": [
+      "queso",
+      "refresco",
+      "tortilla",
+      "clavos"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "13:00",
+    "colonia": "Culhuacán CTM",
+    "dias": [
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi",
+      "tarjeta"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "mercería",
+      "estética",
+      "frutas y verduras"
+    ],
+    "h3": "894995840bbffff",
+    "id": "sim-09003-12",
+    "lat": 19.289608,
+    "lng": -99.170226,
+    "nombre": "Tianguis Culhuacán CTM",
+    "productos": [
+      "pan dulce",
+      "jitomate",
+      "pilas",
+      "queso"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "13:00",
+    "colonia": "Copilco",
+    "dias": [
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "farmacia",
+      "estética",
+      "ferretería"
+    ],
+    "h3": "89499585d0fffff",
+    "id": "sim-09003-13",
+    "lat": 19.343147,
+    "lng": -99.156611,
+    "nombre": "Tianguis Copilco",
+    "productos": [
+      "arroz",
+      "queso",
+      "tenis",
+      "huevo"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "14:00",
+    "colonia": "Acuilotla",
+    "dias": [
+      3,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "estética",
+      "papelería",
+      "nevería"
+    ],
+    "h3": "8949958417bffff",
+    "id": "sim-09003-14",
+    "lat": 19.312032,
+    "lng": -99.175652,
+    "nombre": "Tianguis Acuilotla",
+    "productos": [
+      "tenis",
+      "chiles secos",
+      "queso",
+      "aceite"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "18:00",
+    "colonia": "Huipulco",
+    "dias": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "farmacia",
+      "abarrotes",
+      "panadería"
+    ],
+    "h3": "89499585c33ffff",
+    "id": "sim-09003-15",
+    "lat": 19.329599,
+    "lng": -99.144484,
+    "nombre": "Mercado Huipulco",
+    "productos": [
+      "queso",
+      "bolillo",
+      "huevo",
+      "cuadernos"
+    ],
+    "tipo": "mercado",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -580,42 +561,8 @@
       2,
       3,
       4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "abarrotes",
-      "fonda",
-      "nevería"
-    ],
-    "h3": "89499585c43ffff",
-    "id": "sim-09003-16",
-    "lat": 19.324675,
-    "lng": -99.127531,
-    "nombre": "Mercado Xotepingo",
-    "productos": [
-      "elote",
-      "nopales",
-      "frijol",
-      "jabón"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09003",
-    "cierra": "15:00",
-    "colonia": "Viveros",
-    "dias": [
-      1
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -625,22 +572,22 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "farmacia",
-      "florería",
-      "recaudería"
+      "frutas y verduras",
+      "recaudería",
+      "nevería"
     ],
-    "h3": "89499584a97ffff",
-    "id": "sim-09003-17",
-    "lat": 19.342926,
-    "lng": -99.185101,
-    "nombre": "Tianguis Viveros",
+    "h3": "89499584e73ffff",
+    "id": "sim-09003-16",
+    "lat": 19.334112,
+    "lng": -99.176042,
+    "nombre": "Mercado Xotepingo",
     "productos": [
-      "aceite",
-      "limón",
-      "elote",
-      "arroz"
+      "arroz",
+      "pan dulce",
+      "recarga",
+      "tenis"
     ],
-    "tipo": "tianguis",
+    "tipo": "mercado",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -648,40 +595,69 @@
     "abre": "07:00",
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09003",
-    "cierra": "18:00",
-    "colonia": "Ajusco",
+    "cierra": "15:00",
+    "colonia": "Viveros",
     "dias": [
-      0,
       1,
-      2,
-      3,
-      4,
       5
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "papelería",
+      "fonda",
+      "zapatería"
+    ],
+    "h3": "89499585993ffff",
+    "id": "sim-09003-17",
+    "lat": 19.351687,
+    "lng": -99.160489,
+    "nombre": "Tianguis Viveros",
+    "productos": [
+      "chiles secos",
+      "pilas",
+      "tenis",
+      "queso"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09003",
+    "cierra": "15:00",
+    "colonia": "Ajusco",
+    "dias": [
+      2,
+      5
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "zapatería",
-      "tortillería",
-      "pollería"
+      "florería",
+      "fonda"
     ],
-    "h3": "89499584043ffff",
+    "h3": "8949958462bffff",
     "id": "sim-09003-18",
-    "lat": 19.293883,
-    "lng": -99.154662,
-    "nombre": "Mercado Ajusco",
+    "lat": 19.285962,
+    "lng": -99.146485,
+    "nombre": "Tianguis Ajusco",
     "productos": [
-      "aguacate",
-      "cuadernos",
-      "arroz",
-      "pan dulce"
+      "elote",
+      "jitomate",
+      "bolillo",
+      "nopales"
     ],
-    "tipo": "mercado",
+    "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -697,7 +673,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -737,7 +714,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -765,24 +743,25 @@
     "verificado_por": null
   },
   {
-    "abre": "07:00",
+    "abre": "06:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
     "cierra": "14:00",
     "colonia": "Pueblo de Los Reyes",
     "dias": [
-      0
+      4,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
-      "CoDi"
+      "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "florería",
-      "frutas y verduras",
-      "ferretería"
+      "estética",
+      "nevería",
+      "mercería"
     ],
     "h3": "8949958455bffff",
     "id": "sim-09003-21",
@@ -790,10 +769,10 @@
     "lng": -99.174019,
     "nombre": "Tianguis Pueblo de Los Reyes",
     "productos": [
-      "nopales",
-      "frijol",
-      "chiles secos",
-      "aguacate"
+      "clavos",
+      "pilas",
+      "queso",
+      "nopales"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -810,24 +789,25 @@
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo"
+      "efectivo",
+      "CoDi"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "carnicería",
+      "pollería",
       "ferretería",
-      "papelería"
+      "estética"
     ],
-    "h3": "89499584067ffff",
+    "h3": "8949958406bffff",
     "id": "sim-09003-22",
-    "lat": 19.301985,
-    "lng": -99.162845,
+    "lat": 19.301681,
+    "lng": -99.155403,
     "nombre": "Tianguis Campestre Churubusco",
     "productos": [
       "huevo",
-      "jabón",
-      "chiles secos",
-      "refresco"
+      "queso",
+      "cuadernos",
+      "jabón"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -835,7 +815,7 @@
   },
   {
     "abre": "07:00",
-    "acepta_mercomuna": false,
+    "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09003",
     "cierra": "19:00",
     "colonia": "Carrasco",
@@ -845,46 +825,42 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo",
-      "tarjeta"
+      "efectivo"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "abarrotes",
-      "panadería",
-      "tortillería"
+      "fonda",
+      "farmacia",
+      "florería"
     ],
-    "h3": "894995842d7ffff",
+    "h3": "894995843dbffff",
     "id": "sim-09003-23",
-    "lat": 19.29299,
-    "lng": -99.137819,
+    "lat": 19.304415,
+    "lng": -99.152584,
     "nombre": "Mercado Carrasco",
     "productos": [
-      "cuadernos",
+      "tenis",
+      "recarga",
       "pan dulce",
-      "chiles secos",
-      "nopales"
+      "jitomate"
     ],
     "tipo": "mercado",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
   {
-    "abre": "07:00",
+    "abre": "06:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09003",
-    "cierra": "18:00",
+    "cierra": "15:00",
     "colonia": "Covadonga",
     "dias": [
-      0,
       1,
-      2,
-      3,
-      4,
       5
     ],
     "fecha_verificacion": null,
@@ -898,18 +874,18 @@
       "carnicería",
       "recaudería"
     ],
-    "h3": "89499585d17ffff",
+    "h3": "8949958518fffff",
     "id": "sim-09003-24",
-    "lat": 19.337916,
-    "lng": -99.163134,
-    "nombre": "Mercado Covadonga",
+    "lat": 19.306343,
+    "lng": -99.120852,
+    "nombre": "Tianguis Covadonga",
     "productos": [
       "pan dulce",
       "tenis",
       "queso",
       "jabón"
     ],
-    "tipo": "mercado",
+    "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -925,7 +901,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -961,7 +938,7 @@
     "cierra": "14:00",
     "colonia": "Tepalcates",
     "dias": [
-      2
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -970,9 +947,9 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "frutas y verduras",
-      "nevería"
+      "recaudería",
+      "nevería",
+      "zapatería"
     ],
     "h3": "8949958510bffff",
     "id": "sim-09007-02",
@@ -1001,7 +978,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1033,10 +1011,10 @@
     "abre": "06:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
+    "cierra": "15:00",
     "colonia": "San Lorenzo Tezonco",
     "dias": [
-      3
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1068,9 +1046,10 @@
     "abre": "07:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "14:00",
+    "cierra": "15:00",
     "colonia": "Ejército de Oriente",
     "dias": [
+      2,
       6
     ],
     "fecha_verificacion": null,
@@ -1102,9 +1081,10 @@
     "abre": "07:00",
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
-    "cierra": "14:00",
+    "cierra": "13:00",
     "colonia": "Consejo Agrarista",
     "dias": [
+      4,
       6
     ],
     "fecha_verificacion": null,
@@ -1115,8 +1095,8 @@
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "frutas y verduras",
-      "tortillería",
-      "carnicería"
+      "carnicería",
+      "panadería"
     ],
     "h3": "89499580b2bffff",
     "id": "sim-09007-06",
@@ -1145,7 +1125,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1175,12 +1156,13 @@
   },
   {
     "abre": "07:00",
-    "acepta_mercomuna": false,
+    "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "14:00",
     "colonia": "Desarrollo Urbano Quetzalcóatl",
     "dias": [
-      0
+      0,
+      5
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1189,9 +1171,9 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "mercería",
-      "nevería"
+      "farmacia",
+      "zapatería",
+      "frutas y verduras"
     ],
     "h3": "8949958e3abffff",
     "id": "sim-09007-08",
@@ -1199,10 +1181,10 @@
     "lng": -99.035062,
     "nombre": "Tianguis Desarrollo Urbano Quetzalcóatl",
     "productos": [
-      "pan dulce",
-      "café",
-      "pilas",
-      "bolillo"
+      "bolillo",
+      "queso",
+      "limón",
+      "jabón"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -1212,101 +1194,32 @@
     "abre": "06:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
+    "cierra": "15:00",
     "colonia": "San Juanico",
     "dias": [
-      1,
-      6
+      2
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "pollería",
-      "tortillería",
-      "mercería"
-    ],
-    "h3": "8949958ecd3ffff",
-    "id": "sim-09007-09",
-    "lat": 19.319173,
-    "lng": -99.068606,
-    "nombre": "Tianguis San Juanico",
-    "productos": [
-      "arroz",
-      "tenis",
-      "limón",
-      "jitomate"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "06:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "14:00",
-    "colonia": "Desarrollo Quetzalcóatl",
-    "dias": [
-      1
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo"
+      "CoDi"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "mercería",
-      "frutas y verduras",
-      "tortillería"
+      "nevería",
+      "florería"
     ],
-    "h3": "894995851c7ffff",
-    "id": "sim-09007-10",
-    "lat": 19.305266,
-    "lng": -99.116801,
-    "nombre": "Tianguis Desarrollo Quetzalcóatl",
+    "h3": "8949958eaafffff",
+    "id": "sim-09007-09",
+    "lat": 19.365943,
+    "lng": -99.056232,
+    "nombre": "Tianguis San Juanico",
     "productos": [
+      "limón",
+      "jitomate",
       "café",
-      "tortilla",
-      "elote",
-      "aguacate"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "14:00",
-    "colonia": "Puente Blanco",
-    "dias": [
-      6
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "recaudería",
-      "pollería",
-      "abarrotes"
-    ],
-    "h3": "8949958ec73ffff",
-    "id": "sim-09007-11",
-    "lat": 19.335487,
-    "lng": -99.068365,
-    "nombre": "Tianguis Puente Blanco",
-    "productos": [
-      "huevo",
-      "cuadernos",
-      "clavos",
-      "elote"
+      "pilas"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -1317,35 +1230,37 @@
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
     "cierra": "18:00",
-    "colonia": "Ermita Zaragoza",
+    "colonia": "Desarrollo Quetzalcóatl",
     "dias": [
       0,
       1,
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo"
+      "efectivo",
+      "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "pollería",
-      "florería"
+      "florería",
+      "zapatería",
+      "recaudería"
     ],
-    "h3": "89499585033ffff",
-    "id": "sim-09007-12",
-    "lat": 19.302152,
-    "lng": -99.102565,
-    "nombre": "Mercado Ermita Zaragoza",
+    "h3": "89499580b93ffff",
+    "id": "sim-09007-10",
+    "lat": 19.258115,
+    "lng": -99.061978,
+    "nombre": "Mercado Desarrollo Quetzalcóatl",
     "productos": [
-      "pilas",
-      "queso",
-      "clavos",
-      "jabón"
+      "recarga",
+      "chiles secos",
+      "café",
+      "tortilla"
     ],
     "tipo": "mercado",
     "tipo_dato": "simulado",
@@ -1355,32 +1270,152 @@
     "abre": "07:00",
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
-    "colonia": "Lomas Estrella",
+    "cierra": "18:00",
+    "colonia": "Puente Blanco",
     "dias": [
-      4
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
+      "CoDi",
       "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "farmacia",
-      "recaudería",
-      "frutas y verduras"
+      "nevería",
+      "ferretería",
+      "zapatería"
     ],
-    "h3": "89499580b4fffff",
-    "id": "sim-09007-13",
-    "lat": 19.273168,
-    "lng": -99.050368,
-    "nombre": "Tianguis Lomas Estrella",
+    "h3": "8949958e46bffff",
+    "id": "sim-09007-11",
+    "lat": 19.287886,
+    "lng": -99.027261,
+    "nombre": "Mercado Puente Blanco",
     "productos": [
+      "limón",
+      "pilas",
+      "cuadernos",
+      "tenis"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "14:00",
+    "colonia": "Ermita Zaragoza",
+    "dias": [
+      3
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi",
+      "tarjeta"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "zapatería",
+      "farmacia",
+      "tortillería"
+    ],
+    "h3": "8949958c523ffff",
+    "id": "sim-09007-12",
+    "lat": 19.355723,
+    "lng": -99.031618,
+    "nombre": "Tianguis Ermita Zaragoza",
+    "productos": [
+      "cuadernos",
+      "nopales",
+      "pilas",
+      "queso"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "18:00",
+    "colonia": "Lomas Estrella",
+    "dias": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "pollería",
+      "papelería",
+      "mercería"
+    ],
+    "h3": "894995854cfffff",
+    "id": "sim-09007-13",
+    "lat": 19.267934,
+    "lng": -99.095365,
+    "nombre": "Mercado Lomas Estrella",
+    "productos": [
+      "huevo",
+      "frijol",
+      "cuadernos",
+      "jitomate"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "13:00",
+    "colonia": "Citlalli",
+    "dias": [
+      0,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi",
+      "tarjeta"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "nevería",
+      "ferretería",
+      "abarrotes"
+    ],
+    "h3": "8949958e033ffff",
+    "id": "sim-09007-14",
+    "lat": 19.306782,
+    "lng": -99.038388,
+    "nombre": "Tianguis Citlalli",
+    "productos": [
+      "clavos",
       "jabón",
-      "refresco",
       "bolillo",
-      "nopales"
+      "tortilla"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -1391,13 +1426,82 @@
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "19:00",
-    "colonia": "Citlalli",
+    "colonia": "Santa Martha",
     "dias": [
       0,
       1,
       2,
       3,
       4,
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "pollería",
+      "ferretería",
+      "fonda"
+    ],
+    "h3": "8949958504fffff",
+    "id": "sim-09007-15",
+    "lat": 19.299767,
+    "lng": -99.087259,
+    "nombre": "Mercado Santa Martha",
+    "productos": [
+      "huevo",
+      "recarga",
+      "chiles secos",
+      "aceite"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "13:00",
+    "colonia": "Paraje San Juan",
+    "dias": [
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "farmacia",
+      "ferretería",
+      "recaudería"
+    ],
+    "h3": "8949958ed23ffff",
+    "id": "sim-09007-16",
+    "lat": 19.35231,
+    "lng": -99.096598,
+    "nombre": "Tianguis Paraje San Juan",
+    "productos": [
+      "bolillo",
+      "arroz",
+      "clavos",
+      "tenis"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "14:00",
+    "colonia": "El Manto",
+    "dias": [
       5
     ],
     "fecha_verificacion": null,
@@ -1408,131 +1512,20 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "panadería",
-      "fonda",
-      "pollería"
+      "zapatería",
+      "nevería",
+      "tortillería"
     ],
-    "h3": "8949958534bffff",
-    "id": "sim-09007-14",
-    "lat": 19.321133,
-    "lng": -99.081576,
-    "nombre": "Mercado Citlalli",
-    "productos": [
-      "huevo",
-      "limón",
-      "cuadernos",
-      "recarga"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "06:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
-    "colonia": "Santa Martha",
-    "dias": [
-      2,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "mercería",
-      "panadería",
-      "pollería"
-    ],
-    "h3": "8949958ec73ffff",
-    "id": "sim-09007-15",
-    "lat": 19.335483,
-    "lng": -99.068966,
-    "nombre": "Tianguis Santa Martha",
-    "productos": [
-      "nopales",
-      "cuadernos",
-      "queso",
-      "chiles secos"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "19:00",
-    "colonia": "Paraje San Juan",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "mercería",
-      "farmacia",
-      "pollería"
-    ],
-    "h3": "8949958e3bbffff",
-    "id": "sim-09007-16",
-    "lat": 19.322808,
-    "lng": -99.035439,
-    "nombre": "Mercado Paraje San Juan",
-    "productos": [
-      "arroz",
-      "chiles secos",
-      "queso",
-      "pan dulce"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "06:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
-    "colonia": "El Manto",
-    "dias": [
-      2,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "recaudería",
-      "tortillería",
-      "florería"
-    ],
-    "h3": "89499580b33ffff",
+    "h3": "894995852b3ffff",
     "id": "sim-09007-17",
-    "lat": 19.271623,
-    "lng": -99.065071,
+    "lat": 19.303619,
+    "lng": -99.086381,
     "nombre": "Tianguis El Manto",
     "productos": [
-      "huevo",
-      "aceite",
-      "elote",
-      "jabón"
+      "pilas",
+      "recarga",
+      "tortilla",
+      "clavos"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -1550,29 +1543,29 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo",
-      "tarjeta"
+      "efectivo"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "nevería",
+      "fonda",
       "frutas y verduras",
-      "zapatería"
+      "papelería"
     ],
-    "h3": "8949958ec4bffff",
+    "h3": "8949958e53bffff",
     "id": "sim-09007-18",
-    "lat": 19.333719,
-    "lng": -99.059485,
+    "lat": 19.29797,
+    "lng": -99.057344,
     "nombre": "Mercado Cerro de la Estrella",
     "productos": [
       "aguacate",
-      "chiles secos",
-      "bolillo",
-      "cuadernos"
+      "pan dulce",
+      "elote",
+      "refresco"
     ],
     "tipo": "mercado",
     "tipo_dato": "simulado",
@@ -1590,7 +1583,48 @@
       2,
       3,
       4,
-      5
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "zapatería",
+      "abarrotes",
+      "fonda"
+    ],
+    "h3": "8949958e5d7ffff",
+    "id": "sim-09007-19",
+    "lat": 19.282945,
+    "lng": -99.054594,
+    "nombre": "Mercado Juventino Rosas",
+    "productos": [
+      "café",
+      "aguacate",
+      "arroz",
+      "aceite"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "19:00",
+    "colonia": "Minas de Cristo",
+    "dias": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1600,97 +1634,57 @@
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "florería",
-      "farmacia",
+      "frutas y verduras",
       "abarrotes"
     ],
-    "h3": "89499585573ffff",
-    "id": "sim-09007-19",
-    "lat": 19.291132,
-    "lng": -99.118107,
-    "nombre": "Mercado Juventino Rosas",
+    "h3": "894995855d3ffff",
+    "id": "sim-09007-20",
+    "lat": 19.275677,
+    "lng": -99.117262,
+    "nombre": "Mercado Minas de Cristo",
     "productos": [
-      "refresco",
-      "bolillo",
-      "tenis",
-      "tortilla"
+      "jabón",
+      "clavos",
+      "elote",
+      "bolillo"
     ],
     "tipo": "mercado",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
   {
-    "abre": "07:00",
+    "abre": "06:00",
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "15:00",
-    "colonia": "Minas de Cristo",
-    "dias": [
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "tortillería",
-      "ferretería",
-      "carnicería"
-    ],
-    "h3": "8949958e3cfffff",
-    "id": "sim-09007-20",
-    "lat": 19.321651,
-    "lng": -99.022725,
-    "nombre": "Tianguis Minas de Cristo",
-    "productos": [
-      "chiles secos",
-      "tortilla",
-      "aceite",
-      "clavos"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "18:00",
     "colonia": "Reforma Política",
     "dias": [
-      0,
-      1,
-      2,
-      3,
       4,
       5
     ],
     "fecha_verificacion": null,
     "formas_pago": [
       "efectivo",
-      "CoDi"
+      "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "tortillería",
-      "recaudería",
-      "pollería"
+      "mercería",
+      "nevería"
     ],
-    "h3": "8949958e457ffff",
+    "h3": "8949958edd7ffff",
     "id": "sim-09007-21",
-    "lat": 19.279076,
-    "lng": -99.029345,
-    "nombre": "Mercado Reforma Política",
+    "lat": 19.336413,
+    "lng": -99.08992,
+    "nombre": "Tianguis Reforma Política",
     "productos": [
-      "limón",
-      "arroz",
-      "bolillo",
-      "refresco"
+      "frijol",
+      "huevo",
+      "cuadernos",
+      "bolillo"
     ],
-    "tipo": "mercado",
+    "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -1706,7 +1700,8 @@
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1715,72 +1710,69 @@
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "florería",
-      "mercería",
-      "papelería"
+      "papelería",
+      "abarrotes",
+      "panadería"
     ],
-    "h3": "8949958ecb7ffff",
+    "h3": "8949958e9cbffff",
     "id": "sim-09007-22",
-    "lat": 19.32858,
-    "lng": -99.083378,
+    "lat": 19.362816,
+    "lng": -99.080609,
     "nombre": "Mercado Vicente Guerrero",
     "productos": [
+      "elote",
+      "aceite",
       "jitomate",
-      "queso",
-      "tenis",
-      "refresco"
+      "recarga"
     ],
     "tipo": "mercado",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
   {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
+    "abre": "06:00",
+    "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
+    "cierra": "14:00",
     "colonia": "Santa Cruz Meyehualco",
     "dias": [
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo"
+      "efectivo",
+      "CoDi"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "farmacia",
-      "papelería",
-      "frutas y verduras"
+      "fonda",
+      "recaudería",
+      "papelería"
     ],
-    "h3": "89499580bb7ffff",
+    "h3": "89499585037ffff",
     "id": "sim-09007-23",
-    "lat": 19.266868,
-    "lng": -99.069582,
+    "lat": 19.301774,
+    "lng": -99.106962,
     "nombre": "Tianguis Santa Cruz Meyehualco",
     "productos": [
-      "limón",
-      "nopales",
-      "frijol",
-      "queso"
+      "jitomate",
+      "queso",
+      "tenis",
+      "refresco"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
   {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
+    "abre": "06:00",
+    "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
-    "cierra": "19:00",
+    "cierra": "14:00",
     "colonia": "Tepalcates",
     "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
+      4
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1790,21 +1782,57 @@
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "panadería",
-      "estética",
-      "frutas y verduras"
+      "frutas y verduras",
+      "papelería"
     ],
-    "h3": "8949958e863ffff",
+    "h3": "89499580bb7ffff",
     "id": "sim-09007-24",
-    "lat": 19.360345,
-    "lng": -99.064152,
-    "nombre": "Mercado Tepalcates",
+    "lat": 19.266868,
+    "lng": -99.069582,
+    "nombre": "Tianguis Tepalcates",
     "productos": [
-      "tortilla",
-      "tenis",
-      "bolillo",
-      "queso"
+      "nopales",
+      "frijol",
+      "queso",
+      "bolillo"
     ],
-    "tipo": "mercado",
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "13:00",
+    "colonia": "Renovación",
+    "dias": [
+      4,
+      5
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "frutas y verduras",
+      "recaudería",
+      "abarrotes"
+    ],
+    "h3": "89499585673ffff",
+    "id": "sim-09007-25",
+    "lat": 19.286706,
+    "lng": -99.074183,
+    "nombre": "Tianguis Renovación",
+    "productos": [
+      "queso",
+      "jabón",
+      "frijol",
+      "refresco"
+    ],
+    "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   },
@@ -1813,14 +1841,15 @@
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
     "cierra": "19:00",
-    "colonia": "Renovación",
+    "colonia": "San Lorenzo Tezonco",
     "dias": [
       0,
       1,
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1833,11 +1862,11 @@
       "pollería",
       "ferretería"
     ],
-    "h3": "89499580a63ffff",
-    "id": "sim-09007-25",
-    "lat": 19.261614,
-    "lng": -99.034296,
-    "nombre": "Mercado Renovación",
+    "h3": "8949958e02fffff",
+    "id": "sim-09007-26",
+    "lat": 19.312793,
+    "lng": -99.03725,
+    "nombre": "Mercado San Lorenzo Tezonco",
     "productos": [
       "bolillo",
       "refresco",
@@ -1853,9 +1882,9 @@
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
     "cierra": "13:00",
-    "colonia": "San Lorenzo Tezonco",
+    "colonia": "Ejército de Oriente",
     "dias": [
-      5
+      4
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1869,10 +1898,10 @@
       "nevería"
     ],
     "h3": "89499585303ffff",
-    "id": "sim-09007-26",
+    "id": "sim-09007-27",
     "lat": 19.319522,
     "lng": -99.095143,
-    "nombre": "Tianguis San Lorenzo Tezonco",
+    "nombre": "Tianguis Ejército de Oriente",
     "productos": [
       "chiles secos",
       "frijol",
@@ -1884,34 +1913,37 @@
     "verificado_por": null
   },
   {
-    "abre": "07:00",
+    "abre": "06:00",
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "15:00",
-    "colonia": "Ejército de Oriente",
+    "colonia": "Consejo Agrarista",
     "dias": [
-      1
+      2,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
-      "efectivo"
+      "efectivo",
+      "CoDi",
+      "tarjeta"
     ],
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
-      "carnicería",
-      "zapatería",
-      "mercería"
+      "mercería",
+      "farmacia",
+      "papelería"
     ],
     "h3": "8949958ea0bffff",
-    "id": "sim-09007-27",
+    "id": "sim-09007-28",
     "lat": 19.363911,
     "lng": -99.044438,
-    "nombre": "Tianguis Ejército de Oriente",
+    "nombre": "Tianguis Consejo Agrarista",
     "productos": [
-      "tenis",
-      "aguacate",
-      "cuadernos",
-      "pilas"
+      "pilas",
+      "aceite",
+      "café",
+      "clavos"
     ],
     "tipo": "tianguis",
     "tipo_dato": "simulado",
@@ -1922,14 +1954,15 @@
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "19:00",
-    "colonia": "Consejo Agrarista",
+    "colonia": "Sinatel",
     "dias": [
       0,
       1,
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -1943,10 +1976,10 @@
       "fonda"
     ],
     "h3": "8949958e3abffff",
-    "id": "sim-09007-28",
+    "id": "sim-09007-29",
     "lat": 19.327787,
     "lng": -99.036139,
-    "nombre": "Mercado Consejo Agrarista",
+    "nombre": "Mercado Sinatel",
     "productos": [
       "chiles secos",
       "café",
@@ -1962,7 +1995,7 @@
     "acepta_mercomuna": true,
     "alcaldia_cvegeo": "09007",
     "cierra": "14:00",
-    "colonia": "Sinatel",
+    "colonia": "Desarrollo Urbano Quetzalcóatl",
     "dias": [
       6
     ],
@@ -1977,10 +2010,10 @@
       "ferretería"
     ],
     "h3": "8949958eac3ffff",
-    "id": "sim-09007-29",
+    "id": "sim-09007-30",
     "lat": 19.354877,
     "lng": -99.039551,
-    "nombre": "Tianguis Sinatel",
+    "nombre": "Tianguis Desarrollo Urbano Quetzalcóatl",
     "productos": [
       "café",
       "aceite",
@@ -1996,14 +2029,15 @@
     "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
     "cierra": "19:00",
-    "colonia": "Desarrollo Urbano Quetzalcóatl",
+    "colonia": "San Juanico",
     "dias": [
       0,
       1,
       2,
       3,
       4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -2017,10 +2051,10 @@
       "frutas y verduras"
     ],
     "h3": "8949958e8c3ffff",
-    "id": "sim-09007-30",
+    "id": "sim-09007-31",
     "lat": 19.347563,
     "lng": -99.064654,
-    "nombre": "Mercado Desarrollo Urbano Quetzalcóatl",
+    "nombre": "Mercado San Juanico",
     "productos": [
       "recarga",
       "pilas",
@@ -2032,81 +2066,43 @@
     "verificado_por": null
   },
   {
-    "abre": "06:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
-    "colonia": "San Juanico",
-    "dias": [
-      3,
-      6
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "pollería",
-      "recaudería",
-      "abarrotes"
-    ],
-    "h3": "8949958c427ffff",
-    "id": "sim-09007-31",
-    "lat": 19.344297,
-    "lng": -99.013914,
-    "nombre": "Tianguis San Juanico",
-    "productos": [
-      "jitomate",
-      "refresco",
-      "cuadernos",
-      "aceite"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "13:00",
-    "colonia": "Desarrollo Quetzalcóatl",
-    "dias": [
-      1,
-      4
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "carnicería",
-      "fonda",
-      "papelería"
-    ],
-    "h3": "8949958e063ffff",
-    "id": "sim-09007-32",
-    "lat": 19.31045,
-    "lng": -99.028059,
-    "nombre": "Tianguis Desarrollo Quetzalcóatl",
-    "productos": [
-      "clavos",
-      "huevo",
-      "jabón",
-      "nopales"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
     "abre": "07:00",
     "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "15:00",
+    "colonia": "Desarrollo Quetzalcóatl",
+    "dias": [
+      2,
+      5
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "abarrotes",
+      "fonda",
+      "ferretería"
+    ],
+    "h3": "8949958c427ffff",
+    "id": "sim-09007-32",
+    "lat": 19.344297,
+    "lng": -99.013914,
+    "nombre": "Tianguis Desarrollo Quetzalcóatl",
+    "productos": [
+      "aceite",
+      "clavos",
+      "bolillo",
+      "jitomate"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
     "alcaldia_cvegeo": "09007",
     "cierra": "19:00",
     "colonia": "Puente Blanco",
@@ -2116,124 +2112,8 @@
       2,
       3,
       4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "estética",
-      "ferretería",
-      "zapatería"
-    ],
-    "h3": "8949958e863ffff",
-    "id": "sim-09007-33",
-    "lat": 19.361944,
-    "lng": -99.06332,
-    "nombre": "Mercado Puente Blanco",
-    "productos": [
-      "limón",
-      "refresco",
-      "huevo",
-      "frijol"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": true,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "14:00",
-    "colonia": "Ermita Zaragoza",
-    "dias": [
-      3
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "fonda",
-      "panadería",
-      "frutas y verduras"
-    ],
-    "h3": "89499585257ffff",
-    "id": "sim-09007-34",
-    "lat": 19.306018,
-    "lng": -99.067416,
-    "nombre": "Tianguis Ermita Zaragoza",
-    "productos": [
-      "chiles secos",
-      "recarga",
-      "cuadernos",
-      "tortilla"
-    ],
-    "tipo": "tianguis",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "19:00",
-    "colonia": "Lomas Estrella",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "fecha_verificacion": null,
-    "formas_pago": [
-      "efectivo",
-      "CoDi",
-      "tarjeta"
-    ],
-    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
-    "giros": [
-      "abarrotes",
-      "papelería",
-      "zapatería"
-    ],
-    "h3": "8949958e86bffff",
-    "id": "sim-09007-35",
-    "lat": 19.363743,
-    "lng": -99.060542,
-    "nombre": "Mercado Lomas Estrella",
-    "productos": [
-      "aceite",
-      "clavos",
-      "pilas",
-      "jitomate"
-    ],
-    "tipo": "mercado",
-    "tipo_dato": "simulado",
-    "verificado_por": null
-  },
-  {
-    "abre": "07:00",
-    "acepta_mercomuna": false,
-    "alcaldia_cvegeo": "09007",
-    "cierra": "18:00",
-    "colonia": "Citlalli",
-    "dias": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
+      5,
+      6
     ],
     "fecha_verificacion": null,
     "formas_pago": [
@@ -2243,21 +2123,132 @@
     "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
     "giros": [
       "carnicería",
-      "nevería",
-      "pollería"
+      "ferretería",
+      "recaudería"
     ],
-    "h3": "8949958ed4fffff",
-    "id": "sim-09007-36",
-    "lat": 19.349517,
-    "lng": -99.08106,
-    "nombre": "Mercado Citlalli",
+    "h3": "8949958ed2bffff",
+    "id": "sim-09007-33",
+    "lat": 19.352721,
+    "lng": -99.095751,
+    "nombre": "Mercado Puente Blanco",
     "productos": [
-      "tenis",
-      "clavos",
-      "queso",
-      "recarga"
+      "limón",
+      "jabón",
+      "arroz",
+      "huevo"
     ],
     "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "07:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "19:00",
+    "colonia": "Ermita Zaragoza",
+    "dias": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "mercería",
+      "carnicería",
+      "zapatería"
+    ],
+    "h3": "8949958569bffff",
+    "id": "sim-09007-34",
+    "lat": 19.272419,
+    "lng": -99.078033,
+    "nombre": "Mercado Ermita Zaragoza",
+    "productos": [
+      "recarga",
+      "frijol",
+      "arroz",
+      "pan dulce"
+    ],
+    "tipo": "mercado",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": false,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "15:00",
+    "colonia": "Lomas Estrella",
+    "dias": [
+      3
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "frutas y verduras",
+      "recaudería",
+      "mercería"
+    ],
+    "h3": "8949958ec9bffff",
+    "id": "sim-09007-35",
+    "lat": 19.320425,
+    "lng": -99.074966,
+    "nombre": "Tianguis Lomas Estrella",
+    "productos": [
+      "refresco",
+      "chiles secos",
+      "recarga",
+      "cuadernos"
+    ],
+    "tipo": "tianguis",
+    "tipo_dato": "simulado",
+    "verificado_por": null
+  },
+  {
+    "abre": "06:00",
+    "acepta_mercomuna": true,
+    "alcaldia_cvegeo": "09007",
+    "cierra": "13:00",
+    "colonia": "Citlalli",
+    "dias": [
+      6
+    ],
+    "fecha_verificacion": null,
+    "formas_pago": [
+      "efectivo",
+      "CoDi",
+      "tarjeta"
+    ],
+    "fuente": "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo",
+    "giros": [
+      "farmacia",
+      "nevería",
+      "recaudería"
+    ],
+    "h3": "894995855c3ffff",
+    "id": "sim-09007-36",
+    "lat": 19.279908,
+    "lng": -99.114617,
+    "nombre": "Tianguis Citlalli",
+    "productos": [
+      "clavos",
+      "queso",
+      "recarga",
+      "pan dulce"
+    ],
+    "tipo": "tianguis",
     "tipo_dato": "simulado",
     "verificado_por": null
   }

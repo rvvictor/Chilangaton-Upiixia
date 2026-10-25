@@ -26,6 +26,11 @@ TIANGUIS_POR_ALCALDIA = {"09003": 24, "09007": 36}
 TICKET_SIMULADO = 300  # Pesos por transacción, simulado.
 UMBRAL_CLUSTER = 8  # negocios_barriales mínimo para entrar a un cluster (A.10).
 UMBRAL_OCULTO = 3  # negocios_total por debajo de esto, el hexágono se oculta.
+FRACCION_OCULTOS = 0.04  # ~4% de hexágonos periféricos y de baja población quedan con 0-2 negocios.
+# Peso de cada día (0 = lunes ... 6 = domingo) al elegir días de tianguis. Domingo es el más
+# común y martes casi nunca: en la demo, el domingo abren muchos tianguis cerca de la sede y el
+# martes cierra casi todo (paso 2 de la demo).
+PESO_DIA_TIANGUIS = {0: 1.0, 1: 0.3, 2: 1.0, 3: 1.0, 4: 1.0, 5: 1.5, 6: 2.0}
 FUENTE_SIMULADA = "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo"
 
 RAIZ = Path(__file__).resolve().parents[2]
@@ -128,6 +133,37 @@ def _clusters(barriales: dict[str, int]) -> dict[str, int]:
 
 # ---------------------------------------------------------------- hexágonos
 
+def _forzar_ocultos(hexes: list[dict], rng: random.Random) -> None:
+    """Fuerza ~FRACCION_OCULTOS de los hexágonos periféricos y de baja población a 0-2 negocios.
+
+    Se llama antes del reparto TPV y del cálculo de `oculto`. Los negocios nuevos mantienen
+    negocios_barriales <= negocios_total y el peso TPV se recalcula con la misma fórmula.
+    """
+    dist_km: dict[str, float] = {}
+    for cvegeo in ALCALDIAS:
+        cx, cy = _centroide(POLIGONOS[cvegeo])
+        for h in hexes:
+            if h["alcaldia_cvegeo"] == cvegeo:
+                lat, lng = h3.cell_to_latlng(h["h3"])
+                dist_km[h["h3"]] = _km_entre(lat, lng, cx, cy)
+
+    candidatos: list[dict] = []
+    for cvegeo in ALCALDIAS:
+        grupo = [h for h in hexes if h["alcaldia_cvegeo"] == cvegeo]
+        if not grupo:
+            continue
+        dist_mediana = sorted(dist_km[h["h3"]] for h in grupo)[len(grupo) // 2]
+        pob_mediana = sorted(h["poblacion"] for h in grupo)[len(grupo) // 2]
+        candidatos += [h for h in grupo
+                       if dist_km[h["h3"]] >= dist_mediana and h["poblacion"] <= pob_mediana]
+
+    k = min(len(candidatos), round(len(hexes) * FRACCION_OCULTOS))
+    for h in rng.sample(sorted(candidatos, key=lambda h: h["h3"]), k):
+        h["negocios_total"] = rng.randint(0, UMBRAL_OCULTO - 1)
+        h["negocios_barriales"] = min(h["negocios_barriales"], h["negocios_total"])
+        h["_peso_act"] = h["negocios_total"] * rng.uniform(0.6, 1.4)
+
+
 def _hexagonos() -> list[dict]:
     rng = random.Random(SEMILLA)
     asignacion = _celdas_por_alcaldia()
@@ -158,6 +194,8 @@ def _hexagonos() -> list[dict]:
                 "negocios_barriales": int(barriales),
                 "_peso_act": total * rng.uniform(0.6, 1.4),
             })
+
+    _forzar_ocultos(hexes, rng)
 
     # Actividad TPV: reparto del total de la alcaldía proporcional al peso (A.2 simplificado).
     for cvegeo in ALCALDIAS:
@@ -241,10 +279,22 @@ def _horas(tipo: str, rng: random.Random) -> tuple[str, str]:
     return "07:00", rng.choice(["18:00", "19:00"])
 
 
+def _dias_tianguis(rng: random.Random) -> list[int]:
+    """1 o 2 días de tianguis, con pesos: domingo (6) común, martes (1) casi nunca."""
+    restantes = list(PESO_DIA_TIANGUIS)
+    n = 1 if rng.random() < 0.6 else 2
+    elegidos: list[int] = []
+    for _ in range(n):
+        dia = rng.choices(restantes, weights=[PESO_DIA_TIANGUIS[d] for d in restantes], k=1)[0]
+        elegidos.append(dia)
+        restantes.remove(dia)
+    return sorted(elegidos)
+
+
 def _punto_simulado(rng: random.Random, cvegeo: str, indice: int, colonias: list[str]) -> dict:
     lat, lng = _muestra_en_poligono(rng, POLIGONOS[cvegeo])
     tipo = "mercado" if rng.random() < 0.4 else "tianguis"
-    dias = list(range(6)) if tipo == "mercado" else sorted(rng.sample(range(7), rng.choice([1, 2])))
+    dias = list(range(7)) if tipo == "mercado" else _dias_tianguis(rng)
     abre, cierra = _horas(tipo, rng)
     colonia = colonias[indice % len(colonias)]
     nombre = f"{'Mercado' if tipo == 'mercado' else 'Tianguis'} {colonia}"
