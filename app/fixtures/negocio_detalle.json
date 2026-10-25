@@ -1,0 +1,210 @@
+{
+ "id": "alta-dona-lupe",
+ "origen": "alta",
+ "ficha": {
+  "nombre": "Puesto de Doña Lupe",
+  "tipo": "puesto",
+  "clase_scian": "461130",
+  "clase_nombre": "Comercio al por menor de frutas y verduras frescas",
+  "descripcion": "Nopales y jitomate frescos en el Tianguis de San Lucas. Abro de 7 a 3. Acepto transferencia.",
+  "productos": [
+   {
+    "nombre": "nopales",
+    "precio": 20.0,
+    "unidad": "kg"
+   },
+   {
+    "nombre": "jitomate",
+    "precio": 25.0,
+    "unidad": "kg"
+   }
+  ],
+  "dias": [
+   0
+  ],
+  "abre": "07:00",
+  "cierra": "15:00",
+  "formas_pago": [
+   "efectivo",
+   "transferencia"
+  ],
+  "acepta_mercomuna": null,
+  "whatsapp": null,
+  "colonia": "San Lucas",
+  "tianguis_id": "tia-001"
+ },
+ "lat": 19.3481,
+ "lng": -99.1625,
+ "h3": "89499585d2fffff",
+ "alcaldia_cvegeo": "09003",
+ "avance": {
+  "dias": [
+   {
+    "fecha": "2026-10-19",
+    "apariciones_ruta": 4,
+    "busquedas": 0,
+    "compre_aqui": 1,
+    "vistas_pagina": 0
+   },
+   {
+    "fecha": "2026-10-20",
+    "apariciones_ruta": 1,
+    "busquedas": 9,
+    "compre_aqui": 0,
+    "vistas_pagina": 4
+   },
+   {
+    "fecha": "2026-10-21",
+    "apariciones_ruta": 5,
+    "busquedas": 6,
+    "compre_aqui": 1,
+    "vistas_pagina": 0
+   },
+   {
+    "fecha": "2026-10-22",
+    "apariciones_ruta": 0,
+    "busquedas": 4,
+    "compre_aqui": 1,
+    "vistas_pagina": 2
+   },
+   {
+    "fecha": "2026-10-23",
+    "apariciones_ruta": 1,
+    "busquedas": 5,
+    "compre_aqui": 3,
+    "vistas_pagina": 0
+   },
+   {
+    "fecha": "2026-10-24",
+    "apariciones_ruta": 6,
+    "busquedas": 3,
+    "compre_aqui": 1,
+    "vistas_pagina": 1
+   },
+   {
+    "fecha": "2026-10-25",
+    "apariciones_ruta": 1,
+    "busquedas": 2,
+    "compre_aqui": 0,
+    "vistas_pagina": 1
+   }
+  ],
+  "apariciones_ruta": {
+   "valor": 18,
+   "tipo_dato": "simulado",
+   "fuente": "Historia simulada de la plataforma",
+   "periodo": "últimos 7 días"
+  },
+  "busquedas": {
+   "valor": 29,
+   "tipo_dato": "simulado",
+   "fuente": "Historia simulada de la plataforma",
+   "periodo": "últimos 7 días"
+  },
+  "compre_aqui": {
+   "valor": 7,
+   "tipo_dato": "simulado",
+   "fuente": "Historia simulada de la plataforma",
+   "periodo": "últimos 7 días"
+  },
+  "vistas_pagina": {
+   "valor": 8,
+   "tipo_dato": "simulado",
+   "fuente": "Historia simulada de la plataforma",
+   "periodo": "últimos 7 días"
+  },
+  "promedio_zona_apariciones": {
+   "valor": 9.4,
+   "tipo_dato": "simulado",
+   "fuente": "Historia simulada de la plataforma",
+   "periodo": "últimos 7 días"
+  },
+  "tipo_dato": "simulado"
+ },
+ "escalera": [
+  {
+   "numero": 1,
+   "nombre": "Visible",
+   "estado": "logrado",
+   "beneficio": "Apareces en el mapa y en las rutas de tus vecinas",
+   "siguiente_accion": null
+  },
+  {
+   "numero": 2,
+   "nombre": "Cobro digital",
+   "estado": "logrado",
+   "beneficio": "Cobras sin efectivo y sin comisión",
+   "siguiente_accion": "Activa DiMo en la app de tu banco"
+  },
+  {
+   "numero": 3,
+   "nombre": "Historial",
+   "estado": "proximamente",
+   "beneficio": "Tus ventas digitales arman tu historial",
+   "siguiente_accion": null
+  },
+  {
+   "numero": 4,
+   "nombre": "Crédito",
+   "estado": "horizonte",
+   "beneficio": "Con historial, acceso a crédito justo",
+   "siguiente_accion": null
+  }
+ ],
+ "programas": [
+  {
+   "id": "mercomuna",
+   "nombre": "Mercomuna",
+   "que_es": "Vales de la Ciudad para comprar en negocios de barrio.",
+   "para_quien": "Negocios de barrio afiliados",
+   "como_entrar": "Afiliarse con la alcaldía (requisitos por confirmar)",
+   "url_oficial": "https://www.sedeco.cdmx.gob.mx/",
+   "estado": "existe",
+   "fecha_verificacion": null,
+   "puede_entrar": true,
+   "motivo": "Vendes frutas y verduras en un tianguis"
+  },
+  {
+   "id": "dimo",
+   "nombre": "DiMo de Banxico",
+   "que_es": "Cobra con tu número de celular, sin comisión.",
+   "para_quien": "Cualquier persona con cuenta bancaria",
+   "como_entrar": "Actívalo en la app de tu banco",
+   "url_oficial": "https://www.banxico.org.mx/",
+   "estado": "existe",
+   "fecha_verificacion": null,
+   "puede_entrar": true,
+   "motivo": "Ya aceptas transferencia"
+  },
+  {
+   "id": "codi",
+   "nombre": "CoDi de Banxico",
+   "que_es": "Cobro con código QR sin comisión.",
+   "para_quien": "Cualquier persona con cuenta bancaria",
+   "como_entrar": "Actívalo en la app de tu banco",
+   "url_oficial": "https://www.banxico.org.mx/",
+   "estado": "existe",
+   "fecha_verificacion": null,
+   "puede_entrar": true,
+   "motivo": null
+  },
+  {
+   "id": "puntos-barrio",
+   "nombre": "Puntos de barrio",
+   "que_es": "Propuesta: puntos para quien compra en negocios de barrio.",
+   "para_quien": "Vecinas y negocios de barrio",
+   "como_entrar": "Aún no existe: es una propuesta de Pulso Barrial",
+   "url_oficial": null,
+   "estado": "propuesta",
+   "fecha_verificacion": null,
+   "puede_entrar": null,
+   "motivo": null
+  }
+ ],
+ "pagina": {
+  "slug": "dona-lupe",
+  "url": "/n/dona-lupe",
+  "cartel_url": "/n/dona-lupe/cartel",
+  "qr_data_uri": null
+ }
+}
