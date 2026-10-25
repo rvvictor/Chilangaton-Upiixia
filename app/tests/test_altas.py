@@ -92,3 +92,21 @@ def test_simular_alta_script(tmp_path) -> None:
     out = subprocess.run([sys.executable, "-c", codigo], cwd=ROOT, capture_output=True, text=True, check=True)
     assert out.stdout.startswith("ALTA alta-puesto-de-dona-lupe")
     assert json.loads((tmp_path / "altas.jsonl").read_text())["demo_data"] is True
+
+
+def test_dona_lupe_entra_a_la_ruta_de_la_vecina_despues_de_las_15(live, monkeypatch) -> None:
+    """Plan B de la demo: simular_alta → la ruta desde la sede de la vista Vecina pasa por Doña Lupe,
+    también en la tarde (la revisión y el pitch son después de las 15:00)."""
+    from app import config
+    from scripts.simular_alta import CASOS
+
+    monkeypatch.setattr(config, "LIVE_DIR", live)
+    alta = altas.crear_alta(altas.AltaIn(
+        ficha=altas.ficha_grabada(), origen="demo", confirmado=True, demo_data=True, **CASOS["dona-lupe"]
+    ))
+    for hora in ("10:00", "16:30"):
+        ruta = client.post("/api/ruta", json={
+            "origen": {"lat": 19.3486, "lng": -99.153}, "dia": 6, "hora": hora,
+            "texto_lista": "2 kilos de jitomate, tortillas, chiles secos, tenis para niño, pilas",
+        }).json()
+        assert alta.id in {p["negocio"]["id"] for p in ruta["paradas"]}, hora
