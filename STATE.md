@@ -1,7 +1,7 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1792958359
+Updated: 1792958368
 AVAILABLE: PB-027 PB-030 
 CLAIMED: PB-022 PB-024 
 BLOCKED: -
@@ -21,11 +21,11 @@ PB-028 | REVIEW | yojan-2 | until 1792971766
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
-- 1792956842 | plan --amend | victor/victor | amended: PB-021 PB-022 | Why: scope or criteria fixed before review
 - 1792956874 | PB-030 | follow-up of PB-001 by yojan-2: Mapa invisible: mapbox-gl.css en capa components para que no anule absolute inset-0 | Why: same Paths, no scope change
 - 1792957122 | deadline lease/PB-017/1792957101 | REQUIRES_RECOVERY | Claim kept; read the summary and use release --expired --read-summary. No work is deleted.
 - 1792958055 | PB-030 | se integra dentro de PB-021 (mismos Paths, Freeze-Allowed yes) | Why: PB-030 no es Freeze-Allowed y bloquea PB-021
 - 1792958269 | deadline freeze/event/1792958220 | FREEZE_DEMO_FIXES_ONLY | New claims only with Freeze-Allowed: yes; respect authorization.
+- 1792958368 | allow | JoahanMorales | freeze exception: PB-017 | Why: La ruta de la demo pasa por zonas que necesitan clientes (5/5 paradas)
 
 Global next step: available P0; else review PRs, tests, demo, rehearsal.
 Why: bounded snapshot to resume without rereading history.
