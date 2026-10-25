@@ -8,11 +8,18 @@ type MapaBaseProps = {
   className?: string;
   /** Overlays drawn on top of the map (legend, card for the selected hexagon). */
   children?: ReactNode;
+  /** "claro" (default) for the app views, "oscuro" for hero and presentation moments. */
+  estilo?: "claro" | "oscuro";
+};
+
+const ESTILOS = {
+  claro: "mapbox://styles/mapbox/light-v11",
+  oscuro: "mapbox://styles/mapbox/dark-v11",
 };
 
 type Estado = "cargando" | "listo" | "sin-token" | "error";
 
-export function MapaBase({ onReady, className = "", children }: MapaBaseProps) {
+export function MapaBase({ onReady, className = "", children, estilo = "claro" }: MapaBaseProps) {
   const contenedor = useRef<HTMLDivElement>(null);
   const onReadyRef = useRef(onReady);
   useEffect(() => {
@@ -28,7 +35,7 @@ export function MapaBase({ onReady, className = "", children }: MapaBaseProps) {
       map = new mapboxgl.Map({
         container: contenedor.current,
         accessToken: token,
-        style: "mapbox://styles/mapbox/light-v11",
+        style: ESTILOS[estilo],
         ...CAMARA_INICIAL,
         antialias: true,
         attributionControl: true,
@@ -49,7 +56,7 @@ export function MapaBase({ onReady, className = "", children }: MapaBaseProps) {
       console.warn("Mapbox:", e.error?.message ?? e);
     });
     return () => map.remove();
-  }, [token]);
+  }, [token, estilo]);
 
   return (
     <div className={`relative h-full min-h-80 w-full overflow-hidden bg-(--pb-superficie-2) ${className}`}>
