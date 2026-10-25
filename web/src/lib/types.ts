@@ -1,19 +1,24 @@
-// Mirror of app/schemas/ (PB-002). Same field names, snake_case. Mocks: app/fixtures/<endpoint>.json.
-// `dias`: 0 = domingo … 6 = sábado, same as JS `Date.getDay()` (Python's weekday() differs).
-// Hours are "HH:MM" strings, CDMX time. Every visible number carries `tipo_dato`.
+// Mirror of app/schemas/ (PB-002): what the API really serves, same field names, snake_case.
+// Mocks: app/fixtures/<endpoint>.json, generated from the live API in DEMO_MODE (app/tests/test_schemas.py checks both).
+// `dias`: 0 = lunes … 6 = domingo (Python weekday). From JS: diaDesdeJs(new Date().getDay()).
 
 export type TipoDato = "real" | "estimado" | "simulado";
-export type FormaPago = "efectivo" | "transferencia" | "dimo" | "codi" | "tarjeta";
-export type TipoPunto = "tianguis" | "mercado" | "puesto" | "concentracion";
 export type TipoEvento = "busqueda" | "aparicion_ruta" | "compre_aqui" | "vista_pagina" | "alta";
 export type OrigenAlta = "telegram" | "campo" | "demo";
 export type EstadoPrograma = "existe" | "por_verificar" | "propuesta";
 
+export const DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"] as const;
+
+/** JS `Date.getDay()` (0 = domingo) → contract day (0 = lunes). */
+export function diaDesdeJs(getDay: number): number {
+  return (getDay + 6) % 7;
+}
+
 export interface Cifra {
   valor: number | null;
   tipo_dato: TipoDato;
-  fuente: string | null;
-  periodo: string | null;
+  fuente?: string | null;
+  periodo?: string | null;
 }
 
 export interface LatLng {
@@ -21,26 +26,25 @@ export interface LatLng {
   lng: number;
 }
 
-// ---------- entities (IDEA.md §6) ----------
+// ---------- Entities (data/processed, data/live) ----------
 
 export interface PuntoBarrial {
   id: string;
-  tipo: TipoPunto;
+  tipo: string; // tianguis · mercado
   nombre: string;
   alcaldia_cvegeo: string;
   colonia: string | null;
   lat: number;
   lng: number;
   h3: string;
-  dias: number[];
-  abre: string;
+  dias: number[]; // 0 = lunes … 6 = domingo
+  abre: string; // "HH:MM"
   cierra: string;
-  horario_supuesto: boolean;
   giros: string[];
   productos: string[];
-  formas_pago: FormaPago[];
+  formas_pago: string[];
   acepta_mercomuna: boolean | null;
-  fuente: string;
+  fuente: string | null;
   fecha_verificacion: string | null;
   verificado_por: string | null;
   tipo_dato: TipoDato;
@@ -48,23 +52,23 @@ export interface PuntoBarrial {
 
 export interface Negocio {
   id: string;
-  clee: string | null;
+  clee: string;
   nombre: string;
-  razon_social: string | null;
+  razon_social: string;
   clase_scian: string;
   clase_nombre: string;
   estrato: string;
-  tipo_establecimiento: string | null;
+  tipo_establecimiento: string;
   lat: number;
   lng: number;
   h3: string;
   alcaldia_cvegeo: string;
   colonia: string | null;
   fecha_alta_denue: string | null;
-  es_barrial: boolean;
-  motivo_exclusion: "giro" | "tamano" | "nombre" | "repeticion" | null;
-  formas_pago: FormaPago[];
+  formas_pago: string[];
   acepta_mercomuna: boolean | null;
+  es_barrial: boolean;
+  motivo_exclusion: string | null;
   tipo_dato: TipoDato;
 }
 
@@ -76,24 +80,26 @@ export interface HexagonoProps {
   negocios_total: number;
   actividad_tpv_est: number | null; // null when oculto
   monto_est: number | null;
-  impulso: number; // 0..1
-  cluster_id: string | null;
-  oculto: boolean;
+  impulso: number; // 0–1
+  cluster_id: number | string | null;
+  oculto: boolean; // < 3 negocios: no figures, grey
   tipo_campos: Record<string, TipoDato>;
   periodo_cnbv: string;
 }
 
 export interface Hexagono {
   type: "Feature";
-  geometry: { type: "Polygon"; coordinates: number[][][] }; // [[[lng, lat], …]]
+  geometry: { type: "Polygon"; coordinates: [number, number][][] };
   properties: HexagonoProps;
 }
 
 export interface HexagonoColeccion {
   type: "FeatureCollection";
   features: Hexagono[];
+  meta?: Record<string, unknown>;
 }
 
+/** CNBV per alcaldía. `tpv_por_adulto` = POS transactions per adult (not pesos). */
 export interface DineroAlcaldia {
   cvegeo: string;
   municipio: string;
@@ -102,23 +108,15 @@ export interface DineroAlcaldia {
   monto_tpv: number | null;
   adultos: number;
   tpv_por_adulto: number;
-  fuente_url: string;
-  fecha_descarga: string;
+  fuente_url: string | null;
+  fecha_descarga: string | null;
   tipo_dato: TipoDato;
-}
-
-export interface Articulo {
-  articulo: string;
-  sinonimos: string[];
-  clases_scian: string[];
-  categoria_ui: string;
 }
 
 export interface Programa {
   id: string;
   nombre: string;
   que_es: string;
-  para_quien: string;
   como_entrar: string;
   url_oficial: string | null;
   estado: EstadoPrograma;
@@ -131,79 +129,87 @@ export interface Producto {
   unidad: string | null;
 }
 
-export interface Ficha {
+/** The ficha the bot extracts from a voice note and the merchant confirms. */
+export interface FichaAlta {
   nombre: string;
-  tipo: TipoPunto;
-  clase_scian: string;
-  clase_nombre: string | null;
-  descripcion: string | null; // ≤ 280 chars
+  giro: string | null;
+  clase_scian: string | null;
   productos: Producto[];
-  dias: number[];
+  dias: number[]; // empty = every day
   abre: string | null;
   cierra: string | null;
-  formas_pago: FormaPago[];
+  formas_pago: string[];
   acepta_mercomuna: boolean | null;
-  whatsapp: string | null;
-  colonia: string | null;
-  tianguis_id: string | null;
+  telefono: string | null;
 }
 
 export interface Alta {
   id: string;
   slug: string;
   ts: number;
-  ficha: Ficha;
+  ficha: FichaAlta;
   lat: number;
   lng: number;
-  h3: string;
-  alcaldia_cvegeo: string | null;
-  origen: OrigenAlta;
-  verificado_por: string | null;
-  consentimiento_publicar: boolean;
-  demo_data: boolean;
-}
-
-export interface Evento {
-  ts: number;
-  tipo: TipoEvento;
-  negocio_id: string | null;
   h3: string | null;
+  origen: OrigenAlta;
+  confirmado: boolean;
+  consentimiento_publicar: boolean;
+  verificado_por: string | null;
+  tianguis_id: string | null;
+  tianguis_nombre: string | null;
   demo_data: boolean;
 }
 
-// ---------- API (IDEA.md Apéndice C) ----------
+// ---------- API responses ----------
 
-export interface Health {
-  status: string;
-}
-
+/** GET /api/tianguis?dia=0-6&hora=HH:MM */
 export interface TianguisResponse {
   dia: number;
+  dia_nombre: string;
   hora: string;
   total: number;
-  abiertos: PuntoBarrial[];
-  cerrados_ids: string[];
+  abiertos: number;
+  puntos: (PuntoBarrial & { abierto: boolean })[];
+  cobertura: {
+    poblacion_total: number;
+    poblacion_cubierta: number;
+    poblacion_cubierta_pct: number;
+    desiertos: string[];
+    radio_m: number;
+    tipo_dato: TipoDato;
+    metodo: string;
+  };
+  origen: "processed" | "fixture" | "vacio";
 }
 
-export interface ArticulosRequest {
-  texto_lista: string;
+/** GET /api/sedeco/resumen */
+export interface SedecoResumen {
+  altas_hoy: number;
+  rutas_por_hexagono: Record<string, number>;
+  dia: number;
+  hora: string;
+  abiertos: number;
+  poblacion_cubierta_pct: number;
+  desiertos: number;
+  tipo_campos: Record<string, TipoDato>;
 }
 
-export interface ItemInterpretado {
-  texto: string;
-  cantidad: number | null;
-  unidad: string | null;
-  clases: string[];
-  fuente: "exacto" | "sinonimo" | "difuso" | "llm";
-}
-
+/** POST /api/articulos/interpretar */
 export interface ArticulosResponse {
-  items: ItemInterpretado[];
+  items: {
+    texto: string;
+    articulo: string;
+    cantidad: number | null;
+    unidad: string | null;
+    clases: string[];
+    fuente: "diccionario" | "sinonimo" | "difuso" | "llm";
+  }[];
   sin_resultado: string[];
 }
 
+/** POST /api/ruta */
 export interface RutaRequest {
-  origen: LatLng;
+  origen?: LatLng;
   texto_lista: string;
   dia?: number | null;
   hora?: string | null;
@@ -215,17 +221,16 @@ export interface RutaRequest {
 export interface LugarRuta {
   id: string;
   nombre: string;
-  tipo: "negocio" | "tianguis" | "mercado" | "puesto";
-  clase_nombre: string;
+  tipo: "negocio" | "tianguis" | "mercado" | "alta";
+  giro: string;
   lat: number;
   lng: number;
-  h3: string;
-  es_barrial: boolean;
-  impulso: number;
-  formas_pago: FormaPago[];
+  h3: string | null;
+  formas_pago: string[];
   acepta_mercomuna: boolean | null;
+  tipo_dato: TipoDato;
   horario_verificado: boolean;
-  slug: string | null;
+  impulso: number;
 }
 
 export interface Parada {
@@ -237,107 +242,77 @@ export interface Parada {
 
 export interface RutaResponse {
   paradas: Parada[];
-  geometria: { type: "LineString"; coordinates: number[][] }; // [[lng, lat], …]
+  geometria: { type: "LineString"; coordinates: [number, number][] } | null;
   distancia_m: number;
   minutos: number;
-  metodo: "mapbox" | "linea_recta";
-  aviso: string | null;
   resumen: { barrial_pct: number; cadenas: number; paradas_impulso: number };
   sin_resultado: string[];
+  aviso: string | null;
   demo_data: boolean;
 }
 
+/** POST /api/eventos */
 export interface EventoRequest {
-  tipo: TipoEvento;
+  tipo: "busqueda" | "compre_aqui";
   negocio_id?: string | null;
   h3?: string | null;
 }
 
-export interface AltaRequest {
-  ficha: Ficha;
-  lat: number;
-  lng: number;
-  origen: OrigenAlta;
-  verificado_por?: string | null;
-  consentimiento_publicar: boolean;
-}
-
+/** GET /api/altas/live?desde=ts — send `ultimo_ts` as the next `desde`. */
 export interface AltasLive {
-  ts: number; // send back as `desde`
   altas: Alta[];
-  altas_hoy: number;
+  desde: number;
+  ultimo_ts: number;
 }
 
-export interface AvanceDia {
-  fecha: string;
-  apariciones_ruta: number;
-  busquedas: number;
-  compre_aqui: number;
-  vistas_pagina: number;
+/** GET /api/negocio/{id} */
+export interface NegocioDetalle {
+  id: string;
+  origen: string;
+  ficha: {
+    nombre: string;
+    giro: string | null;
+    colonia: string | null;
+    telefono: string | null;
+    horario: string | null;
+    formas_pago: string[];
+    productos: Producto[];
+    acepta_mercomuna: boolean | null;
+    ubicacion: string | null;
+    aparecer_en_rutas: boolean;
+  };
+  descripcion: string | null;
+  avance: { tipo_dato: TipoDato; dias: number; conteos: Record<string, number> };
+  escalera: { orden: number; nombre: string; estado: string; beneficio: string; siguiente_accion: string | null }[];
+  programas: Programa[];
+  pagina: { url: string; cartel: string } | null;
 }
 
-export interface Avance {
-  dias: AvanceDia[];
-  apariciones_ruta: Cifra;
-  busquedas: Cifra;
-  compre_aqui: Cifra;
-  vistas_pagina: Cifra;
-  promedio_zona_apariciones: Cifra;
-  tipo_dato: TipoDato;
-}
-
-export interface Escalon {
-  numero: 1 | 2 | 3 | 4;
-  nombre: string;
-  estado: "logrado" | "siguiente" | "proximamente" | "horizonte";
-  beneficio: string;
-  siguiente_accion: string | null;
-}
-
-export interface ProgramaNegocio extends Programa {
-  puede_entrar: boolean | null;
-  motivo: string | null;
-}
-
+/** POST /api/negocio/{id}/pagina */
 export interface Pagina {
   slug: string;
   url: string;
-  cartel_url: string;
-  qr_data_uri: string | null;
+  url_completa: string | null;
+  cartel: string;
+  qr: string; // data:image/png;base64,…
 }
 
-export interface NegocioDetalle {
-  id: string;
-  origen: "denue" | "alta" | "tianguis";
-  ficha: Ficha;
-  lat: number;
-  lng: number;
-  h3: string;
-  alcaldia_cvegeo: string | null;
-  avance: Avance;
-  escalera: Escalon[];
-  programas: ProgramaNegocio[];
-  pagina: Pagina | null;
-}
-
-export interface NegociosResponse {
-  negocios: Negocio[];
-}
-
-export interface SedecoResumen {
-  dia: number;
-  hora: string;
-  altas_hoy: Cifra;
-  poblacion_cubierta_pct: Cifra;
-  puntos_abiertos: Cifra;
-  rutas_por_hex: Record<string, number>;
-  rutas_tipo_dato: TipoDato;
+/** GET /api/sedeco/crecimiento */
+export interface SerieIndicador {
+  alcaldia_cvegeo: string;
+  alcaldia: string;
+  indicador: string;
+  puntos: Record<string, unknown>[];
+  tipo_dato: TipoDato;
+  fuente: string;
 }
 
 export interface SedecoCrecimiento {
-  serie_trimestral: { cvegeo: string; municipio: string; trimestre: string; transacciones_tpv: number; tipo_dato: TipoDato }[];
-  altas_denue_por_anio: { cvegeo: string; anio: number; altas: number; tipo_dato: TipoDato }[];
-  altas_plataforma_hoy: Cifra;
-  rutas_por_hex: { h3: string; rutas: number; tipo_dato: TipoDato }[];
   alcaldias: string[];
+  serie_trimestral: SerieIndicador[];
+  altas_negocios_por_anio: SerieIndicador[];
+  altas_plataforma: Record<string, unknown>;
+  rutas_por_hexagono: Record<string, unknown>;
+  escala: Record<string, unknown>;
+  demo_data: boolean;
 }

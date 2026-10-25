@@ -1,12 +1,9 @@
 {
  "origen": {
-  "lat": 19.3467,
-  "lng": -99.1617
+  "lat": 19.3486,
+  "lng": -99.153
  },
- "texto_lista": "2 kilos de jitomate, tortillas, chiles secos, tenis para niño, pilas, cartucho de impresora",
- "dia": 0,
- "hora": "10:00",
- "radio_m": 1500,
- "alpha": 0.6,
- "regresar": true
+ "texto_lista": "2 kilos de jitomate, tortillas, chiles secos, tenis para niño, pilas",
+ "dia": 6,
+ "hora": "10:00"
 }

@@ -1,16 +1,10 @@
 {
- "ts": 1792951263.0,
  "altas": [
   {
-   "id": "alta-dona-lupe",
-   "slug": "dona-lupe",
-   "ts": 1792951260.0,
    "ficha": {
     "nombre": "Puesto de Doña Lupe",
-    "tipo": "puesto",
+    "giro": "Frutas y verduras frescas",
     "clase_scian": "461130",
-    "clase_nombre": "Comercio al por menor de frutas y verduras frescas",
-    "descripcion": "Nopales y jitomate frescos en el Tianguis de San Lucas. Abro de 7 a 3. Acepto transferencia.",
     "productos": [
      {
       "nombre": "nopales",
@@ -24,7 +18,8 @@
      }
     ],
     "dias": [
-     0
+     5,
+     6
     ],
     "abre": "07:00",
     "cierra": "15:00",
@@ -33,19 +28,23 @@
      "transferencia"
     ],
     "acepta_mercomuna": null,
-    "whatsapp": null,
-    "colonia": "San Lucas",
-    "tianguis_id": "tia-001"
+    "telefono": null
    },
-   "lat": 19.3481,
-   "lng": -99.1625,
-   "h3": "89499585d2fffff",
-   "alcaldia_cvegeo": "09003",
+   "lat": 19.3492,
+   "lng": -99.1538,
    "origen": "demo",
    "verificado_por": null,
+   "confirmado": true,
    "consentimiento_publicar": true,
-   "demo_data": true
+   "demo_data": true,
+   "id": "alta-puesto-de-dona-lupe",
+   "slug": "puesto-de-dona-lupe",
+   "ts": 1792955792.7143009,
+   "h3": "89499585d6fffff",
+   "tianguis_id": null,
+   "tianguis_nombre": null
   }
  ],
- "altas_hoy": 1
+ "desde": 0.0,
+ "ultimo_ts": 1792955792.7143009
 }

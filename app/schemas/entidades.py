@@ -1,31 +1,36 @@
-"""Entidades de datos (IDEA.md §6). Espejo en web/src/lib/types.ts con los mismos nombres de campo.
+"""Entidades de datos (IDEA.md §6), tal como las escriben los pipelines y el bot. Espejo en web/src/lib/types.ts.
 
 Convenciones del contrato:
-- `dias`: 0 = domingo, 1 = lunes … 6 = sábado (NO es `date.weekday()`, que empieza en lunes).
+- `dias`: 0 = lunes … 6 = domingo, igual que `date.weekday()` en Python y que `pipeline.geo` (data/fuentes/geo.md).
+  En JavaScript: `(new Date().getDay() + 6) % 7`.
 - Horas `abre` / `cierra` / `hora`: texto "HH:MM" de 24 h, hora de la CDMX.
 - Toda cifra visible viaja con `tipo_dato` (o `tipo_campos` en el hexágono) y la UI la muestra.
+- Los modelos aceptan campos extra (`extra="allow"`): validan lo que la UI usa sin romperse si un productor agrega algo.
 """
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 TipoDato = Literal["real", "estimado", "simulado"]
-FormaPago = Literal["efectivo", "transferencia", "dimo", "codi", "tarjeta"]
-TipoPunto = Literal["tianguis", "mercado", "puesto", "concentracion"]
 TipoEvento = Literal["busqueda", "aparicion_ruta", "compre_aqui", "vista_pagina", "alta"]
 OrigenAlta = Literal["telegram", "campo", "demo"]
 EstadoPrograma = Literal["existe", "por_verificar", "propuesta"]
 
 HORA = r"^([01]\d|2[0-3]):[0-5]\d$"
+DIAS = ("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")
 
 
-def dia_desde_weekday(weekday: int) -> int:
-    """Convierte `date.weekday()` (0 = lunes) a la convención del contrato (0 = domingo)."""
-    return (weekday + 1) % 7
+def dia_desde_js(get_day: int) -> int:
+    """`Date.getDay()` de JavaScript (0 = domingo) → contrato (0 = lunes, como `date.weekday()`)."""
+    return (get_day + 6) % 7
 
 
-class Cifra(BaseModel):
+class Modelo(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+
+class Cifra(Modelo):
     """Un número que se muestra en pantalla, con su etiqueta y su fuente."""
 
     valor: float | int | None
@@ -34,31 +39,30 @@ class Cifra(BaseModel):
     periodo: str | None = None
 
 
-class LatLng(BaseModel):
+class LatLng(Modelo):
     lat: float
     lng: float
 
 
-class PuntoBarrial(BaseModel):
-    """Tianguis Abierto v0.1: tianguis, mercado o puesto (`tianguis_abierto.json`)."""
+class PuntoBarrial(Modelo):
+    """Tianguis Abierto v0.1 (`data/processed/tianguis_abierto.json`): tianguis o mercado."""
 
     id: str
-    tipo: TipoPunto
+    tipo: str = Field(description="tianguis · mercado")
     nombre: str
     alcaldia_cvegeo: str
     colonia: str | None = None
     lat: float
     lng: float
     h3: str
-    dias: list[int] = Field(description="0 = domingo … 6 = sábado")
+    dias: list[int] = Field(description="0 = lunes … 6 = domingo")
     abre: str = Field(pattern=HORA)
     cierra: str = Field(pattern=HORA)
-    horario_supuesto: bool = False
-    giros: list[str] = []
-    productos: list[str] = []
-    formas_pago: list[FormaPago] = []
+    giros: list[str] = Field(default_factory=list)
+    productos: list[str] = Field(default_factory=list)
+    formas_pago: list[str] = Field(default_factory=list)
     acepta_mercomuna: bool | None = None
-    fuente: str
+    fuente: str | None = None
     fecha_verificacion: str | None = None
     verificado_por: str | None = None
     tipo_dato: TipoDato
@@ -68,33 +72,31 @@ class PuntoBarrial(BaseModel):
         return dia in self.dias and self.abre <= hora < self.cierra
 
 
-class Negocio(BaseModel):
-    """Establecimiento tipo DENUE (`negocios.json`). Sin datos personales."""
+class Negocio(Modelo):
+    """Negocio con forma del DENUE (`data/processed/negocios.json`), con el resultado de la regla anti-cadenas."""
 
     id: str
-    clee: str | None = None
+    clee: str
     nombre: str
-    razon_social: str | None = None
+    razon_social: str = ""
     clase_scian: str
     clase_nombre: str
     estrato: str
-    tipo_establecimiento: str | None = None
+    tipo_establecimiento: str
     lat: float
     lng: float
     h3: str
     alcaldia_cvegeo: str
     colonia: str | None = None
     fecha_alta_denue: str | None = None
-    es_barrial: bool
-    motivo_exclusion: Literal["giro", "tamano", "nombre", "repeticion"] | None = None
-    formas_pago: list[FormaPago] = []
+    formas_pago: list[str] = Field(default_factory=list)
     acepta_mercomuna: bool | None = None
+    es_barrial: bool
+    motivo_exclusion: str | None
     tipo_dato: TipoDato
 
 
-class HexagonoProps(BaseModel):
-    """Propiedades de un hexágono H3 res 9. Si `oculto`, las cifras de dinero van en null."""
-
+class HexagonoProps(Modelo):
     h3: str
     alcaldia_cvegeo: str
     poblacion: int
@@ -103,32 +105,30 @@ class HexagonoProps(BaseModel):
     actividad_tpv_est: float | None
     monto_est: float | None = None
     impulso: float = Field(ge=0, le=1)
-    cluster_id: str | None = None
+    cluster_id: int | str | None = None
     oculto: bool
     tipo_campos: dict[str, TipoDato]
     periodo_cnbv: str
 
 
-class PoligonoGeo(BaseModel):
+class PoligonoGeo(Modelo):
     type: Literal["Polygon"]
     coordinates: list[list[list[float]]] = Field(description="[[[lng, lat], …]] anillo cerrado")
 
 
-class Hexagono(BaseModel):
-    """Feature GeoJSON de `hex.geojson`."""
-
+class Hexagono(Modelo):
     type: Literal["Feature"]
     geometry: PoligonoGeo
     properties: HexagonoProps
 
 
-class HexagonoColeccion(BaseModel):
+class HexagonoColeccion(Modelo):
     type: Literal["FeatureCollection"]
     features: list[Hexagono]
 
 
-class DineroAlcaldia(BaseModel):
-    """CNBV, Bases de Datos de Inclusión Financiera (`cnbv_tpv_municipios.json`)."""
+class DineroAlcaldia(Modelo):
+    """CNBV por alcaldía. `tpv_por_adulto` son transacciones en TPV por adulto (no pesos)."""
 
     cvegeo: str
     municipio: str
@@ -137,80 +137,73 @@ class DineroAlcaldia(BaseModel):
     monto_tpv: float | None = None
     adultos: int
     tpv_por_adulto: float
-    fuente_url: str
-    fecha_descarga: str
+    fuente_url: str | None = None
+    fecha_descarga: str | None = None
     tipo_dato: TipoDato
 
 
-class Articulo(BaseModel):
-    """Entrada del diccionario artículo → giro (`articulo_giro.json`)."""
-
+class Articulo(Modelo):
     articulo: str
-    sinonimos: list[str] = []
+    sinonimos: list[str] = Field(default_factory=list)
     clases_scian: list[str]
     categoria_ui: str
 
 
-class Programa(BaseModel):
-    """Programa público o propuesta (`programas.json`)."""
-
+class Programa(Modelo):
     id: str
     nombre: str
     que_es: str
-    para_quien: str
     como_entrar: str
     url_oficial: str | None = None
     estado: EstadoPrograma
     fecha_verificacion: str | None = None
 
 
-class Producto(BaseModel):
+class Producto(Modelo):
     nombre: str
     precio: float | None = None
     unidad: str | None = None
 
 
-class Ficha(BaseModel):
-    """Ficha del comerciante (salida estructurada del bot, A.8). El comerciante la confirma antes de publicar."""
+class FichaAlta(Modelo):
+    """La ficha que el bot extrae de la nota de voz y el comerciante confirma (app/services/altas.Ficha)."""
 
     nombre: str
-    tipo: TipoPunto = "puesto"
-    clase_scian: str
-    clase_nombre: str | None = None
-    descripcion: str | None = Field(default=None, max_length=280)
-    productos: list[Producto] = []
-    dias: list[int] = Field(default=[], description="0 = domingo … 6 = sábado")
+    giro: str | None = None
+    clase_scian: str | None = None
+    productos: list[Producto] = Field(default_factory=list)
+    dias: list[int] = Field(default=[], description="0 = lunes … 6 = domingo; vacío = todos")
     abre: str | None = Field(default=None, pattern=HORA)
     cierra: str | None = Field(default=None, pattern=HORA)
-    formas_pago: list[FormaPago] = []
+    formas_pago: list[str] = Field(default_factory=list)
     acepta_mercomuna: bool | None = None
-    whatsapp: str | None = Field(default=None, description="Solo si el comerciante lo dio para su ficha")
-    colonia: str | None = None
-    tianguis_id: str | None = None
+    telefono: str | None = Field(default=None, description="Solo si el comerciante lo dio para su ficha")
 
 
-class Alta(BaseModel):
-    """Alta en vivo (`data/live/altas.jsonl`)."""
+class Alta(Modelo):
+    """Una línea de `data/live/altas.jsonl`."""
 
     id: str
     slug: str
     ts: float
-    ficha: Ficha
+    ficha: FichaAlta
     lat: float
     lng: float
-    h3: str
-    alcaldia_cvegeo: str | None = None
+    h3: str | None = None
     origen: OrigenAlta
+    confirmado: bool
+    consentimiento_publicar: bool = True
     verificado_por: str | None = None
-    consentimiento_publicar: bool
-    demo_data: bool
+    tianguis_id: str | None = None
+    tianguis_nombre: str | None = None
+    demo_data: bool = False
 
 
-class Evento(BaseModel):
-    """Evento de plataforma (`data/live/eventos.jsonl`)."""
+class Evento(Modelo):
+    """Una línea de `data/live/eventos.jsonl` (o de `data/demo/plataforma_simulada.json`, con demo_data true)."""
 
     ts: float
     tipo: TipoEvento
     negocio_id: str | None = None
     h3: str | None = None
-    demo_data: bool
+    demo_data: bool = False

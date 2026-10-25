@@ -1,54 +1,56 @@
 {
  "items": [
   {
-   "texto": "jitomate",
+   "texto": "2 kilos de jitomate",
+   "articulo": "jitomate",
    "cantidad": 2.0,
-   "unidad": "kg",
+   "unidad": "kilos",
    "clases": [
     "461130"
    ],
-   "fuente": "exacto"
+   "fuente": "diccionario"
   },
   {
    "texto": "tortillas",
+   "articulo": "tortillas",
    "cantidad": null,
    "unidad": null,
    "clases": [
     "311830"
    ],
-   "fuente": "exacto"
+   "fuente": "diccionario"
   },
   {
    "texto": "chiles secos",
+   "articulo": "chiles secos",
    "cantidad": null,
    "unidad": null,
    "clases": [
-    "461190",
-    "461130"
+    "461140"
    ],
-   "fuente": "sinonimo"
+   "fuente": "diccionario"
   },
   {
    "texto": "tenis para niño",
+   "articulo": "tenis para nino",
    "cantidad": null,
    "unidad": null,
    "clases": [
     "463310"
    ],
-   "fuente": "difuso"
+   "fuente": "sinonimo"
   },
   {
    "texto": "pilas",
+   "articulo": "pilas",
    "cantidad": null,
    "unidad": null,
    "clases": [
-    "466410",
+    "461110",
     "467111"
    ],
-   "fuente": "exacto"
+   "fuente": "diccionario"
   }
  ],
- "sin_resultado": [
-  "cartucho de impresora"
- ]
+ "sin_resultado": []
 }

@@ -1,26 +1,26 @@
 [
  {
+  "adultos": 470000,
   "cvegeo": "09003",
+  "fecha_descarga": null,
+  "fuente_url": null,
+  "monto_tpv": 555000000,
   "municipio": "Coyoacán",
-  "trimestre": "2023-T2",
-  "transacciones_tpv": 9850000.0,
-  "monto_tpv": null,
-  "adultos": 488000,
-  "tpv_por_adulto": 20.18,
-  "fuente_url": "https://www.cnbv.gob.mx/Inclusi%C3%B3n/Paginas/Bases-de-Datos.aspx",
-  "fecha_descarga": "2026-10-25",
-  "tipo_dato": "simulado"
+  "tipo_dato": "simulado",
+  "tpv_por_adulto": 3.936,
+  "transacciones_tpv": 1850000,
+  "trimestre": "2023-T2"
  },
  {
+  "adultos": 1400000,
   "cvegeo": "09007",
+  "fecha_descarga": null,
+  "fuente_url": null,
+  "monto_tpv": 690000000,
   "municipio": "Iztapalapa",
-  "trimestre": "2023-T2",
-  "transacciones_tpv": 14200000.0,
-  "monto_tpv": null,
-  "adultos": 1390000,
-  "tpv_por_adulto": 10.22,
-  "fuente_url": "https://www.cnbv.gob.mx/Inclusi%C3%B3n/Paginas/Bases-de-Datos.aspx",
-  "fecha_descarga": "2026-10-25",
-  "tipo_dato": "simulado"
+  "tipo_dato": "simulado",
+  "tpv_por_adulto": 1.643,
+  "transacciones_tpv": 2300000,
+  "trimestre": "2023-T2"
  }
 ]

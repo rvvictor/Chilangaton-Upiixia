@@ -1,38 +1,15 @@
 {
- "dia": 0,
+ "altas_hoy": 1,
+ "rutas_por_hexagono": {},
+ "dia": 6,
  "hora": "10:00",
- "altas_hoy": {
-  "valor": 1,
-  "tipo_dato": "real",
-  "fuente": "data/live/altas.jsonl",
-  "periodo": "hoy"
- },
- "poblacion_cubierta_pct": {
-  "valor": 71.4,
-  "tipo_dato": "estimado",
-  "fuente": "Buffer de 800 m sobre puntos abiertos (simulados)",
-  "periodo": "domingo 10:00"
- },
- "puntos_abiertos": {
-  "valor": 7,
-  "tipo_dato": "simulado",
-  "fuente": "Simulado para el prototipo (PB-002 fixtures)",
-  "periodo": "domingo 10:00"
- },
- "rutas_por_hex": {
-  "89499584a43ffff": 5,
-  "89499584a57ffff": 4,
-  "89499584acbffff": 1,
-  "89499584adbffff": 9,
-  "89499585993ffff": 10,
-  "89499585d03ffff": 3,
-  "89499585d0fffff": 4,
-  "89499585d27ffff": 12,
-  "89499585d33ffff": 7,
-  "89499585d63ffff": 11,
-  "89499585d73ffff": 3,
-  "89499585da7ffff": 8,
-  "89499585dbbffff": 11
- },
- "rutas_tipo_dato": "simulado"
+ "abiertos": 40,
+ "poblacion_cubierta_pct": 33.5,
+ "desiertos": 526,
+ "tipo_campos": {
+  "altas_hoy": "real",
+  "rutas_por_hexagono": "real",
+  "poblacion_cubierta_pct": "estimado",
+  "desiertos": "estimado"
+ }
 }

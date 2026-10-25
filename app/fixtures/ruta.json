@@ -3,137 +3,143 @@
   {
    "orden": 1,
    "negocio": {
-    "id": "alta-dona-lupe",
-    "nombre": "Puesto de Doña Lupe",
-    "tipo": "puesto",
-    "clase_nombre": "Comercio al por menor de frutas y verduras frescas",
-    "lat": 19.3481,
-    "lng": -99.1625,
-    "h3": "89499585d2fffff",
-    "es_barrial": true,
-    "impulso": 0.778,
-    "formas_pago": [
-     "efectivo",
-     "transferencia"
-    ],
-    "acepta_mercomuna": null,
-    "horario_verificado": true,
-    "slug": "dona-lupe"
-   },
-   "articulos": [
-    "jitomate"
-   ],
-   "por_que": [
-    "Se dio de alta hoy con una nota de voz",
-    "Abierto ahora (domingo 7:00–15:00)",
-    "Acepta transferencia"
-   ]
-  },
-  {
-   "orden": 2,
-   "negocio": {
-    "id": "neg-0001",
-    "nombre": "Tortillería La Guadalupana",
+    "id": "neg-0015",
+    "nombre": "Abarrotes Lupita",
     "tipo": "negocio",
-    "clase_nombre": "Elaboración de tortillas de maíz y molienda de nixtamal",
-    "lat": 19.34773,
-    "lng": -99.158847,
-    "h3": "89499585d2bffff",
-    "es_barrial": true,
-    "impulso": 0.535,
+    "giro": "Abarrotes, ultramarinos y misceláneas",
+    "lat": 19.348954,
+    "lng": -99.152782,
+    "h3": "89499585d6fffff",
     "formas_pago": [
      "efectivo",
+     "tarjeta",
      "transferencia"
     ],
     "acepta_mercomuna": false,
+    "tipo_dato": "simulado",
     "horario_verificado": false,
-    "slug": null
-   },
-   "articulos": [
-    "tortillas"
-   ],
-   "por_que": [
-    "La tortillería de barrio más cercana a tu ruta"
-   ]
-  },
-  {
-   "orden": 3,
-   "negocio": {
-    "id": "neg-0009",
-    "nombre": "Chiles y Semillas Coyoacán",
-    "tipo": "negocio",
-    "clase_nombre": "Comercio al por menor de otros alimentos",
-    "lat": 19.347318,
-    "lng": -99.164553,
-    "h3": "89499585d23ffff",
-    "es_barrial": true,
-    "impulso": 0.515,
-    "formas_pago": [
-     "efectivo",
-     "transferencia"
-    ],
-    "acepta_mercomuna": true,
-    "horario_verificado": false,
-    "slug": null
-   },
-   "articulos": [
-    "chiles secos"
-   ],
-   "por_que": [
-    "Zona con poco movimiento de pago digital (impulso 0.52, estimado)"
-   ]
-  },
-  {
-   "orden": 4,
-   "negocio": {
-    "id": "neg-0014",
-    "nombre": "Celulares y Pilas Hidalgo",
-    "tipo": "negocio",
-    "clase_nombre": "Comercio al por menor de artículos de telefonía y comunicaciones",
-    "lat": 19.342262,
-    "lng": -99.162936,
-    "h3": "89499585d33ffff",
-    "es_barrial": true,
-    "impulso": 0.271,
-    "formas_pago": [
-     "efectivo"
-    ],
-    "acepta_mercomuna": false,
-    "horario_verificado": false,
-    "slug": null
+    "impulso": 0.29
    },
    "articulos": [
     "pilas"
    ],
    "por_que": [
-    "Cubre 1 de tus artículos",
-    "Horario no verificado"
+    "Zona con poco movimiento de pago digital (impulso 0.29, estimado)",
+    "Tiene lo que buscas",
+    "A 1 min a pie"
    ]
   },
   {
-   "orden": 5,
+   "orden": 2,
    "negocio": {
-    "id": "neg-0004",
-    "nombre": "Zapatería El Paso Firme",
-    "tipo": "negocio",
-    "clase_nombre": "Comercio al por menor de calzado",
-    "lat": 19.34987,
-    "lng": -99.161082,
-    "h3": "89499585d2fffff",
-    "es_barrial": true,
-    "impulso": 0.778,
+    "id": "alta-puesto-de-dona-lupe",
+    "nombre": "Puesto de Doña Lupe",
+    "tipo": "alta",
+    "giro": "461130",
+    "lat": 19.3492,
+    "lng": -99.1538,
+    "h3": "89499585d6fffff",
     "formas_pago": [
-     "efectivo"
+     "efectivo",
+     "transferencia"
+    ],
+    "acepta_mercomuna": null,
+    "tipo_dato": "simulado",
+    "horario_verificado": true,
+    "impulso": 0.29
+   },
+   "articulos": [
+    "2 kilos de jitomate"
+   ],
+   "por_que": [
+    "Zona con poco movimiento de pago digital (impulso 0.29, estimado)",
+    "Tiene lo que buscas",
+    "A 2 min a pie",
+    "Se sumó hoy a la red de barrio"
+   ]
+  },
+  {
+   "orden": 3,
+   "negocio": {
+    "id": "neg-0014",
+    "nombre": "Calzado El Pípila",
+    "tipo": "negocio",
+    "giro": "Calzado",
+    "lat": 19.350852,
+    "lng": -99.15099,
+    "h3": "894995859d3ffff",
+    "formas_pago": [
+     "efectivo",
+     "dimo",
+     "codi"
     ],
     "acepta_mercomuna": false,
+    "tipo_dato": "simulado",
     "horario_verificado": false,
-    "slug": null
+    "impulso": 0.1
    },
    "articulos": [
     "tenis para niño"
    ],
    "por_que": [
-    "Zapatería de barrio a 6 min a pie"
+    "Tiene lo que buscas",
+    "A 5 min a pie"
+   ]
+  },
+  {
+   "orden": 4,
+   "negocio": {
+    "id": "neg-0043",
+    "nombre": "Tortillería Doña Chela",
+    "tipo": "negocio",
+    "giro": "Tortillería y molino de nixtamal",
+    "lat": 19.346298,
+    "lng": -99.15179,
+    "h3": "89499585d7bffff",
+    "formas_pago": [
+     "efectivo",
+     "tarjeta"
+    ],
+    "acepta_mercomuna": false,
+    "tipo_dato": "simulado",
+    "horario_verificado": false,
+    "impulso": 0.02
+   },
+   "articulos": [
+    "tortillas"
+   ],
+   "por_que": [
+    "Tiene lo que buscas",
+    "A 5 min a pie"
+   ]
+  },
+  {
+   "orden": 5,
+   "negocio": {
+    "id": "neg-0125",
+    "nombre": "Especias Los Gemelos",
+    "tipo": "negocio",
+    "giro": "Semillas, granos, especias y chiles secos",
+    "lat": 19.34549,
+    "lng": -99.152806,
+    "h3": "89499585d63ffff",
+    "formas_pago": [
+     "efectivo",
+     "transferencia",
+     "dimo"
+    ],
+    "acepta_mercomuna": true,
+    "tipo_dato": "simulado",
+    "horario_verificado": false,
+    "impulso": 0.1
+   },
+   "articulos": [
+    "chiles secos"
+   ],
+   "por_que": [
+    "Tiene lo que buscas",
+    "A 6 min a pie",
+    "Acepta Mercomuna"
    ]
   }
  ],
@@ -141,46 +147,43 @@
   "type": "LineString",
   "coordinates": [
    [
-    -99.1617,
-    19.3467
+    -99.153,
+    19.3486
    ],
    [
-    -99.1625,
-    19.3481
+    -99.152782,
+    19.348954
    ],
    [
-    -99.158847,
-    19.34773
+    -99.1538,
+    19.3492
    ],
    [
-    -99.164553,
-    19.347318
+    -99.15099,
+    19.350852
    ],
    [
-    -99.162936,
-    19.342262
+    -99.15179,
+    19.346298
    ],
    [
-    -99.161082,
-    19.34987
+    -99.152806,
+    19.34549
    ],
    [
-    -99.1617,
-    19.3467
+    -99.153,
+    19.3486
    ]
   ]
  },
- "distancia_m": 3950.0,
- "minutos": 49.4,
- "metodo": "linea_recta",
- "aviso": "Sin red: la ruta se dibuja en líneas rectas",
+ "distancia_m": 1953,
+ "minutos": 24,
  "resumen": {
-  "barrial_pct": 100.0,
+  "barrial_pct": 100,
   "cadenas": 0,
-  "paradas_impulso": 4
+  "paradas_impulso": 2
  },
- "sin_resultado": [
-  "cartucho de impresora"
- ],
+ "sin_resultado": [],
+ "aviso": "Ruta aproximada en línea recta: sin conexión con Mapbox.",
  "demo_data": true
 }
