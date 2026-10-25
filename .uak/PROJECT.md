@@ -6,12 +6,12 @@
 ## Event
 | Field | Value |
 |---|---|
-| Event / challenge | Chilangatón · no official URL |
+| Event / challenge | Chilangatón: tecnología e innovación social para futuros de la Ciudad · https://luma.com/j55anly0 · challenge: one CDMX challenge chosen on the day; people-centered, viable, accessible resources, shown as a prototype |
 | Start | 2026-10-25 08:00 America/Mexico_City |
-| Official deadline | 2026-10-25 18:00 America/Mexico_City · platforms: TBD (not announced yet) |
-| Freeze | 2026-10-25 16:30 (Freeze-Epoch 1792967400) · design lock 08:30 · walking skeleton 09:00 · plan-B video 13:00 |
-| Clean rehearsal / plan B | 17:12 |
-| Internal submission | 17:36 |
+| Official deadline | 2026-10-25 15:00 America/Mexico_City: solution cut, organizers judge the solution only (to be confirmed) · semifinalists then get 30 min to build the pitch · event ends 18:00 · platforms: TBD |
+| Freeze | 2026-10-25 13:57 (Freeze-Epoch 1792958220) · plan-B video 11:30 |
+| Clean rehearsal / plan B | 14:26 |
+| Internal submission | 14:43 |
 | Humans | Cris, Alexis, Yojan, Saus, Victor · submission owner: Victor |
 | Agents | cris-1, cris-2, alexis-1, alexis-2, yojan-1, yojan-2, saus-1, saus-2, victor-1, victor-2 |
 | Machines | `<laptop, Jetson…>` · ports already taken: `<8000…>` |
@@ -42,7 +42,7 @@ Autonomy: yes
 Auto-Merge: yes
 Review-Mode: claims
 Plan-Channel: claims
-Freeze-Epoch: 1792967400
+Freeze-Epoch: 1792958220
 Lease-Seconds: 2700
 Review-Lease-Seconds: 14400
 Events-Per-Session: 100
