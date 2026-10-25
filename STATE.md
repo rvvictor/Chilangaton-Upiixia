@@ -1,7 +1,7 @@
 # STATE
 
 Phase: execution
-Updated: 1792952724
+Updated: 1792952736
 AVAILABLE: PB-012 PB-013 PB-014 PB-016 
 CLAIMED: PB-002 PB-010 PB-011 PB-015 
 BLOCKED: -
@@ -16,7 +16,7 @@ PB-004 | REVIEW | victor-2 | until 1792966306
 PB-005 | REVIEW | victor-1 | until 1792966347
 PB-006 | REVIEW | yojan-1 | until 1792967124
 PB-007 | REVIEW | victor-1 | until 1792966907
-PB-008 | REVIEW | yojan-2 | until 1792967087
+PB-008 | REVIEW | yojan-2 | until 1792967136
 PB-009 | REVIEW | victor-2 | until 1792966720
 PB-010 | CLAIMED | victor-2 | until 1792955388
 PB-011 | CLAIMED | victor-1 | until 1792955395
@@ -27,6 +27,7 @@ Current decisions (last 5):
 - 1792951459 | plan --amend | victor/victor-1 | amended: PB-001 Paths: pyproject.toml, uv.lock, .python-version, app/__init__.py, app/main.py, app/config.py, app/routers/__init__.p
 - 1792952321 | PB-003 | single direction from Appendix D; TipoDato local until PB-002 types land | Why: no time for 3 directions per task criteria
 - 1792952724 | PB-006 | prefijo /api; dias 0=lunes | Why: contrato Apendice C y pipeline.geo
+- 1792952736 | PB-008 | respaldo Doña Lupe sin llave | Why: demo sin red
 
 Global next step: available P0; else review PRs, tests, demo, rehearsal.
 Why: bounded snapshot to resume without rereading history.
