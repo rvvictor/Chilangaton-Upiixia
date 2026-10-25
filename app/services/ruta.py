@@ -8,6 +8,8 @@ from datetime import datetime
 from functools import lru_cache
 from zoneinfo import ZoneInfo
 
+import h3
+
 from app import config
 from app.services import eventos, mapbox
 from app.services.articulos import interpretar
@@ -104,7 +106,7 @@ def _lugares(dia: int, hora: str) -> list[dict]:
             continue
         lugares.append({
             "id": a["id"], "nombre": f.get("nombre", "Puesto de barrio"), "tipo": "alta", "giro": f.get("clase_scian", ""),
-            "lat": a["lat"], "lng": a["lng"], "h3": a.get("h3"),
+            "lat": a["lat"], "lng": a["lng"], "h3": a.get("h3") or h3.latlng_to_cell(a["lat"], a["lng"], 9),
             "clases": {f["clase_scian"]} if f.get("clase_scian") else set(),
             "productos": {normalizar(p["nombre"] if isinstance(p, dict) else p) for p in f.get("productos", [])},
             "formas_pago": f.get("formas_pago", []), "acepta_mercomuna": f.get("acepta_mercomuna"),

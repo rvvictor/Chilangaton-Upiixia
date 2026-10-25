@@ -179,6 +179,15 @@ def altas_desde(desde: float = 0) -> list[dict]:
 
 # ---------- IA: transcripción y ficha (con respaldo grabado) ----------
 
+def _sin_remedio(e: Exception) -> bool:
+    """Sin crédito o llave inválida: reintentar no sirve; pasar directo al respaldo grabado."""
+    from openai import AuthenticationError, PermissionDeniedError, RateLimitError
+
+    if isinstance(e, (AuthenticationError, PermissionDeniedError)):
+        return True
+    return isinstance(e, RateLimitError) and "insufficient_quota" in str(e)
+
+
 def usar_respaldo() -> bool:
     return settings.demo_mode or not settings.openai_api_key
 
@@ -193,13 +202,15 @@ def transcribir(audio: bytes, nombre: str = "voz.ogg") -> tuple[str, bool]:
         try:
             from openai import OpenAI
 
-            cliente = OpenAI(api_key=settings.openai_api_key, timeout=30)
+            cliente = OpenAI(api_key=settings.openai_api_key, timeout=30, max_retries=0)
             for modelo in (settings.openai_transcribe_model, "whisper-1"):
                 try:
                     r = cliente.audio.transcriptions.create(model=modelo, file=(nombre, audio), language="es")
                     return r.text, False
                 except Exception as e:  # noqa: BLE001 — probar el respaldo
                     log.warning("transcripción con %s falló: %s", modelo, e)
+                    if _sin_remedio(e):
+                        break
         except Exception as e:  # noqa: BLE001
             log.warning("transcripción no disponible: %s", e)
     return (FIXTURES / "dona_lupe_transcripcion.txt").read_text(encoding="utf-8").strip(), True
@@ -220,7 +231,7 @@ def extraer_ficha(texto: str) -> tuple[Ficha, bool]:
     if not usar_respaldo():
         from openai import OpenAI
 
-        cliente = OpenAI(api_key=settings.openai_api_key, timeout=30)
+        cliente = OpenAI(api_key=settings.openai_api_key, timeout=30, max_retries=0)
         giros = ", ".join(f"{k} ({v})" for k, v in GIROS.items())
         for modelo in (settings.openai_model, settings.openai_model, settings.openai_fallback_model):
             try:
@@ -243,6 +254,8 @@ def extraer_ficha(texto: str) -> tuple[Ficha, bool]:
                 return ficha, False
             except (ValidationError, Exception) as e:  # noqa: BLE001 — un fallo del modelo nunca tumba la demo
                 log.warning("ficha con %s falló: %s", modelo, e)
+                if _sin_remedio(e):
+                    break
     return ficha_grabada(), True
 
 

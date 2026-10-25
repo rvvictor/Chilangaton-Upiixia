@@ -20,7 +20,7 @@ An owner is not a prerequisite for everyone: consumers work on published contrac
 | app/schemas/ | PB-002 |
 | app/fixtures/ | PB-002 |
 | web/src/lib/types.ts | PB-002 |
-| web/DESIGN.md | PB-003 |
-| web/src/lib/ui/ | PB-003 |
-| web/src/lib/map/ | PB-003 |
+| web/DESIGN.md | PB-029 |
+| web/src/lib/ui/ | PB-029 |
+| web/src/lib/map/ | PB-029 |
 | app/services/eventos.py | PB-007 |

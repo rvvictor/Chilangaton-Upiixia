@@ -6,9 +6,9 @@
     {"nombre": "nopales", "precio": 20, "unidad": "kg"},
     {"nombre": "jitomate", "precio": 25, "unidad": "kg"}
   ],
-  "dias": [5, 6],
+  "dias": [0, 1, 2, 3, 4, 5, 6],
   "abre": "07:00",
-  "cierra": "15:00",
+  "cierra": "20:00",
   "formas_pago": ["efectivo", "transferencia"],
   "acepta_mercomuna": null,
   "telefono": null
