@@ -44,9 +44,9 @@ FUENTE_CNBV = (
 FUENTE_DENUE = (
     "Simulación con forma de DENUE INEGI, campo Fecha_Alta (no son datos reales)"
 )
-FUENTE_ALTAS = "Plataforma Pulso Barrial · data/live/altas.jsonl"
+FUENTE_ALTAS = "Plataforma colonIA · data/live/altas.jsonl"
 FUENTE_EVENTOS = (
-    "Plataforma Pulso Barrial · data/live/eventos.jsonl (eventos aparicion_ruta)"
+    "Plataforma colonIA · data/live/eventos.jsonl (eventos aparicion_ruta)"
 )
 
 
@@ -220,7 +220,7 @@ def escala(alcaldias: list[str]) -> Escala:
             "Cambiar la variable ALCALDIAS agrega una alcaldía sin tocar código.",
         ],
         tipo_dato="estimado",
-        fuente="Diseño de Pulso Barrial (estimación del equipo)",
+        fuente="Diseño de colonIA (estimación del equipo)",
     )
 
 
