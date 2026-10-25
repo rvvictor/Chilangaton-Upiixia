@@ -133,7 +133,15 @@ export function Barras({ series }: { series: SerieAlcaldia[] }) {
                       <title>{`${s.alcaldia} ${periodo}: ${fmt(v)}`}</title>
                     </rect>
                     {ultimo && (
-                      <text x={bx + ancho / 2} y={H - P.b - alto(v) - 6} textAnchor="middle" className="text-[14px] font-semibold" fill={COLORES[i % 2]}>
+                      // Adjacent bars are narrower than their labels: the first label grows left from the shared
+                      // edge and the last grows right, so they never overlap.
+                      <text
+                        x={i === 0 && series.length > 1 ? bx + ancho - 1 : i === series.length - 1 && series.length > 1 ? bx + 1 : bx + ancho / 2}
+                        y={H - P.b - alto(v) - 6}
+                        textAnchor={i === 0 && series.length > 1 ? "end" : i === series.length - 1 && series.length > 1 ? "start" : "middle"}
+                        className="text-[14px] font-semibold"
+                        fill={COLORES[i % 2]}
+                      >
                         {fmt(v)}
                       </text>
                     )}
