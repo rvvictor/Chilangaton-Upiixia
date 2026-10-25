@@ -14,8 +14,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.services import altas
 
-# Junto a la sede (Utopía Elena Poniatowska, San Lucas, Coyoacán).
-CASOS = {"dona-lupe": {"lat": 19.3467, "lng": -99.1617}}
+# A ~100 m de SEDE (19.3486, -99.153): el origen por defecto de la vista Vecina y de /api/ruta, para que la
+# ruta de la demo pase por su puesto (IDEA.md §3).
+CASOS = {"dona-lupe": {"lat": 19.3492, "lng": -99.1525}}
 
 
 def main() -> None:
