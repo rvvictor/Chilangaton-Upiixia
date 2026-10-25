@@ -11,3 +11,5 @@ node_modules/
 .next/
 dist/
 .DS_Store
+data/raw/
+data/live/
