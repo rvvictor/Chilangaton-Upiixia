@@ -3,28 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cartel · {{ nombre }}</title>
+  <title>Cartel · {{ nombre }} · colonIA</title>
   <style>
-    @page { size: letter; margin: 14mm; }
-    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1d1d1b; background: #fff; text-align: center; }
-    .hoja { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
-    h1 { font-size: 3rem; line-height: 1.1; margin: 0 0 12px; }
-    .pago { font-size: 2.2rem; font-weight: 700; margin: 8px 0 24px; }
-    .qr { width: min(80vmin, 560px); height: auto; }
-    .llamada { font-size: 2rem; margin: 20px 0 8px; }
-    .url { font-size: 1.3rem; color: #444; word-break: break-all; }
-    .no-imprimir { margin-top: 24px; font-size: 1.1rem; padding: 10px 18px; }
-    @media print { .no-imprimir { display: none; } }
+    /* Letter-size printable poster, colonIA brand (web/DESIGN.md). Colors print even in "no background" mode via borders. */
+    @page { size: letter; margin: 12mm; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    :root { --texto: #0e1116; --texto-2: #4a5160; --marca: #e6007e; --acento: #c8006e; --cempasuchil: #ffb703; --jade: #00a86b;
+      --display: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--texto); background: #fff; }
+    .hoja { max-width: 8in; min-height: 10in; margin: 0 auto; padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; border: 6px solid var(--marca); border-radius: 28px; }
+    .marca { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.02em; }
+    .marca b { color: var(--marca); }
+    .marca svg { width: 40px; height: 36px; }
+    h1 { font-family: var(--display); font-weight: 800; letter-spacing: -.03em; line-height: .95; font-size: clamp(2.6rem, 8vw, 4.2rem); margin: 22px 0 18px; text-wrap: balance; }
+    .pago { display: inline-block; font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 5vw, 2.4rem); line-height: 1.1; color: #fff; background: var(--acento); border-radius: 18px; padding: 14px 26px; margin: 0 0 24px; }
+    .qr { width: min(78vmin, 5.2in); height: auto; image-rendering: pixelated; border: 4px solid var(--texto); border-radius: 20px; padding: 10px; background: #fff; }
+    .llamada { font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.15; margin: 22px 0 8px; }
+    .url { font-size: 1.1rem; color: var(--texto-2); word-break: break-all; margin: 0; }
+    .hexes { display: flex; gap: 6px; margin-top: auto; padding-top: 22px; }
+    .hexes span { width: 22px; height: 22px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+    .no-imprimir { margin: 24px auto; display: block; font: inherit; font-weight: 700; font-size: 1.1rem; min-height: 48px; padding: 10px 22px; border-radius: 14px; border: 0; color: #fff; background: var(--acento); cursor: pointer; }
+    @media print { .no-imprimir { display: none; } .hoja { min-height: auto; height: 100%; } }
   </style>
 </head>
 <body>
   <div class="hoja">
+    <div class="marca" aria-label="colonIA">
+      <svg viewBox="0 0 48 44" aria-hidden="true"><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" fill="#e6007e"/><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" transform="translate(17 0)" fill="#ffb703"/><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" transform="translate(8.5 14.5)" fill="#00a86b"/></svg>
+      <span aria-hidden="true">colon<b>IA</b></span>
+    </div>
     <h1>{{ nombre }}</h1>
     <p class="pago">Aceptamos transferencia / DiMo</p>
     <img class="qr" src="{{ qr }}" alt="Código QR de la página del negocio">
     <p class="llamada">Escanea y mira precios, horario y cómo pagar</p>
     <p class="url">{{ url }}</p>
-    <button class="no-imprimir" onclick="window.print()">Imprimir cartel</button>
+    <div class="hexes" aria-hidden="true"><span style="background:#e6007e"></span><span style="background:#ffb703"></span><span style="background:#00a86b"></span></div>
   </div>
+  <button class="no-imprimir" onclick="window.print()">Imprimir cartel</button>
 </body>
 </html>
