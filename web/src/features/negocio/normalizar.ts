@@ -15,7 +15,9 @@ import type {
 type Crudo = Record<string, unknown>;
 
 const obj = (v: unknown): Crudo => (v && typeof v === "object" && !Array.isArray(v) ? (v as Crudo) : {});
-const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v : null);
+// data/processed/programas.json (PB-005) still says the product's old name; rename it on display until it is regenerated.
+const NOMBRE_ANTERIOR = /Pulso Barrial/g;
+const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v.replace(NOMBRE_ANTERIOR, "colonIA") : null);
 const num = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
 const bool = (v: unknown): boolean | null => (typeof v === "boolean" ? v : null);
 const arr = (v: unknown): unknown[] => (Array.isArray(v) ? v : []);
@@ -24,7 +26,7 @@ function tipo(v: unknown, def: TipoDato = "simulado"): TipoDato {
   return v === "real" || v === "estimado" || v === "simulado" ? v : def;
 }
 
-const FUENTE_PLATAFORMA = "Pulso Barrial (eventos de la plataforma)";
+const FUENTE_PLATAFORMA = "colonIA (eventos de la plataforma)";
 const FUENTE_SIMULADA = "Historia simulada de la plataforma";
 
 function cifra(v: unknown, tipoGeneral: TipoDato): Cifra | null {
