@@ -1,7 +1,7 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1792958412
+Updated: 1792958434
 AVAILABLE: PB-027 PB-030 
 CLAIMED: PB-024 
 BLOCKED: -
@@ -11,7 +11,7 @@ CANCELLED: -
 
 Claims (first 24; status --task ID shows detail):
 PB-016 | REVIEW | saus-1 | until 1792971891
-PB-017 | REVIEW | yojan-1 | until 1792971615
+PB-017 | REVIEW | yojan-1 | until 1792972834
 PB-021 | REVIEW | yojan-2 | until 1792972659
 PB-022 | REVIEW | yojan-1 | until 1792972812
 PB-024 | CLAIMED | alexis-1 | until 1792959782
