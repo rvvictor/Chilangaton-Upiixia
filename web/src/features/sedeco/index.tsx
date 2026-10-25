@@ -165,7 +165,7 @@ export default function Sedeco(_props: FeatureProps) {
         )}
       </div>
 
-      <div aria-live="polite" className="pointer-events-none absolute left-4 top-20 lg:right-[436px]">
+      <div aria-live="polite" className="pointer-events-none absolute left-4 top-20 flex justify-start lg:right-[436px]">
         {toast && (
           <div
             key={toast.id}

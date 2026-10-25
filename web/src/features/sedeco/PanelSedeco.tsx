@@ -122,10 +122,10 @@ export function Panel(p: PanelProps) {
       {p.datoReal ? (
         <section aria-label="Dato CNBV por alcaldía" className="grid grid-cols-2 gap-2">
           {p.alcaldias.map((a) => (
-            <div key={a.cvegeo} className="flex min-w-0 flex-col gap-1 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-4 py-3">
+            <div key={a.cvegeo} className="flex min-w-0 flex-col gap-1 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-3.5 py-2.5">
               <span className="text-base font-semibold text-(--pb-texto)">{a.municipio}</span>
               <Cifra valor={a.tpv_por_adulto} decimales={2} className="text-[1.75rem] leading-none text-(--pb-texto)" />
-              <span className="text-[0.833rem] text-(--pb-texto-2)">transacciones por adulto, {a.trimestre}</span>
+              <span className="text-[0.833rem] leading-tight text-(--pb-texto-2)">pagos con tarjeta por adulto · {a.trimestre}</span>
               <Etiqueta tipo={a.tipo_dato} fuente={`CNBV ${a.trimestre}`} className="self-start" />
             </div>
           ))}
@@ -153,10 +153,12 @@ export function Panel(p: PanelProps) {
         </section>
       )}
 
-      <p className="mt-auto px-1 text-[0.833rem] leading-snug text-(--pb-texto-2)">
-        {p.origenHex === "ejemplo" ? "Hexágonos: datos de ejemplo. " : ""}
-        Toca un hexágono para ver sus cifras y su fuente.
-      </p>
+      {!p.datoReal && (
+        <p className="mt-auto px-1 text-[0.833rem] leading-snug text-(--pb-texto-2)">
+          {p.origenHex === "ejemplo" ? "Hexágonos: datos de ejemplo. " : ""}
+          Toca un hexágono para ver sus cifras y su fuente.
+        </p>
+      )}
     </div>
   );
 }
