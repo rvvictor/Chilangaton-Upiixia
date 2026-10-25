@@ -6,7 +6,7 @@
   "giro": "Frutas y verduras frescas",
   "colonia": null,
   "telefono": null,
-  "horario": "sábado a domingo de 07:00 a 15:00",
+  "horario": "lunes a domingo de 07:00 a 20:00",
   "formas_pago": [
    "efectivo",
    "transferencia"
@@ -27,16 +27,17 @@
   "ubicacion": "aproximada",
   "aparecer_en_rutas": true
  },
- "descripcion": "Puesto de Doña Lupe es un negocio de frutas y verduras frescas. Vende nopales, jitomate. Horario: sábado a domingo de 07:00 a 15:00. Acepta efectivo, transferencia.",
+ "descripcion": "Puesto de Doña Lupe es un negocio de frutas y verduras frescas. Vende nopales, jitomate. Horario: lunes a domingo de 07:00 a 20:00. Acepta efectivo, transferencia.",
  "avance": {
-  "tipo_dato": "real",
+  "tipo_dato": "simulado",
   "dias": 7,
   "conteos": {
-   "busquedas": 0,
-   "rutas": 1,
-   "compre_aqui": 0,
-   "visitas_pagina": 0
-  }
+   "busquedas": 41,
+   "rutas": 5,
+   "compre_aqui": 6,
+   "visitas_pagina": 33
+  },
+  "nota": "Cifras de ejemplo: aún no hay visitas ni apariciones reales de tu negocio."
  },
  "escalera": [
   {
@@ -99,7 +100,7 @@
   {
    "id": "puntos-de-barrio",
    "nombre": "Puntos de barrio",
-   "que_es": "Propuesta de Pulso Barrial: puntos por comprar en negocios de barrio, inspirada en Onnuri (Corea) y PayPay (Japón).",
+   "que_es": "Propuesta de colonIA: puntos por comprar en negocios de barrio, inspirada en Onnuri (Corea) y PayPay (Japón).",
    "como_entrar": "Es una propuesta para un piloto con SEDECO; todavía no existe.",
    "url_oficial": null,
    "estado": "propuesta",
