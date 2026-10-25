@@ -13,3 +13,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Bolsa de poco movimiento junto a la sede: la ruta de la demo muestra paradas en zonas que necesitan clientes
 - **Verify:** `uv run pytest -q pipeline/tests/test_geo.py`
+
+## PB-018 · Doña Lupe en la ruta de la vecina: alta junto a la sede de la vista Vecina y horario hasta las 20:00 (follow-up of PB-008)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-008
+- **Follow-up of:** PB-008
+- **Paths:** app/bot/, app/routers/altas.py, app/services/altas.py, app/tests/test_altas.py, scripts/simular_alta.py
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Doña Lupe en la ruta de la vecina: alta junto a la sede de la vista Vecina y horario hasta las 20:00
+- **Verify:** `uv run pytest -q app/tests/test_altas.py`
