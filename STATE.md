@@ -1,7 +1,7 @@
 # STATE
 
 Phase: execution
-Updated: 1792954113
+Updated: 1792954150
 AVAILABLE: PB-013 PB-016 
 CLAIMED: PB-002 
 BLOCKED: -
@@ -14,7 +14,7 @@ PB-002 | CLAIMED | cris-1 | until 1792954253
 PB-003 | REVIEW | saus-1 | until 1792967021
 PB-006 | REVIEW | yojan-1 | until 1792968475
 PB-008 | REVIEW | yojan-2 | until 1792967136
-PB-010 | REVIEW | victor-2 | until 1792968429
+PB-010 | REVIEW | victor-2 | until 1792968550
 PB-011 | REVIEW | victor-1 | until 1792967277
 PB-012 | REVIEW | alexis-1 | until 1792968211
 PB-014 | REVIEW | alexis-2 | until 1792968114
