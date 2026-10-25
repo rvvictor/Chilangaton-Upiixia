@@ -1,7 +1,7 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1792958804
+Updated: 1792958845
 AVAILABLE: PB-030 
 CLAIMED: PB-027 PB-031 
 BLOCKED: -
@@ -20,11 +20,11 @@ PB-031 | CLAIMED | victor-2 | until 1792961504
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
-- 1792958055 | PB-030 | se integra dentro de PB-021 (mismos Paths, Freeze-Allowed yes) | Why: PB-030 no es Freeze-Allowed y bloquea PB-021
 - 1792958269 | deadline freeze/event/1792958220 | FREEZE_DEMO_FIXES_ONLY | New claims only with Freeze-Allowed: yes; respect authorization.
 - 1792958368 | allow | JoahanMorales | freeze exception: PB-017 | Why: La ruta de la demo pasa por zonas que necesitan clientes (5/5 paradas)
 - 1792958662 | PB-031 | follow-up of PB-002 by victor-2: Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada | Why: same Paths, no scope chang
 - 1792958669 | allow | victor | freeze exception: PB-031 | Why: Victor autorizó regenerar el fixture de crecimiento con el nombre colonIA después del freeze
+- 1792958845 | plan --amend | victor/victor | amended: PB-031 Paths: app/schemas/, app/fixtures/, web/src/lib/types.ts, app/tests/test_schemas.py → app/schemas/, app/fixtures/, w
 
 Global next step: available P0; else review PRs, tests, demo, rehearsal.
 Why: bounded snapshot to resume without rereading history.

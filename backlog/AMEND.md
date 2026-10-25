@@ -40,3 +40,14 @@ Append-only; the last section of an ID replaces its section in the backlog. Why:
   - `npm --prefix web run build` sale 0; capturas 1280×720 y 390×844 aprobadas por `design-critic`.
 - **Verify:** `npm --prefix web run build`
 - **Next step:** capturar la vista actual con la skill `webapp-testing` y auditarla con `redesign-existing-projects`
+## PB-031 · Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada (follow-up of PB-002)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-002
+- **Follow-up of:** PB-002
+- **Paths:** app/schemas/, app/fixtures/, web/src/lib/types.ts, app/tests/test_schemas.py, pipeline/negocios/programas.py, data/processed/programas.json, data/fuentes/negocios.md
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada
+- **Verify:** `uv run pytest -q app/tests/test_schemas.py`
