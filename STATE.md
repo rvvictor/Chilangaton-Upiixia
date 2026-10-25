@@ -1,7 +1,7 @@
 # STATE
 
 Phase: execution
-Updated: 1792956661
+Updated: 1792956671
 AVAILABLE: PB-021 PB-022 
 CLAIMED: PB-016 PB-017 
 BLOCKED: -
@@ -12,7 +12,7 @@ CANCELLED: -
 Claims (first 24; status --task ID shows detail):
 PB-016 | CLAIMED | saus-1 | until 1792958881
 PB-017 | CLAIMED | yojan-1 | until 1792957101
-PB-020 | REVIEW | yojan-2 | until 1792970223
+PB-020 | REVIEW | yojan-2 | until 1792971071
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
