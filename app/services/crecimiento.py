@@ -146,6 +146,10 @@ def _leer_jsonl(path: Path) -> tuple[list[dict], bool]:
     return filas, True
 
 
+def _es_demo(fila: dict) -> bool:
+    return bool(fila.get("demo_data")) or fila.get("origen") == "demo"
+
+
 def _fecha_local(ts: object) -> date | None:
     try:
         if isinstance(ts, (int, float)):
@@ -165,6 +169,7 @@ def altas_hoy(live_dir: Path | None = None, hoy: date | None = None) -> AltasHoy
     live_dir = live_dir or LIVE_DIR
     hoy = hoy or datetime.now(TZ).date()
     filas, disponible = _leer_jsonl(live_dir / "altas.jsonl")
+    filas = [f for f in filas if not _es_demo(f)]
     n_hoy = sum(1 for fila in filas if _fecha_local(fila.get("ts")) == hoy)
     return AltasHoy(
         fecha=hoy.isoformat(),
@@ -180,7 +185,7 @@ def rutas_por_hexagono(live_dir: Path | None = None) -> RutasPorHexagono:
     live_dir = live_dir or LIVE_DIR
     filas, disponible = _leer_jsonl(live_dir / "eventos.jsonl")
     conteo = Counter(
-        str(f["h3"]) for f in filas if f.get("tipo") == "aparicion_ruta" and f.get("h3")
+        str(f["h3"]) for f in filas if f.get("tipo") == "aparicion_ruta" and f.get("h3") and not _es_demo(f)
     )
     hexagonos = [RutaHexagono(h3=h, rutas=n) for h, n in conteo.most_common(12)]
     return RutasPorHexagono(

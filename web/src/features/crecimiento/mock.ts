@@ -11,7 +11,7 @@ const anios = (base: number): Punto[] =>
     valor: base + ((i * 137) % 400),
   }));
 
-const FUENTE_MOCK = "Datos de muestra locales (la API no respondió)";
+const FUENTE_MOCK = "muestra local (sin conexión)";
 
 export const MOCK: Crecimiento = {
   generado: "",

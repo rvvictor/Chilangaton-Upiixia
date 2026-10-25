@@ -57,6 +57,7 @@ def test_cuenta_altas_hoy_y_rutas(live) -> None:
         {"id": "a1", "ts": ahora.isoformat()},
         {"id": "a2", "ts": ahora.isoformat()},
         {"id": "a3", "ts": ayer.isoformat()},
+        {"id": "d1", "ts": ahora.isoformat(), "origen": "demo", "demo_data": True},
     ]
     (live / "altas.jsonl").write_text(
         "\n".join(json.dumps(f) for f in filas) + "\nno-es-json\n", encoding="utf-8"
@@ -66,6 +67,7 @@ def test_cuenta_altas_hoy_y_rutas(live) -> None:
         {"tipo": "aparicion_ruta", "h3": "8a4995b"},
         {"tipo": "busqueda", "h3": "8a4995b"},
         {"tipo": "aparicion_ruta", "h3": "8a49960"},
+        {"tipo": "aparicion_ruta", "h3": "8a49960", "demo_data": True},
     ]
     (live / "eventos.jsonl").write_text(
         "\n".join(json.dumps(e) for e in eventos), encoding="utf-8"

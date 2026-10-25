@@ -27,7 +27,7 @@ function Etiqueta({ tipo }: { tipo: TipoDato }) {
 }
 
 function Fuente({ texto }: { texto: string }) {
-  return <p className="mt-2 text-base text-stone-700">Fuente: {texto}</p>;
+  return <p className="mt-1 text-base leading-snug text-stone-700">Fuente: {texto}</p>;
 }
 
 function Tarjeta({
@@ -44,13 +44,13 @@ function Tarjeta({
   return (
     <section
       aria-label={titulo}
-      className="flex min-h-0 flex-col rounded-xl border border-stone-300 bg-white p-4"
+      className="flex flex-col rounded-xl border border-stone-300 bg-white p-3"
     >
       <header className="flex items-start justify-between gap-2">
         <h2 className="text-xl font-semibold text-stone-900">{titulo}</h2>
         <Etiqueta tipo={tipo} />
       </header>
-      <div className="min-h-0 flex-1 pt-2">{children}</div>
+      <div className="flex-1 pt-1">{children}</div>
       <Fuente texto={fuente} />
     </section>
   );
@@ -85,7 +85,7 @@ function Lineas({ series }: { series: SerieAlcaldia[] }) {
     .join("; ");
   return (
     <figure>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-36 w-full" role="img" aria-label={`Serie trimestral ${primero} a ${ultimo}. ${resumen}`}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-20 w-full" role="img" aria-label={`Serie trimestral ${primero} a ${ultimo}. ${resumen}`}>
         <line x1="0" y1={H - 1} x2={W} y2={H - 1} stroke="#a8a29e" />
         {series.map((s, i) => (
           <polyline
@@ -111,7 +111,7 @@ function BarrasAnio({ series }: { series: SerieAlcaldia[] }) {
   const periodos = series[0]?.puntos.map((p) => p.periodo) ?? [];
   return (
     <figure>
-      <div className="flex h-36 items-end gap-2" role="img" aria-label={series.map((s) => `${s.alcaldia}: ${s.puntos.map((p) => `${p.periodo} ${p.valor}`).join(", ")}`).join(". ")}>
+      <div className="flex h-20 items-end gap-2" role="img" aria-label={series.map((s) => `${s.alcaldia}: ${s.puntos.map((p) => `${p.periodo} ${p.valor}`).join(", ")}`).join(". ")}>
         {periodos.map((periodo, j) => (
           <div key={periodo} className="flex h-full flex-1 flex-col justify-end">
             <div className="flex h-full items-end gap-0.5">
@@ -199,10 +199,12 @@ export default function CrecimientoView(_props: FeatureProps) {
   const muestra = data.demo_data;
 
   return (
-    <div className="flex h-full flex-col gap-3 overflow-auto p-4 text-lg text-stone-900">
+    <div className="flex h-full flex-col gap-2 overflow-auto px-3 pt-2 pb-0.5 text-lg text-stone-900">
       {(error || muestra) && (
-        <p role="status" className="rounded-lg border border-amber-700 bg-amber-50 px-4 py-2 text-lg text-amber-950">
-          {error
+        <p role="status" className="rounded-lg border border-amber-700 bg-amber-50 px-4 py-1 text-lg text-amber-950">
+          {error && data.generado !== ""
+            ? "Sin conexión con el servidor: mostramos los últimos datos recibidos."
+            : error
             ? "No pudimos conectar con el servidor. Mostramos datos de muestra (demo_data: true), no son cifras reales."
             : "Modo demo: parte de estos datos son de muestra (demo_data: true)."}
         </p>
@@ -211,24 +213,24 @@ export default function CrecimientoView(_props: FeatureProps) {
       <div className="grid shrink-0 grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-3">
         <section
           aria-label="Altas en la plataforma hoy"
-          className="rounded-xl border-2 border-stone-900 bg-white p-4"
+          className="rounded-xl border-2 border-stone-900 bg-white p-3"
         >
           <div className="flex items-start justify-between gap-2">
-            <h2 className="text-xl font-semibold">Altas hoy en Pulso Barrial</h2>
+            <h2 className="text-xl font-semibold">Altas hoy</h2>
             <Etiqueta tipo={altas.tipo_dato} />
           </div>
-          <p aria-live="polite" className="text-6xl font-bold tabular-nums" style={{ color: "var(--pb-acento, #c2410c)" }}>
+          <p aria-live="polite" className="text-5xl font-bold tabular-nums" style={{ color: "var(--pb-acento, #c2410c)" }}>
             {altas.hoy}
           </p>
           <p className="text-base text-stone-800">
-            {altas.total} negocios dados de alta en total · se actualiza cada 5 s
+            {altas.total} en total · cada 5 s
           </p>
           <Fuente texto={altas.archivo_disponible || error ? altas.fuente : `${altas.fuente} (aún sin altas)`} />
         </section>
 
         <section
           aria-label="Cómo escala"
-          className="rounded-xl border border-stone-300 bg-stone-50 p-4"
+          className="rounded-xl border border-stone-300 bg-stone-50 p-3"
         >
           <div className="flex items-start justify-between gap-2">
             <h2 className="text-xl font-semibold">Cómo escala a las {data.escala.alcaldias_totales} alcaldías</h2>
@@ -242,7 +244,7 @@ export default function CrecimientoView(_props: FeatureProps) {
           <p className="mt-1">
             <strong>Costo:</strong> {data.escala.costo}
           </p>
-          <ul className="mt-1 grid list-disc grid-cols-2 gap-x-6 pl-6 text-base">
+          <ul className="mt-1 grid list-disc grid-cols-2 gap-x-6 pl-6 text-base leading-snug">
             {data.escala.piezas.map((p) => (
               <li key={p}>{p}</li>
             ))}
@@ -250,7 +252,7 @@ export default function CrecimientoView(_props: FeatureProps) {
         </section>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         <Tarjeta
           titulo={data.serie_trimestral[0]?.indicador ?? "Inclusión financiera por trimestre"}
           tipo={data.serie_trimestral[0]?.tipo_dato ?? "simulado"}
