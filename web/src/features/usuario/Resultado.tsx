@@ -46,7 +46,7 @@ export function Resumen({ ruta }: { ruta: Ruta }) {
       className="rounded-(--pb-radio-tarjeta) bg-(--pb-acento) p-5 text-white shadow-(--pb-sombra)"
     >
       <p className="text-base font-medium opacity-90">Tu ruta a pie por el barrio</p>
-      <p className="pb-cifra mt-1 text-[1.75rem] font-bold leading-tight sm:text-[2rem]">
+      <p className="pb-cifra mt-1 text-[1.75rem] font-bold leading-tight lg:text-[1.5rem]">
         {ruta.resumen.cadenas} cadenas · {km(ruta.distancia_m)} · {ruta.minutos} min
       </p>
       <p className="mt-2 text-base opacity-95">
