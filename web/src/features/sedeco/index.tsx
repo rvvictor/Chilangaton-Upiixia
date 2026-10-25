@@ -20,6 +20,7 @@ import {
 } from "./datos";
 import { MapaSedeco } from "./MapaSedeco";
 import { Panel, TarjetaHex } from "./PanelSedeco";
+import { VIDRIO } from "./estilo";
 
 const CAPAS: { id: CapaHex; texto: string }[] = [
   { id: "actividad", texto: "Actividad" },
@@ -43,6 +44,7 @@ export default function Sedeco(_props: FeatureProps) {
 
   const [altas, setAltas] = useState<Alta[]>([]);
   const [altaReciente, setAltaReciente] = useState(false);
+  const [toast, setToast] = useState<{ id: string; texto: string } | null>(null);
 
   useEffect(() => {
     let vivo = true;
@@ -79,7 +81,10 @@ export default function Sedeco(_props: FeatureProps) {
       nuevas.forEach((a) => vistas.add(a.id));
       setAltas((prev) => [...nuevas, ...prev].slice(0, MAX_ALTAS));
       setAltaReciente(true);
+      const nombre = nuevas[0].ficha?.nombre?.trim();
+      setToast({ id: nuevas[0].id, texto: `${nombre || "Un negocio nuevo"} se sumó a la red` });
       window.setTimeout(() => setAltaReciente(false), 5000);
+      window.setTimeout(() => setToast((t) => (t?.id === nuevas[0].id ? null : t)), 5000);
     };
     const id = window.setInterval(sondear, 3000);
     return () => window.clearInterval(id);
@@ -110,9 +115,21 @@ export default function Sedeco(_props: FeatureProps) {
   const altasHoy = (resumen?.altas_hoy?.valor ?? 0) + altas.length;
   const hayEjemplo = hex?.origen === "ejemplo" || alcaldias.origen === "ejemplo" || tianguis.origen === "ejemplo";
 
+  const primerTianguis = tianguis.lista[0];
+  const datoAbiertos = {
+    valor: abiertos.length,
+    tipo: primerTianguis?.tipo_dato ?? ("simulado" as const),
+    fuente: primerTianguis?.fuente ?? "Tianguis Abierto (pipeline)",
+  };
+  const datoAltas = {
+    valor: altasHoy,
+    tipo: resumen?.altas_hoy?.tipo_dato ?? ("simulado" as const),
+    fuente: resumen?.altas_hoy?.fuente ?? "Altas en colonIA (demostración)",
+  };
+
   return (
-    <div className="flex h-full flex-col lg:grid lg:grid-cols-[70fr_30fr]">
-      <div className="relative h-[60vh] min-w-0 lg:h-full">
+    <div className="relative h-full min-h-[560px] overflow-hidden bg-(--pb-superficie-2)">
+      <div className="absolute inset-0">
         <MapaSedeco
           hex={hex?.data ?? { type: "FeatureCollection", features: [] }}
           capa={capa}
@@ -122,39 +139,58 @@ export default function Sedeco(_props: FeatureProps) {
           seleccionado={seleccion}
           onSeleccion={setSeleccion}
         />
+      </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-3 flex flex-wrap items-start justify-between gap-2 px-3">
-          <div role="group" aria-label="Capa del mapa" className="pointer-events-auto flex flex-wrap gap-1 rounded-2xl bg-white p-1.5 shadow-md">
-            {CAPAS.map((c) => (
-              <button
-                key={c.id}
-                type="button"
-                aria-pressed={capa === c.id}
-                onClick={() => setCapa(c.id)}
-                disabled={datoReal}
-                className={`rounded-xl px-3.5 py-2 text-base font-semibold disabled:opacity-40 ${
-                  capa === c.id ? "bg-stone-900 text-white" : "text-stone-900 hover:bg-stone-100"
-                }`}
-              >
-                {c.texto}
-              </button>
-            ))}
-          </div>
-          {hayEjemplo && (
-            <span role="status" className="pointer-events-auto rounded-xl bg-amber-100 px-3 py-2 text-base font-bold text-amber-950 shadow-md">
-              Datos de ejemplo
-            </span>
-          )}
+      <div className="pointer-events-none absolute left-4 right-4 top-4 flex flex-wrap items-start gap-2 lg:right-[436px]">
+        <div role="group" aria-label="Capa del mapa" className={`pointer-events-auto flex flex-wrap gap-0.5 rounded-2xl p-1 ${VIDRIO}`}>
+          {CAPAS.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              aria-pressed={capa === c.id}
+              onClick={() => setCapa(c.id)}
+              disabled={datoReal}
+              className={`h-10 rounded-xl px-3.5 text-base font-semibold transition-colors disabled:opacity-50 ${
+                capa === c.id ? "bg-(--pb-texto) text-(--pb-superficie)" : "text-(--pb-texto) hover:bg-(--pb-superficie-2)"
+              }`}
+            >
+              {c.texto}
+            </button>
+          ))}
         </div>
+        {hayEjemplo && (
+          <span role="status" className="pointer-events-auto rounded-xl border border-(--pb-borde-fuerte) bg-(--pb-acento-suave) px-3 py-2 text-base font-semibold text-(--pb-acento-fuerte)">
+            Datos de ejemplo
+          </span>
+        )}
+      </div>
 
-        {propsSeleccion && (
-          <div className="absolute inset-x-3 bottom-3 flex justify-start">
-            <TarjetaHex p={propsSeleccion} onCerrar={() => setSeleccion(null)} />
+      <div aria-live="polite" className="pointer-events-none absolute left-4 top-20 lg:right-[436px]">
+        {toast && (
+          <div
+            key={toast.id}
+            role="status"
+            className={`pointer-events-auto flex items-center gap-3 rounded-2xl px-4 py-3 motion-safe:animate-[sedeco-toast_420ms_cubic-bezier(0.2,0.9,0.3,1.2)] ${VIDRIO}`}
+          >
+            <span className="relative flex size-3" aria-hidden="true">
+              <span className="absolute inset-0 animate-ping rounded-full bg-[var(--pb-rosa,#db2777)] opacity-70 motion-reduce:animate-none" />
+              <span className="relative size-3 rounded-full bg-[var(--pb-rosa,#db2777)]" />
+            </span>
+            <span className="text-base font-semibold text-(--pb-texto)">{toast.texto}</span>
           </div>
         )}
       </div>
 
-      <aside aria-label="Panel SEDECO" className="min-h-0 min-w-0 border-l border-stone-300 bg-stone-50 lg:h-full">
+      {propsSeleccion && (
+        <div className="absolute bottom-4 left-4 right-4 flex justify-start lg:right-[436px]">
+          <TarjetaHex p={propsSeleccion} onCerrar={() => setSeleccion(null)} />
+        </div>
+      )}
+
+      <aside
+        aria-label="Panel SEDECO"
+        className="absolute bottom-4 right-4 top-4 w-[min(404px,calc(100%-2rem))] max-lg:top-auto max-lg:h-[55%]"
+      >
         <Panel
           dia={dia}
           onDia={setDia}
@@ -165,12 +201,13 @@ export default function Sedeco(_props: FeatureProps) {
           alcaldias={alcaldias.lista}
           origenAlcaldias={alcaldias.origen}
           cobertura={cobertura}
-          abiertos={abiertos.length}
-          altasHoy={altasHoy}
+          abiertos={datoAbiertos}
+          altasHoy={datoAltas}
           altaReciente={altaReciente}
           origenHex={hex?.origen ?? "api"}
         />
       </aside>
+      <style>{`@keyframes sedeco-toast { from { opacity: 0; transform: translateY(-12px) scale(0.96); } to { opacity: 1; transform: none; } }`}</style>
     </div>
   );
 }

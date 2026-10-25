@@ -1,9 +1,12 @@
 import mapboxgl, { type ExpressionSpecification, type FilterSpecification } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import type { Alta, CapaHex, ColeccionHex, Tianguis } from "./datos";
+import { movimientoReducido } from "./estilo";
 
 // Cámara inicial: 50° sobre Coyoacán con Iztapalapa a la vista (IDEA.md §4 paso 1).
-const CAMARA = { center: [-99.118, 19.352] as [number, number], zoom: 11.7, pitch: 50, bearing: -12 };
+const CAMARA = { center: [-99.118, 19.352] as [number, number], zoom: 11.7, pitch: 55, bearing: -12 };
+// Entrada cinematográfica: arranca de lejos y plano, vuela a 55°. Con movimiento reducido arranca ya en CAMARA.
+const ENTRADA = { center: [-99.133, 19.4] as [number, number], zoom: 10.2, pitch: 0, bearing: 0 };
 const GRIS = "#c3c9d0";
 const RAMPA_IMPULSO = ["#ffeedd", "#fcc58b", "#f5914a", "#d9581b", "#9a3412"];
 const COLOR_ALCALDIA: Record<string, string> = { "09003": "#c2410c", "09007": "#0e5c58" };
@@ -63,7 +66,7 @@ export function MapaSedeco({ hex, capa, datoReal, tianguis, altas, seleccionado,
     let mapa: mapboxgl.Map;
     try {
       mapboxgl.accessToken = token;
-      mapa = new mapboxgl.Map({ container: contenedor.current, style: "mapbox://styles/mapbox/light-v11", ...CAMARA, antialias: true });
+      mapa = new mapboxgl.Map({ container: contenedor.current, style: "mapbox://styles/mapbox/light-v11", ...(movimientoReducido() ? CAMARA : ENTRADA), antialias: true });
     } catch {
       queueMicrotask(() => setEstado("error"));
       return;
@@ -104,6 +107,7 @@ export function MapaSedeco({ hex, capa, datoReal, tianguis, altas, seleccionado,
       mapa.on("mouseleave", "hex-3d", () => (mapa.getCanvas().style.cursor = ""));
       setEstado("listo");
       setListo(true);
+      if (!movimientoReducido()) mapa.flyTo({ ...CAMARA, duration: 4200, curve: 1.3, essential: false });
     });
     const marcas = marcasRef.current;
     return () => {
@@ -155,8 +159,8 @@ export function MapaSedeco({ hex, capa, datoReal, tianguis, altas, seleccionado,
       el.className = "relative size-5";
       el.title = a.ficha?.nombre ?? "Nueva alta";
       el.innerHTML =
-        '<span class="absolute inset-0 rounded-full bg-[#c2410c] opacity-60 animate-ping motion-reduce:animate-none"></span>' +
-        '<span class="absolute inset-1 rounded-full border-2 border-white bg-[#c2410c]"></span>';
+        '<span class="absolute inset-0 rounded-full bg-[var(--pb-rosa,#db2777)] opacity-60 animate-ping motion-reduce:animate-none"></span>' +
+        '<span class="absolute inset-1 rounded-full border-2 border-(--pb-superficie) bg-[var(--pb-rosa,#db2777)]"></span>';
       marcas.set(a.id, new mapboxgl.Marker({ element: el }).setLngLat([lng, lat]).addTo(mapa));
     }
   }, [listo, altas]);
@@ -175,24 +179,24 @@ export function MapaSedeco({ hex, capa, datoReal, tianguis, altas, seleccionado,
 
   const aviso =
     estado === "sin-token"
-      ? { titulo: "El mapa necesita una llave de Mapbox", texto: "Agrega VITE_MAPBOX_TOKEN en el archivo .env y vuelve a abrir la página. El panel de la derecha sigue funcionando." }
+      ? { titulo: "El mapa necesita una llave de Mapbox", texto: "Agrega VITE_MAPBOX_TOKEN en el archivo .env y vuelve a abrir la página. El panel sigue funcionando." }
       : estado === "error"
-        ? { titulo: "No se pudo cargar el mapa", texto: "Revisa la conexión a internet o la llave de Mapbox. El panel de la derecha sigue funcionando." }
+        ? { titulo: "No se pudo cargar el mapa", texto: "Revisa la conexión a internet o la llave de Mapbox. El panel sigue funcionando." }
         : null;
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-stone-200">
+    <div className="relative h-full w-full overflow-hidden bg-(--pb-superficie-2)">
       <div ref={contenedor} className="absolute inset-0" role="region" aria-label="Mapa de Coyoacán e Iztapalapa" />
       {estado === "cargando" && token && (
-        <div className="absolute inset-0 flex items-center justify-center text-lg text-stone-700" role="status">
+        <div className="absolute inset-0 flex items-center justify-center pr-[420px] text-lg text-(--pb-texto-2) max-lg:pr-0" role="status">
           Cargando mapa…
         </div>
       )}
       {aviso && (
-        <div role="status" className="absolute inset-0 flex items-center justify-center p-6">
-          <div className="max-w-md rounded-2xl border border-stone-400 bg-white p-6 shadow-md">
-            <p className="text-xl font-semibold text-stone-900">{aviso.titulo}</p>
-            <p className="mt-2 text-lg leading-relaxed text-stone-800">{aviso.texto}</p>
+        <div role="status" className="absolute inset-0 flex items-center justify-center p-6 lg:pr-[436px]">
+          <div className="max-w-md rounded-(--pb-radio-tarjeta) border border-(--pb-borde) bg-(--pb-superficie) p-6 shadow-(--pb-sombra)">
+            <p className="text-xl font-semibold text-(--pb-texto)">{aviso.titulo}</p>
+            <p className="mt-2 text-lg leading-relaxed text-(--pb-texto-2)">{aviso.texto}</p>
           </div>
         </div>
       )}
