@@ -74,7 +74,7 @@ export function MapaRuta({ ruta, origen }: { ruta: Ruta | null; origen: Punto })
       mapa.current = map;
       map.addSource("ruta-linea", { type: "geojson", data: VACIO });
       map.addSource("ruta-paradas", { type: "geojson", data: VACIO });
-      const acento = token("--pb-acento", "#db2777");
+      const acento = token("--pb-marca", "#e6007e");
       const alta = token("--pb-real-texto", "#14532d");
       const origenColor = token("--pb-texto", "#1f2937");
       map.addLayer({
