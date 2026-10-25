@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pulso Barrial en un solo proceso para la demo: construye el web, levanta FastAPI en :8000 y, si hay token, el bot.
+# colonIA en un solo proceso para la demo: construye el web, levanta FastAPI en :8000 y, si hay token, el bot.
 #   bash scripts/demo.sh            # con llaves del archivo de entorno (OpenAI, Mapbox, Telegram)
 #   DEMO_MODE=1 bash scripts/demo.sh   # sin internet ni llaves: respuestas grabadas (plan B)
 # Luego abre http://127.0.0.1:8000  ·  plan B del alta: uv run python scripts/simular_alta.py --caso dona-lupe --url http://127.0.0.1:8000
@@ -27,5 +27,5 @@ else
   echo "Bot de Telegram apagado (sin token o DEMO_MODE=1). Plan B: scripts/simular_alta.py"
 fi
 
-echo "Pulso Barrial: http://127.0.0.1:$PORT  (SEDECO #/sedeco · Vecina #/usuario · Negocio #/negocio)"
+echo "colonIA: http://127.0.0.1:$PORT  (SEDECO #/sedeco · Vecina #/usuario · Negocio #/negocio)"
 wait
