@@ -5,17 +5,22 @@ An owner is not a prerequisite for everyone: consumers work on published contrac
 
 | Pattern | Owner task |
 |---|---|
-| pyproject.toml | HACK-001 |
-| uv.lock | HACK-001 |
-| package.json | HACK-001 |
-| package-lock.json | HACK-001 |
-| web/package.json | HACK-001 |
-| web/package-lock.json | HACK-001 |
-| app/main.py | HACK-001 |
-| web/src/App.tsx | HACK-001 |
-| app/schemas/ | HACK-002 |
-| web/DESIGN.md | HACK-002 |
-| .github/workflows/ | HACK-001 |
-| .uak/PROJECT.md | HACK-001 |
-
-Delete rows for technologies you don't use. `/uak-plan` creates HACK-001 (setup) and HACK-002 (contract).
+| pyproject.toml | PB-001 |
+| uv.lock | PB-001 |
+| web/package.json | PB-001 |
+| web/package-lock.json | PB-001 |
+| app/main.py | PB-001 |
+| app/config.py | PB-001 |
+| web/src/App.tsx | PB-001 |
+| web/src/index.css | PB-001 |
+| .env.example | PB-001 |
+| .gitignore | PB-001 |
+| .github/workflows/ | PB-001 |
+| .uak/PROJECT.md | PB-001 |
+| app/schemas/ | PB-002 |
+| app/fixtures/ | PB-002 |
+| web/src/lib/types.ts | PB-002 |
+| web/DESIGN.md | PB-003 |
+| web/src/lib/ui/ | PB-003 |
+| web/src/lib/map/ | PB-003 |
+| app/services/eventos.py | PB-007 |
