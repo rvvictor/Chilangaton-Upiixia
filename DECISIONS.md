@@ -12,3 +12,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792954256 | PB-003 | squash-merge by a human on GitHub, no uak merge | Why: branch commit 973d53e has an unwanted Co-Authored-By trailer; force-push blocked and not wanted
 - 1792954383 | PB-017 | follow-up of PB-004 by yojan-1: Bolsa de poco movimiento junto a la sede: la ruta de la demo muestra paradas en zonas que necesitan clientes | Why: same Paths, no scope change
 - 1792954667 | PB-018 | follow-up of PB-008 by yojan-2: Doña Lupe en la ruta de la vecina: alta junto a la sede de la vista Vecina y horario hasta las 20:00 | Why: same Paths, no scope change
+- 1792955402 | PB-019 | follow-up of PB-007 by yojan-2: Altas sin h3 en la ruta: derivarlo de lat/lng para que su impulso cuente | Why: same Paths, no scope change

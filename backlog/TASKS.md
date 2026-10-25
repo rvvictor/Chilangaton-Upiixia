@@ -25,3 +25,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Doña Lupe en la ruta de la vecina: alta junto a la sede de la vista Vecina y horario hasta las 20:00
 - **Verify:** `uv run pytest -q app/tests/test_altas.py`
+
+## PB-019 · Altas sin h3 en la ruta: derivarlo de lat/lng para que su impulso cuente (follow-up of PB-007)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-007
+- **Follow-up of:** PB-007
+- **Paths:** app/routers/ruta.py, app/services/ruta.py, app/services/articulos.py, app/services/mapbox.py, app/routers/eventos.py, app/services/eventos.py, app/tests/test_ruta.py
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Altas sin h3 en la ruta: derivarlo de lat/lng para que su impulso cuente
+- **Verify:** `uv run pytest -q app/tests/test_ruta.py`
