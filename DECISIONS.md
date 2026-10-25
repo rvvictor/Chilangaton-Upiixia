@@ -20,3 +20,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792956842 | plan --amend | victor/victor | amended: PB-021 PB-022 | Why: scope or criteria fixed before review
 - 1792956874 | PB-030 | follow-up of PB-001 by yojan-2: Mapa invisible: mapbox-gl.css en capa components para que no anule absolute inset-0 | Why: same Paths, no scope change
 - 1792957122 | deadline lease/PB-017/1792957101 | REQUIRES_RECOVERY | Claim kept; read the summary and use release --expired --read-summary. No work is deleted.
+- 1792958055 | PB-030 | se integra dentro de PB-021 (mismos Paths, Freeze-Allowed yes) | Why: PB-030 no es Freeze-Allowed y bloquea PB-021
