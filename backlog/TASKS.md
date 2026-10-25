@@ -212,3 +212,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Mapa invisible: mapbox-gl.css en capa components para que no anule absolute inset-0
 - **Verify:** `bash .uak/bin/smoke`
+
+## PB-031 · Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada (follow-up of PB-002)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-002
+- **Follow-up of:** PB-002
+- **Paths:** app/schemas/, app/fixtures/, web/src/lib/types.ts, app/tests/test_schemas.py
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada
+- **Verify:** `uv run pytest -q app/tests/test_schemas.py`
