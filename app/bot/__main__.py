@@ -1,4 +1,4 @@
-"""Bot de Telegram de Pulso Barrial: `uv run python -m app.bot` (long polling, no necesita URL pública).
+"""Bot de Telegram de colonIA: `uv run python -m app.bot` (long polling, no necesita URL pública).
 
 Flujo de alta: nota de voz o texto → ficha → ubicación → "Así queda" / "Corregir". Nada se publica sin "Así queda".
 """
@@ -27,7 +27,7 @@ from app.config import settings
 from app.services import altas
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-log = logging.getLogger("pulso.bot")
+log = logging.getLogger("colonia.bot")
 
 # Dirección pública de la web para los links (no es secreto).
 BASE_URL = os.environ.get("PUBLIC_BASE_URL", "http://localhost:8000").rstrip("/")
@@ -49,8 +49,8 @@ CONFIRMAR = InlineKeyboardMarkup(
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     context.user_data.clear()
     await update.message.reply_text(
-        "¡Hola! Soy Pulso Barrial 👋\n"
-        "Te ayudo a que tus vecinos te encuentren, gratis y sin llenar formularios.\n\n"
+        "¡Hola! Soy colonIA 👋, la red viva de la economía de barrio.\n"
+        "Te ayudo a que tus vecinas y vecinos te encuentren, gratis y sin llenar formularios.\n\n"
         "Mándame una nota de voz contando qué vendes, a cuánto, qué días y a qué hora abres, "
         "y cómo te pueden pagar.",
         reply_markup=MENU,
@@ -147,7 +147,7 @@ async def boton(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     log.info("alta %s h3=%s", alta.id, alta.h3)
     await q.edit_message_reply_markup(None)
     await q.message.reply_text(
-        "🎉 ¡Listo! Ya apareces en el mapa de tu barrio y en las rutas de compra de tus vecinos.\n\n"
+        "🎉 ¡Listo! Ya eres parte de colonIA: apareces en el mapa de tu barrio y en las rutas de compra de tus vecinos.\n\n"
         f"Tu página: {BASE_URL}/n/{alta.slug}\n"
         f"Tu panel (privado): {BASE_URL}/#/negocio/{alta.id}",
         reply_markup=MENU,
@@ -166,7 +166,7 @@ def main() -> None:
     app.add_handler(MessageHandler(filters.PHOTO, foto))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, texto))
     app.add_handler(CallbackQueryHandler(boton))
-    log.info("Bot de Pulso Barrial escuchando (long polling)")
+    log.info("Bot de colonIA escuchando (long polling)")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 

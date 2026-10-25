@@ -1,18 +1,22 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
-@import "mapbox-gl/dist/mapbox-gl.css";
+@import "@fontsource-variable/bricolage-grotesque";
+/* En una capa: sin layer(), la regla .mapboxgl-map { position: relative } gana a las utilidades de Tailwind v4
+   (que viven en @layer utilities) y el contenedor "absolute inset-0" del mapa queda con 0 px de alto. */
+@import "mapbox-gl/dist/mapbox-gl.css" layer(components);
 
 @theme {
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Base legible en proyector (rúbrica C6). Los tokens de diseño viven en web/src/lib/ui/ (PB-003). */
+/* Base legible en proyector (rúbrica C6). Los tokens de diseño viven en web/src/lib/ui/tokens.css (PB-029). */
 html {
   font-size: 18px;
 }
 
 body {
   margin: 0;
-  background: #fbfaf7;
-  color: #1c1917;
+  background: var(--pb-fondo, #f6f7f4);
+  color: var(--pb-texto, #0e1116);
 }
