@@ -27,3 +27,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792958669 | allow | victor | freeze exception: PB-031 | Why: Victor autorizó regenerar el fixture de crecimiento con el nombre colonIA después del freeze
 - 1792958845 | plan --amend | victor/victor | amended: PB-031 Paths: app/schemas/, app/fixtures/, web/src/lib/types.ts, app/tests/test_schemas.py → app/schemas/, app/fixtures/, web/src/lib/types.ts, app/tests/test_schemas.py, pipeline/negocios/programas.py, data/processed/programas.json, data/fuentes/negocios.md; | Why: scope or criteria fixed before review
 - 1792959211 | PB-032 | follow-up of PB-008 by yojan-2: Nombre del puesto cuando la persona no lo dice: nunca 'Puesto de la persona' | Why: same Paths, no scope change
+- 1792959246 | PB-033 | follow-up of PB-026 by yojan-1: Barras de Crecimiento: etiquetas del último año sin encimarse | Why: same Paths, no scope change

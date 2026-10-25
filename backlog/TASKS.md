@@ -236,3 +236,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Nombre del puesto cuando la persona no lo dice: nunca 'Puesto de la persona'
 - **Verify:** `uv run pytest -q app/tests/test_altas.py`
+
+## PB-033 · Barras de Crecimiento: etiquetas del último año sin encimarse (follow-up of PB-026)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-026
+- **Follow-up of:** PB-026
+- **Paths:** web/src/features/crecimiento/
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Barras de Crecimiento: etiquetas del último año sin encimarse
+- **Verify:** `npm --prefix web run build`
