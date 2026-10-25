@@ -221,6 +221,8 @@ def resumen(dia: int | None = None, hora: str | None = None) -> dict:
         if e.get("tipo") == "aparicion_ruta" and e.get("h3"):
             rutas[e["h3"]] = rutas.get(e["h3"], 0) + 1
     dia_tianguis = tianguis(dia, hora)
+    # Demo altas (simular_alta, DEMO_MODE) must never be shown under a "real" label.
+    hay_demo = any(a.get("demo_data") or a.get("origen") == "demo" for a in altas)
     return {
         "altas_hoy": len(altas),
         "rutas_por_hexagono": rutas,
@@ -230,7 +232,7 @@ def resumen(dia: int | None = None, hora: str | None = None) -> dict:
         "poblacion_cubierta_pct": dia_tianguis["cobertura"]["poblacion_cubierta_pct"],
         "desiertos": len(dia_tianguis["cobertura"]["desiertos"]),
         "tipo_campos": {
-            "altas_hoy": "real",
+            "altas_hoy": "simulado" if hay_demo else "real",
             "rutas_por_hexagono": "real",
             "poblacion_cubierta_pct": "estimado",
             "desiertos": "estimado",
