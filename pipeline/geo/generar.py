@@ -31,6 +31,13 @@ FRACCION_OCULTOS = 0.04  # ~4% de hexágonos periféricos y de baja población q
 # común y martes casi nunca: en la demo, el domingo abren muchos tianguis cerca de la sede y el
 # martes cierra casi todo (paso 2 de la demo).
 PESO_DIA_TIANGUIS = {0: 1.0, 1: 0.3, 2: 1.0, 3: 1.0, 4: 1.0, 5: 1.5, 6: 2.0}
+# Historia de la demo (IDEA.md §3): Karla vive junto a la sede, en una zona con mucha gente y poco
+# movimiento de pago digital. Los hexágonos a <= RADIO_BOLSA_KM del centro de la demo (entre la sede y
+# el origen por defecto de la ruta) reciben menos peso de actividad TPV; el total por alcaldía no cambia.
+CENTRO_DEMO = (19.3476, -99.1574)
+RADIO_BOLSA_KM = 1.3
+FACTOR_BOLSA = 0.15  # peso de actividad TPV dentro de la bolsa
+FACTOR_POB_BOLSA = 2.0  # peso de población dentro de la bolsa (se renormaliza por alcaldía)
 FUENTE_SIMULADA = "Simulado (pipeline.geo, semilla fija); no es levantamiento de campo"
 
 RAIZ = Path(__file__).resolve().parents[2]
@@ -178,7 +185,10 @@ def _hexagonos() -> list[dict]:
         for celda in celdas:
             lat, lng = h3.cell_to_latlng(celda)
             d = _km_entre(lat, lng, cx, cy)
-            pesos.append(rng.lognormvariate(0.0, 0.5) * (0.4 + math.exp(-d / 3.0)))
+            peso = rng.lognormvariate(0.0, 0.5) * (0.4 + math.exp(-d / 3.0))
+            if _km_entre(lat, lng, *CENTRO_DEMO) <= RADIO_BOLSA_KM:
+                peso *= FACTOR_POB_BOLSA
+            pesos.append(peso)
         suma_pesos = sum(pesos)
         pobs = [round(cfg["poblacion_total"] * p / suma_pesos) for p in pesos]
         pobs[pobs.index(max(pobs))] += cfg["poblacion_total"] - sum(pobs)
@@ -196,6 +206,9 @@ def _hexagonos() -> list[dict]:
             })
 
     _forzar_ocultos(hexes, rng)
+    for h in hexes:  # bolsa de poco movimiento junto a la sede (sin consumir rng: sigue determinista)
+        if _km_entre(*h3.cell_to_latlng(h["h3"]), *CENTRO_DEMO) <= RADIO_BOLSA_KM:
+            h["_peso_act"] *= FACTOR_BOLSA
 
     # Actividad TPV: reparto del total de la alcaldía proporcional al peso (A.2 simplificado).
     for cvegeo in ALCALDIAS:
