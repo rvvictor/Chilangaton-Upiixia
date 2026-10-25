@@ -7,7 +7,7 @@ ausente o corrupto nunca rompe el panel: cuenta 0 (o vacío) y lo dice.
 import json
 import random
 from collections import Counter
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Literal
 from zoneinfo import ZoneInfo
@@ -38,10 +38,16 @@ NOMBRES_ALCALDIAS = {
     "09017": "Venustiano Carranza",
 }
 
-FUENTE_CNBV = "Simulación con forma de la base de inclusión financiera CNBV (no son datos reales)"
-FUENTE_DENUE = "Simulación con forma de DENUE INEGI, campo Fecha_Alta (no son datos reales)"
+FUENTE_CNBV = (
+    "Simulación con forma de la base de inclusión financiera CNBV (no son datos reales)"
+)
+FUENTE_DENUE = (
+    "Simulación con forma de DENUE INEGI, campo Fecha_Alta (no son datos reales)"
+)
 FUENTE_ALTAS = "Plataforma Pulso Barrial · data/live/altas.jsonl"
-FUENTE_EVENTOS = "Plataforma Pulso Barrial · data/live/eventos.jsonl (eventos aparicion_ruta)"
+FUENTE_EVENTOS = (
+    "Plataforma Pulso Barrial · data/live/eventos.jsonl (eventos aparicion_ruta)"
+)
 
 
 class Punto(BaseModel):
@@ -120,7 +126,9 @@ def _altas_por_anio(cvegeo: str) -> list[Punto]:
     rng = _rng("denue", cvegeo)
     base = rng.randint(900, 2600)
     return [
-        Punto(periodo=str(anio), valor=max(100, int(base * (1 + rng.uniform(-0.15, 0.2)))))
+        Punto(
+            periodo=str(anio), valor=max(100, int(base * (1 + rng.uniform(-0.15, 0.2))))
+        )
         for anio in range(2019, 2026)
     ]
 
@@ -153,9 +161,9 @@ def _es_demo(fila: dict) -> bool:
 def _fecha_local(ts: object) -> date | None:
     try:
         if isinstance(ts, (int, float)):
-            dt = datetime.fromtimestamp(ts / 1000 if ts > 1e11 else ts, tz=timezone.utc)
+            dt = datetime.fromtimestamp(ts / 1000 if ts > 1e11 else ts, tz=UTC)
         elif isinstance(ts, str):
-            dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+            dt = datetime.fromisoformat(ts)
             if dt.tzinfo is None:
                 dt = dt.replace(tzinfo=TZ)
         else:
@@ -185,7 +193,9 @@ def rutas_por_hexagono(live_dir: Path | None = None) -> RutasPorHexagono:
     live_dir = live_dir or LIVE_DIR
     filas, disponible = _leer_jsonl(live_dir / "eventos.jsonl")
     conteo = Counter(
-        str(f["h3"]) for f in filas if f.get("tipo") == "aparicion_ruta" and f.get("h3") and not _es_demo(f)
+        str(f["h3"])
+        for f in filas
+        if f.get("tipo") == "aparicion_ruta" and f.get("h3") and not _es_demo(f)
     )
     hexagonos = [RutaHexagono(h3=h, rutas=n) for h, n in conteo.most_common(12)]
     return RutasPorHexagono(
@@ -220,7 +230,7 @@ def crecimiento(
     hoy: date | None = None,
 ) -> Crecimiento:
     alcaldias = alcaldias or settings.alcaldias_list
-    nombre = lambda c: NOMBRES_ALCALDIAS.get(c, c)  # noqa: E731
+    nombre = lambda c: NOMBRES_ALCALDIAS.get(c, c)
     return Crecimiento(
         generado=datetime.now(TZ).isoformat(timespec="seconds"),
         alcaldias=alcaldias,
