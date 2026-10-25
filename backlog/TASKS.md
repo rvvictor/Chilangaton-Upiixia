@@ -49,3 +49,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Selector de Negocio: altas en vivo primero y id real de Doña Lupe
 - **Verify:** `npm --prefix web run build`
+
+## PB-021 · tzdata: la app no arranca en Windows (ZoneInfo America/Mexico_City) (follow-up of PB-001)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-001
+- **Follow-up of:** PB-001
+- **Paths:** pyproject.toml, uv.lock, .python-version, app/__init__.py, app/main.py, app/config.py, app/routers/__init__.py, app/services/__init__.py, app/tests/__init__.py, app/tests/test_health.py, web/package.json, web/package-lock.json, web/index.html, web/vite.config.ts, web/tsconfig.json, web/tsconfig.app.json, web/tsconfig.node.json, web/.oxlintrc.json, web/.gitignore, web/public/, web/src/App.tsx, web/src/main.tsx, web/src/index.css, web/src/vite-env.d.ts, web/src/lib/api.ts, .env.example, .gitignore, .uak/bin/smoke-project, .uak/bin/.smoke-project.provenance
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - tzdata: la app no arranca en Windows (ZoneInfo America/Mexico_City)
+- **Verify:** `bash .uak/bin/smoke`
