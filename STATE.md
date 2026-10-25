@@ -1,12 +1,12 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1792960201
-AVAILABLE: PB-030 
-CLAIMED: PB-027 
+Updated: 1792960287
+AVAILABLE: PB-030 
+CLAIMED: PB-027 
 BLOCKED: -
-REVIEW: PB-016 PB-022 PB-024 PB-032 PB-033 
-INTEGRATED: (26; last 12) ... PB-015 PB-017 PB-018 PB-019 PB-020 PB-021 PB-023 PB-025 PB-026 PB-028 PB-029 PB-031 
+REVIEW: PB-016 PB-022 PB-024 PB-032 PB-033 
+INTEGRATED: (26; last 12) ... PB-015 PB-017 PB-018 PB-019 PB-020 PB-021 PB-023 PB-025 PB-026 PB-028 PB-029 PB-031 
 CANCELLED: -
 
 Claims (first 24; status --task ID shows detail):
