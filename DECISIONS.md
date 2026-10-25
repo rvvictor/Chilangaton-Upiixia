@@ -30,3 +30,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792959246 | PB-033 | follow-up of PB-026 by yojan-1: Barras de Crecimiento: etiquetas del último año sin encimarse | Why: same Paths, no scope change
 - 1792959283 | allow | JoahanMorales | freeze exception: PB-032 PB-033 | Why: PB-032: el bot nombraba 'Puesto de la persona' si no dicen nombre; PB-033: etiquetas encimadas en Crecimiento
 - 1792960746 | PB-034 | follow-up of PB-006 by alexis-2: Altas hoy de demo salen como simulado en /api/sedeco/resumen | Why: same Paths, no scope change
+- 1792960806 | PB-027 | re-claim para registrar worktree local | Why: el claim apuntaba a /c/ (Windows de saus)
