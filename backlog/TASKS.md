@@ -37,3 +37,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Altas sin h3 en la ruta: derivarlo de lat/lng para que su impulso cuente
 - **Verify:** `uv run pytest -q app/tests/test_ruta.py`
+
+## PB-020 · Selector de Negocio: altas en vivo primero y id real de Doña Lupe (follow-up of PB-012)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-012
+- **Follow-up of:** PB-012
+- **Paths:** web/src/features/negocio/
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Selector de Negocio: altas en vivo primero y id real de Doña Lupe
+- **Verify:** `npm --prefix web run build`

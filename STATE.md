@@ -1,7 +1,7 @@
 # STATE
 
 Phase: execution
-Updated: 1792955698
+Updated: 1792955726
 AVAILABLE: PB-016 
 CLAIMED: PB-002 PB-017 
 BLOCKED: -
@@ -19,11 +19,11 @@ PB-019 | REVIEW | yojan-2 | until 1792969877
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
-- 1792954283 | deadline lease/PB-002/1792954253 | REQUIRES_RECOVERY | Claim kept; read the summary and use release --expired --read-summary. No work is deleted.
 - 1792954256 | PB-003 | squash-merge by a human on GitHub, no uak merge | Why: branch commit 973d53e has an unwanted Co-Authored-By trailer; force-push blocked and not wanted
 - 1792954383 | PB-017 | follow-up of PB-004 by yojan-1: Bolsa de poco movimiento junto a la sede: la ruta de la demo muestra paradas en zonas que necesitan clientes | Why: same Pat
 - 1792954667 | PB-018 | follow-up of PB-008 by yojan-2: Doña Lupe en la ruta de la vecina: alta junto a la sede de la vista Vecina y horario hasta las 20:00 | Why: same Paths, no 
 - 1792955402 | PB-019 | follow-up of PB-007 by yojan-2: Altas sin h3 en la ruta: derivarlo de lat/lng para que su impulso cuente | Why: same Paths, no scope change
+- 1792955726 | PB-020 | follow-up of PB-012 by yojan-2: Selector de Negocio: altas en vivo primero y id real de Doña Lupe | Why: same Paths, no scope change
 
 Global next step: available P0; else review PRs, tests, demo, rehearsal.
 Why: bounded snapshot to resume without rereading history.
