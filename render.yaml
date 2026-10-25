@@ -1,0 +1,48 @@
+# Render Blueprint · colonIA (one web service: FastAPI serves /api and the built React app; the Telegram bot
+# runs in the SAME instance because altas and eventos live on local disk in data/live/).
+# Deploy: Render dashboard → New → Blueprint → this repo. Fill the `sync: false` secrets when Render asks.
+services:
+  - type: web
+    name: colonia
+    runtime: python
+    plan: starter # free sleeps after 15 min idle and stops the bot; use starter (or higher) for the demo
+    region: oregon
+    branch: main
+    healthCheckPath: /api/health
+    buildCommand: >-
+      pip install --quiet uv &&
+      uv sync --frozen --no-dev &&
+      npm --prefix web ci --no-audit --no-fund --loglevel=error &&
+      npm --prefix web run build
+    # The bot uses long polling (no public URL needed). Only ONE process may poll a bot token at a time:
+    # stop any local `python -m app.bot` before deploying, or Telegram answers 409 Conflict.
+    startCommand: >-
+      bash -c 'if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ "$DEMO_MODE" != "1" ]; then uv run --no-dev python -m app.bot & fi;
+      exec uv run --no-dev uvicorn app.main:app --host 0.0.0.0 --port "$PORT"'
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.12"
+      - key: NODE_VERSION
+        value: "22"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: MAPBOX_TOKEN
+        sync: false
+      # Public pk. token, read by Vite at BUILD time (same value as MAPBOX_TOKEN; restrict it to the Render URL).
+      - key: VITE_MAPBOX_TOKEN
+        sync: false
+      # Links the bot sends (/n/{slug}, /#/negocio/{id}): set it to this service's URL, e.g. https://colonia.onrender.com
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-5.6-terra
+      - key: OPENAI_FALLBACK_MODEL
+        value: gpt-5-mini
+      - key: OPENAI_TRANSCRIBE_MODEL
+        value: gpt-transcribe
+      - key: ALCALDIAS
+        value: "09003,09007"
+      - key: DEMO_MODE
+        value: "0"
