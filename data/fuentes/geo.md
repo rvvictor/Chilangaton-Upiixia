@@ -44,3 +44,11 @@ Columnas que lee el generador: `nombre, alcaldia_cvegeo, lat, lng, dias, abre, c
 | Tianguis y mercados | SEDECO, tianguis y mercados (datos abiertos CDMX) + levantamiento de campo | Campo con `data/campo/tianguis_verificados.csv`. |
 
 Mientras la fuente real no esté, cualquier cifra que salga de estos archivos debe mostrarse con su etiqueta `simulado`. Nunca como dato real.
+
+## Bolsa de poco movimiento junto a la sede (ajuste de demo)
+
+Los hexágonos a ≤ 1.3 km del centro de la demo (19.3476, -99.1574) reciben más peso de población (×2) y
+menos peso de actividad TPV (×0.15) **dentro del dato simulado**, renormalizado por alcaldía (los totales
+no cambian). Es una decisión deliberada para contar la historia de la demo (Karla vive en una zona con
+mucha gente y poco movimiento de pago digital); **no es un hallazgo**. Con datos reales (CNBV + DENUE)
+esta bolsa desaparece y el mapa muestra lo que diga el dato.

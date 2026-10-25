@@ -66,6 +66,8 @@ export type Alta = {
   lat?: number;
   lng?: number;
   ficha?: { nombre?: string; lat?: number; lng?: number };
+  origen?: string;
+  demo_data?: boolean;
 };
 
 type Dato<T> = { valor: T; tipo_dato: TipoDato; fuente: string; periodo: string };

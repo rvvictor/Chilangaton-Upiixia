@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-25T13:16:32-06:00",
+ "generado": "2026-10-25T14:07:39-06:00",
  "alcaldias": [
   "09003",
   "09007"
@@ -201,31 +201,14 @@
   "hoy": 0,
   "total": 0,
   "tipo_dato": "real",
-  "fuente": "Plataforma Pulso Barrial · data/live/altas.jsonl",
+  "fuente": "Plataforma colonIA · data/live/altas.jsonl",
   "archivo_disponible": true
  },
  "rutas_por_hexagono": {
-  "hexagonos": [
-   {
-    "h3": "89499585d6fffff",
-    "rutas": 2
-   },
-   {
-    "h3": "894995859d3ffff",
-    "rutas": 1
-   },
-   {
-    "h3": "89499585d7bffff",
-    "rutas": 1
-   },
-   {
-    "h3": "89499585d63ffff",
-    "rutas": 1
-   }
-  ],
-  "total": 5,
+  "hexagonos": [],
+  "total": 0,
   "tipo_dato": "real",
-  "fuente": "Plataforma Pulso Barrial · data/live/eventos.jsonl (eventos aparicion_ruta)",
+  "fuente": "Plataforma colonIA · data/live/eventos.jsonl (eventos aparicion_ruta)",
   "archivo_disponible": true
  },
  "escala": {
@@ -243,7 +226,7 @@
    "Cambiar la variable ALCALDIAS agrega una alcaldía sin tocar código."
   ],
   "tipo_dato": "estimado",
-  "fuente": "Diseño de Pulso Barrial (estimación del equipo)"
+  "fuente": "Diseño de colonIA (estimación del equipo)"
  },
  "demo_data": true
 }

@@ -4,7 +4,7 @@
 |---|---|---|---|
 | `data/processed/negocios.json` | 520 negocios con la forma del DENUE (nombre, razón social, clase SCIAN, estrato, ubicación) en Coyoacán (09003) e Iztapalapa (09007), generados con semilla fija por `uv run python -m pipeline.negocios`. 35% cerca de la sede (San Lucas, Coyoacán) para la demo de la ruta. | **simulado** (`tipo_dato: "simulado"` en cada registro) | DENUE de INEGI: API `BuscarAreaActEstr` o la descarga masiva del DENUE CDMX (términos de libre uso INEGI) |
 | `data/processed/articulo_giro.json` | 332 artículos de uso diario en México con sinónimos chilangos, escritos a mano por el equipo (sin LLM), con sus clases SCIAN | construido a mano | Ampliación a ≥ 2,000 artículos (IDEA.md A.5) y eval de 150 artículos |
-| `data/processed/programas.json` | Mercomuna, DiMo y CoDi (existen), "Crece tu Mipyme con pagos digitales" (por verificar), Puntos de barrio (propuesta de Pulso Barrial) | real / propuesta, según `estado` | Fuentes oficiales: directorio Mercomuna, Banxico |
+| `data/processed/programas.json` | Mercomuna, DiMo y CoDi (existen), "Crece tu Mipyme con pagos digitales" (por verificar), Puntos de barrio (propuesta de colonIA) | real / propuesta, según `estado` | Fuentes oficiales: directorio Mercomuna, Banxico |
 
 ## Regla anti-cadenas (real)
 
