@@ -110,3 +110,17 @@ def test_dona_lupe_entra_a_la_ruta_de_la_vecina_despues_de_las_15(live, monkeypa
             "texto_lista": "2 kilos de jitomate, tortillas, chiles secos, tenis para niño, pilas",
         }).json()
         assert alta.id in {p["negocio"]["id"] for p in ruta["paradas"]}, hora
+
+
+@pytest.mark.parametrize(
+    ("nombre", "giro", "esperado"),
+    [
+        ("Puesto de Doña Lupe", "Frutas y verduras frescas", "Puesto de Doña Lupe"),
+        ("Puesto de la persona", "Ropa", "Puesto de ropa"),
+        ("Puesto de <nombre de la persona>", "Ropa", "Puesto de ropa"),
+        ("", "Abarrotes, ultramarinos y misceláneas", "Puesto de abarrotes"),
+        (None, "Otro", "Puesto de barrio"),
+    ],
+)
+def test_nombre_del_puesto_nunca_es_un_marcador(nombre, giro, esperado) -> None:
+    assert altas.nombre_del_puesto(nombre, giro) == esperado

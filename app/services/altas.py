@@ -221,9 +221,20 @@ PROMPT_FICHA = (
     "que dice su dueña o dueño. Usa solo lo que se dice; no inventes precios ni horarios. Días: 0 = lunes … "
     "6 = domingo; si dice 'fines de semana' son [5, 6]. Horas en formato HH:MM de 24 h ('de 7 a 3' = 07:00 a "
     "15:00). formas_pago solo de: efectivo, transferencia, dimo, codi, tarjeta (efectivo siempre). clase_scian "
-    "debe ser una de estas claves: {giros}. Si no dice nombre del negocio, usa 'Puesto de <nombre de la persona>'. "
+    "debe ser una de estas claves: {giros}. nombre: el del negocio si lo dice; si no, pero dice su propio nombre ('soy Lupe'), escribe 'Puesto de Lupe'; si no dice ninguno de los dos, deja nombre vacío (\"\"). Nunca escribas marcadores como 'la persona'. "
     "telefono solo si lo dicta para su ficha."
 )
+
+
+_SIN_NOMBRE = re.compile(r"^\s*$|<|>|\bla persona\b|\bnombre de\b|\bsin nombre\b", re.IGNORECASE)
+
+
+def nombre_del_puesto(nombre: str | None, giro: str) -> str:
+    """El nombre que dio la persona; si no dio ninguno (o el modelo dejó un marcador), 'Puesto de <giro>'."""
+    if nombre and not _SIN_NOMBRE.search(nombre):
+        return nombre.strip()
+    base = (giro or "barrio").split(",")[0].strip().lower()
+    return f"Puesto de {base}" if base and base != "otro" else "Puesto de barrio"
 
 
 def extraer_ficha(texto: str) -> tuple[Ficha, bool]:
@@ -250,6 +261,7 @@ def extraer_ficha(texto: str) -> tuple[Ficha, bool]:
                 if ficha.clase_scian not in GIROS:
                     ficha.clase_scian = "999999"
                 ficha.giro = GIROS[ficha.clase_scian]
+                ficha.nombre = nombre_del_puesto(ficha.nombre, ficha.giro)
                 ficha.dias = sorted({d for d in ficha.dias if 0 <= d <= 6})
                 return ficha, False
             except (ValidationError, Exception) as e:  # noqa: BLE001 — un fallo del modelo nunca tumba la demo
