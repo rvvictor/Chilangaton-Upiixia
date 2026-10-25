@@ -224,3 +224,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada
 - **Verify:** `uv run pytest -q app/tests/test_schemas.py`
+
+## PB-032 · Nombre del puesto cuando la persona no lo dice: nunca 'Puesto de la persona' (follow-up of PB-008)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-008
+- **Follow-up of:** PB-008
+- **Paths:** app/bot/, app/routers/altas.py, app/services/altas.py, app/tests/test_altas.py, scripts/simular_alta.py
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Nombre del puesto cuando la persona no lo dice: nunca 'Puesto de la persona'
+- **Verify:** `uv run pytest -q app/tests/test_altas.py`
