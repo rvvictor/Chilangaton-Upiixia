@@ -1,12 +1,12 @@
 # STATE
 
 Phase: execution
-Updated: 1792954485
+Updated: 1792954768
 AVAILABLE: PB-013 PB-016 
-CLAIMED: PB-002 PB-017 PB-018 
+CLAIMED: PB-002 PB-017 
 BLOCKED: -
-REVIEW: PB-003 PB-011 PB-012 PB-014 PB-015 
-INTEGRATED: PB-001 PB-004 PB-005 PB-006 PB-007 PB-008 PB-009 PB-010 
+REVIEW: PB-003 PB-011 PB-012 PB-014 PB-015 PB-018 
+INTEGRATED: PB-001 PB-004 PB-005 PB-006 PB-007 PB-008 PB-009 PB-010 
 CANCELLED: -
 
 Claims (first 24; status --task ID shows detail):
@@ -17,7 +17,7 @@ PB-012 | REVIEW | alexis-1 | until 1792968211
 PB-014 | REVIEW | alexis-2 | until 1792968114
 PB-015 | REVIEW | cris-2 | until 1792966703
 PB-017 | CLAIMED | yojan-1 | until 1792957101
-PB-018 | CLAIMED | yojan-2 | until 1792957386
+PB-018 | REVIEW | yojan-2 | until 1792969168
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
