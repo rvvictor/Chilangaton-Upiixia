@@ -10,13 +10,38 @@ export const route = "negocio";
 export const label = "Negocio";
 export const order = 3;
 
-// Demo selector: Doña Lupe (the live alta of the demo) always first.
+// Demo selector: live altas from the bot first (newest on top), then Doña Lupe and businesses near the venue
+// (ids and names from data/processed/negocios.json).
 const NEGOCIOS = [
   { id: DONA_LUPE_ID, nombre: "Puesto de Doña Lupe" },
-  { id: "neg-0001", nombre: "Tortillería La Guadalupana" },
-  { id: "neg-0002", nombre: "Recaudería Don Chucho" },
-  { id: "neg-0003", nombre: "Abarrotes La Esperanza" },
+  { id: "neg-0015", nombre: "Abarrotes Lupita" },
+  { id: "neg-0037", nombre: "Recaudería Los Ángeles" },
+  { id: "neg-0205", nombre: "Carnicería Los Arcos" },
 ];
+
+type Opcion = { id: string; nombre: string };
+type AltasLive = { altas?: { id?: string; ts?: number; ficha?: { nombre?: string } }[] };
+
+function useAltasEnVivo(): Opcion[] {
+  const [altas, setAltas] = useState<Opcion[]>([]);
+  useEffect(() => {
+    let vivo = true;
+    api<AltasLive>("/altas/live?desde=0")
+      .then((r) => {
+        if (!vivo) return;
+        const lista = [...(r.altas ?? [])]
+          .sort((a, b) => (b.ts ?? 0) - (a.ts ?? 0))
+          .filter((a): a is { id: string; ficha?: { nombre?: string } } => typeof a.id === "string")
+          .map((a) => ({ id: a.id, nombre: `${a.ficha?.nombre ?? a.id} · alta nueva` }));
+        setAltas(lista);
+      })
+      .catch(() => undefined); // sin servidor: el selector se queda con la lista fija
+    return () => {
+      vivo = false;
+    };
+  }, []);
+  return altas;
+}
 
 const FOCO = "focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[var(--pb-foco,#1d4ed8)]";
 const TEXTO_2 = "text-[var(--pb-texto-2,#48515c)]";
@@ -73,7 +98,9 @@ export default function VistaNegocio({ params }: FeatureProps) {
 }
 
 function Selector({ id }: { id: string }) {
-  const conocido = NEGOCIOS.some((n) => n.id === id);
+  const altas = useAltasEnVivo();
+  const opciones = [...altas, ...NEGOCIOS.filter((n) => !altas.some((a) => a.id === n.id))];
+  const conocido = opciones.some((n) => n.id === id);
   return (
     <div className="flex shrink-0 flex-wrap items-center gap-3">
       <label htmlFor="negocio-selector" className="text-lg font-medium">
@@ -86,7 +113,7 @@ function Selector({ id }: { id: string }) {
         className={`min-h-12 rounded-xl border-2 border-[var(--pb-borde-fuerte,#7d8793)] bg-white px-3 text-lg ${FOCO}`}
       >
         {!conocido && <option value={id}>{id}</option>}
-        {NEGOCIOS.map((n) => (
+        {opciones.map((n) => (
           <option key={n.id} value={n.id}>
             {n.nombre}
           </option>
