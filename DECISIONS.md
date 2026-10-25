@@ -9,3 +9,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792953436 | PB-012 | local ui/tipos until PB-002/003 land; normalizer accepts both API shapes | Why: PB-002/003 not on main
 - 1792953484 | PB-014 | local types/components until PB-002/003 land | Why: not on main
 - 1792954283 | deadline lease/PB-002/1792954253 | REQUIRES_RECOVERY | Claim kept; read the summary and use release --expired --read-summary. No work is deleted.
+- 1792954256 | PB-003 | squash-merge by a human on GitHub, no uak merge | Why: branch commit 973d53e has an unwanted Co-Authored-By trailer; force-push blocked and not wanted
