@@ -32,3 +32,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792960746 | PB-034 | follow-up of PB-006 by alexis-2: Altas hoy de demo salen como simulado en /api/sedeco/resumen | Why: same Paths, no scope change
 - 1792960806 | PB-027 | re-claim para registrar worktree local | Why: el claim apuntaba a /c/ (Windows de saus)
 - 1792961253 | allow | Alexis | freeze exception: PB-034 | Why: dato simulado de altas hoy aparece como real en SEDECO
+- 1792967705 | PB-035 | follow-up of PB-016 by yojan-1: README con el UPIIXIA Agentic Kit y la presentación del producto | Why: same Paths, no scope change

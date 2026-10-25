@@ -260,3 +260,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Altas hoy de demo salen como simulado en /api/sedeco/resumen
 - **Verify:** `uv run pytest -q app/tests/test_mapa.py`
+
+## PB-035 · README con el UPIIXIA Agentic Kit y la presentación del producto (follow-up of PB-016)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-016
+- **Follow-up of:** PB-016
+- **Paths:** docs/demo/, README.md
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - README con el UPIIXIA Agentic Kit y la presentación del producto
+- **Verify:** `test -s docs/demo/guion.md && test -s README.md`
