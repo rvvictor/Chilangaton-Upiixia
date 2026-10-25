@@ -7,3 +7,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792952724 | PB-006 | prefijo /api; dias 0=lunes | Why: contrato Apendice C y pipeline.geo
 - 1792952736 | PB-008 | respaldo Doña Lupe sin llave | Why: demo sin red
 - 1792953436 | PB-012 | local ui/tipos until PB-002/003 land; normalizer accepts both API shapes | Why: PB-002/003 not on main
+- 1792953484 | PB-014 | local types/components until PB-002/003 land | Why: not on main
