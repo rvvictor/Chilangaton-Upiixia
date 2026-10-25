@@ -248,3 +248,15 @@ Append-only; added to .uak/TASKS.md from main. Why: adding tasks never waits for
 - **Acceptance:**
   - Barras de Crecimiento: etiquetas del último año sin encimarse
 - **Verify:** `npm --prefix web run build`
+
+## PB-034 · Altas hoy de demo salen como simulado en /api/sedeco/resumen (follow-up of PB-006)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-006
+- **Follow-up of:** PB-006
+- **Paths:** app/routers/mapa.py, app/services/mapa.py, app/tests/test_mapa.py
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Altas hoy de demo salen como simulado en /api/sedeco/resumen
+- **Verify:** `uv run pytest -q app/tests/test_mapa.py`
