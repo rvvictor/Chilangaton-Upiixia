@@ -18,9 +18,9 @@ export function Leyenda({ series }: { series: SerieAlcaldia[] }) {
 
 /** Quarterly lines: soft grid, area under the first series, value labels at the end of each line. */
 export function Lineas({ series }: { series: SerieAlcaldia[] }) {
-  const W = 520;
+  const W = 340;
   const H = 150;
-  const P = { l: 40, r: 58, t: 14, b: 26 };
+  const P = { l: 38, r: 46, t: 12, b: 24 };
   const valores = series.flatMap((s) => s.puntos.map((p) => p.valor));
   if (valores.length === 0) return <p className="text-(--pb-texto-2)">Sin datos todavía.</p>;
   const max = Math.max(...valores);
@@ -57,7 +57,7 @@ export function Lineas({ series }: { series: SerieAlcaldia[] }) {
         {guias.map((g) => (
           <g key={g}>
             <line x1={P.l} x2={W - P.r} y1={y(g)} y2={y(g)} stroke="var(--pb-borde)" strokeDasharray="3 5" />
-            <text x={P.l - 8} y={y(g) + 4} textAnchor="end" className="fill-(--pb-texto-2) text-[12px]">
+            <text x={P.l - 8} y={y(g) + 4} textAnchor="end" className="fill-(--pb-texto-2) text-[14px]">
               {fmt(Math.round(g))}
             </text>
           </g>
@@ -83,7 +83,7 @@ export function Lineas({ series }: { series: SerieAlcaldia[] }) {
               {ultimo && (
                 <>
                   <circle cx={x(n)} cy={y(ultimo.valor)} r="5" fill="var(--pb-superficie)" stroke={COLORES[i % 2]} strokeWidth="3" />
-                  <text x={x(n) + 10} y={etiquetasY[i] + 5} className="text-[14px] font-semibold" fill={COLORES[i % 2]}>
+                  <text x={x(n) + 10} y={etiquetasY[i] + 5} className="text-[15px] font-semibold" fill={COLORES[i % 2]}>
                     {fmt(ultimo.valor)}
                   </text>
                 </>
@@ -92,7 +92,7 @@ export function Lineas({ series }: { series: SerieAlcaldia[] }) {
           );
         })}
         {marcas.map((m) => (
-          <text key={m} x={x(m)} y={H - 6} textAnchor={m === 0 ? "start" : m === n ? "end" : "middle"} className="fill-(--pb-texto-2) text-[12px]">
+          <text key={m} x={x(m)} y={H - 6} textAnchor={m === 0 ? "start" : m === n ? "end" : "middle"} className="fill-(--pb-texto-2) text-[14px]">
             {periodos[m]}
           </text>
         ))}
@@ -104,14 +104,14 @@ export function Lineas({ series }: { series: SerieAlcaldia[] }) {
 
 /** Grouped bars per year with the latest year's values written on top. */
 export function Barras({ series }: { series: SerieAlcaldia[] }) {
-  const W = 520;
+  const W = 340;
   const H = 150;
-  const P = { l: 8, r: 8, t: 22, b: 26 };
+  const P = { l: 4, r: 4, t: 22, b: 24 };
   const periodos = series[0]?.puntos.map((p) => p.periodo) ?? [];
   if (periodos.length === 0) return <p className="text-(--pb-texto-2)">Sin datos todavía.</p>;
   const max = Math.max(1, ...series.flatMap((s) => s.puntos.map((p) => p.valor)));
   const grupo = (W - P.l - P.r) / periodos.length;
-  const ancho = Math.min(22, (grupo * 0.7) / Math.max(1, series.length));
+  const ancho = Math.min(18, (grupo * 0.7) / Math.max(1, series.length));
   const alto = (v: number) => (v / max) * (H - P.t - P.b);
   const resumen = series.map((s) => `${s.alcaldia}: ${s.puntos.map((p) => `${p.periodo} ${fmt(p.valor)}`).join(", ")}`).join(". ");
 
@@ -133,15 +133,15 @@ export function Barras({ series }: { series: SerieAlcaldia[] }) {
                       <title>{`${s.alcaldia} ${periodo}: ${fmt(v)}`}</title>
                     </rect>
                     {ultimo && (
-                      <text x={bx + ancho / 2} y={H - P.b - alto(v) - 6} textAnchor="middle" className="text-[12px] font-semibold" fill={COLORES[i % 2]}>
+                      <text x={bx + ancho / 2} y={H - P.b - alto(v) - 6} textAnchor="middle" className="text-[14px] font-semibold" fill={COLORES[i % 2]}>
                         {fmt(v)}
                       </text>
                     )}
                   </g>
                 );
               })}
-              <text x={cx} y={H - 7} textAnchor="middle" className={`text-[12px] ${ultimo ? "fill-(--pb-texto) font-semibold" : "fill-(--pb-texto-2)"}`}>
-                {periodo}
+              <text x={cx} y={H - 7} textAnchor="middle" className={`text-[14px] ${ultimo ? "fill-(--pb-texto) font-semibold" : "fill-(--pb-texto-2)"}`}>
+                {ultimo ? periodo : `'${periodo.slice(-2)}`}
               </text>
             </g>
           );
@@ -189,7 +189,7 @@ export function MapaAlcaldias({ activas }: { activas: string[] }) {
   return (
     <svg
       viewBox={`0 0 ${ancho} ${alto}`}
-      className="h-auto w-40 shrink-0"
+      className="h-auto w-44 shrink-0"
       role="img"
       aria-label={`Las 16 alcaldías de la CDMX. Activas hoy: ${activas.join(" e ")}.`}
     >
@@ -205,7 +205,7 @@ export function MapaAlcaldias({ activas }: { activas: string[] }) {
               stroke={on ? "var(--pb-acento-fuerte)" : "var(--pb-borde)"}
               strokeWidth="1.5"
             />
-            <text x={cx} y={cy + 4} textAnchor="middle" className={`text-[13px] font-bold ${on ? "fill-white" : "fill-(--pb-texto-2)"}`}>
+            <text x={cx} y={cy + 4} textAnchor="middle" className={`text-[15px] font-bold ${on ? "fill-white" : "fill-(--pb-texto-2)"}`}>
               {a.corto}
             </text>
           </g>

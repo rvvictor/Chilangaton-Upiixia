@@ -17,6 +17,10 @@ function Fuente({ texto }: { texto: string }) {
   return <p className="mt-3 text-[0.833rem] leading-snug text-(--pb-texto-2)">Fuente: {texto}</p>;
 }
 
+function FuenteCorta({ texto }: { texto: string }) {
+  return <p className="mt-1.5 text-[0.778rem] text-(--pb-texto-2)">Fuente: {texto}</p>;
+}
+
 function Esqueleto() {
   return (
     <div role="status" aria-label="Cargando el panel de crecimiento" className="flex h-full flex-col gap-4 p-5">
@@ -125,18 +129,21 @@ export default function CrecimientoView(_props: FeatureProps) {
         )}
 
         <section aria-label="Cifras clave" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-          <Tarjeta className="!px-5 !py-4 ring-2 ring-(--pb-acento-suave)">
+          <Tarjeta className="!px-5 !py-3 ring-2 ring-(--pb-acento-suave)">
             <div aria-live="polite">
-              <Cifra valor={altas.hoy} etiqueta="Negocios dados de alta hoy por voz" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
+              <Cifra valor={altas.hoy} etiqueta="Altas hoy por voz" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
             </div>
+            <FuenteCorta texto="Bot de Telegram · en vivo" />
           </Tarjeta>
-          <Tarjeta className="!px-5 !py-4">
-            <Cifra valor={altas.total} etiqueta="Altas en la plataforma en total" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
+          <Tarjeta className="!px-5 !py-3">
+            <Cifra valor={altas.total} etiqueta="Altas en total" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
+            <FuenteCorta texto="Plataforma · altas registradas" />
           </Tarjeta>
-          <Tarjeta className="!px-5 !py-4">
-            <Cifra valor={rutas.total} etiqueta="Paradas de ruta en negocios de barrio" tipo={rutas.tipo_dato} fuente={rutas.fuente} tamano="md" />
+          <Tarjeta className="!px-5 !py-3">
+            <Cifra valor={rutas.total} etiqueta="Paradas de ruta en el barrio" tipo={rutas.tipo_dato} fuente={rutas.fuente} tamano="md" />
+            <FuenteCorta texto="Rutas armadas en la plataforma" />
           </Tarjeta>
-          <Tarjeta className="!px-5 !py-4">
+          <Tarjeta className="!px-5 !py-3">
             <Cifra
               valor={escala.alcaldias_activas.length}
               sufijo={` de ${escala.alcaldias_totales}`}
@@ -145,13 +152,14 @@ export default function CrecimientoView(_props: FeatureProps) {
               fuente={escala.fuente}
               tamano="md"
             />
+            <FuenteCorta texto="Diseño del equipo" />
           </Tarjeta>
         </section>
 
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <Tarjeta
             antetitulo="Inclusión financiera"
-            titulo="Por trimestre y alcaldía"
+            titulo="Por trimestre"
             accion={<Etiqueta tipo={trimestral[0]?.tipo_dato ?? "simulado"} />}
             className="!p-5"
           >
@@ -180,36 +188,40 @@ export default function CrecimientoView(_props: FeatureProps) {
             <div className="flex items-start gap-4">
               <MapaAlcaldias activas={escala.alcaldias_activas} />
               <div className="flex min-w-0 flex-col gap-2 text-base leading-snug">
-                <p>
-                  Activa en <strong>{escala.alcaldias_activas.join(" e ")}</strong>. Sumar otra = agregar su clave en{" "}
-                  <code className="rounded bg-(--pb-superficie-2) px-1.5 font-mono text-[0.833rem]">{escala.parametro}</code>.
+                <p className="rounded-(--pb-radio-control) bg-(--pb-real-fondo) px-3 py-2 font-semibold text-(--pb-real-texto)">
+                  Costo casi cero
                 </p>
-                <p className="rounded-(--pb-radio-control) bg-(--pb-real-fondo) px-3 py-2 text-(--pb-real-texto)">
-                  <strong>Costo:</strong> {escala.costo}
+                <p>
+                  Hoy: <strong>{escala.alcaldias_activas.join(" e ")}</strong>. Otra alcaldía = su clave en{" "}
+                  <code className="rounded bg-(--pb-superficie-2) px-1.5 font-mono text-[0.833rem]">{escala.parametro}</code>.
                 </p>
               </div>
             </div>
-            <ul className="mt-3 flex flex-col gap-1 text-[0.889rem] leading-snug text-(--pb-texto-2)">
-              {escala.piezas.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-(--pb-acento)" />
-                  {p}
-                </li>
-              ))}
-            </ul>
             <Fuente texto={escala.fuente} />
           </Tarjeta>
         </div>
 
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <Tarjeta
           antetitulo="Demanda que llega al barrio"
           titulo="Hexágonos por los que más pasan las rutas de compra"
           accion={<Etiqueta tipo={rutas.tipo_dato} />}
-          className="!p-5"
+          className="!p-5 lg:col-span-2"
         >
           <Rutas data={rutas} />
           <Fuente texto={rutas.fuente} />
         </Tarjeta>
+        <Tarjeta antetitulo="Por qué cuesta casi cero" titulo={escala.costo} accion={<Etiqueta tipo={escala.tipo_dato} />} className="!p-5">
+          <ul className="flex flex-col gap-1.5 text-base leading-snug text-(--pb-texto-2)">
+            {escala.piezas.map((p) => (
+              <li key={p} className="flex gap-2">
+                <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-(--pb-acento)" />
+                {p}
+              </li>
+            ))}
+          </ul>
+        </Tarjeta>
+        </div>
       </div>
     </div>
   );
