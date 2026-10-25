@@ -121,9 +121,11 @@ export default function Sedeco(_props: FeatureProps) {
     tipo: primerTianguis?.tipo_dato ?? ("simulado" as const),
     fuente: primerTianguis?.fuente ?? "Tianguis Abierto (pipeline)",
   };
+  // A demo alta (simular_alta, DEMO_MODE) must never be counted under a "real" label.
+  const hayAltaDemo = altas.some((a) => a.demo_data || a.origen === "demo");
   const datoAltas = {
     valor: altasHoy,
-    tipo: resumen?.altas_hoy?.tipo_dato ?? ("simulado" as const),
+    tipo: hayAltaDemo ? ("simulado" as const) : (resumen?.altas_hoy?.tipo_dato ?? ("simulado" as const)),
     fuente: resumen?.altas_hoy?.fuente ?? "Altas en colonIA (demostración)",
   };
 
