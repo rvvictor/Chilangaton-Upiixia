@@ -1,0 +1,63 @@
+/* Design tokens · Pulso Barrial (web/DESIGN.md §2). Every color in the app comes from here.
+   Map layers read the ramps at runtime with leerToken() (web/src/lib/map/hex.ts). */
+:root {
+  --pb-fondo: #f6f7f9;
+  --pb-superficie: #ffffff;
+  --pb-superficie-2: #eef1f4;
+  --pb-texto: #15191e;
+  --pb-texto-2: #48515c;
+  --pb-borde: #d3d9e0;
+  --pb-borde-fuerte: #7d8793;
+  --pb-acento: #c2410c;
+  --pb-acento-fuerte: #9a3412;
+  --pb-acento-suave: #fff1e6;
+  --pb-foco: #1d4ed8;
+  --pb-error: #b42318;
+  --pb-sombra: 0 1px 2px rgb(21 25 30 / 0.06), 0 4px 12px rgb(21 25 30 / 0.05);
+
+  --pb-real-texto: #14532d;
+  --pb-real-fondo: #dcfce7;
+  --pb-estimado-texto: #1e3a8a;
+  --pb-estimado-fondo: #dbeafe;
+  --pb-simulado-texto: #3d4651;
+  --pb-simulado-fondo: #eceff3;
+
+  --pb-actividad-1: #e3f1f0;
+  --pb-actividad-2: #a6d4cf;
+  --pb-actividad-3: #5cb1a8;
+  --pb-actividad-4: #2a8880;
+  --pb-actividad-5: #0e5c58;
+  --pb-impulso-1: #ffeedd;
+  --pb-impulso-2: #fcc58b;
+  --pb-impulso-3: #f5914a;
+  --pb-impulso-4: #d9581b;
+  --pb-impulso-5: #9a3412;
+  --pb-oculto: #c3c9d0;
+
+  --pb-radio-control: 12px;
+  --pb-radio-tarjeta: 16px;
+  --pb-alto-control: 48px;
+}
+
+body {
+  background: var(--pb-fondo);
+  color: var(--pb-texto);
+}
+
+:focus-visible {
+  outline: 3px solid var(--pb-foco);
+  outline-offset: 2px;
+}
+
+.pb-cifra {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
