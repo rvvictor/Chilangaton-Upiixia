@@ -109,7 +109,11 @@ export async function cargarHex(): Promise<{ data: ColeccionHex; origen: Origen 
 export async function cargarTianguis(dia: number, hora: number): Promise<{ lista: Tianguis[]; origen: Origen }> {
   const horaTxt = `${String(hora).padStart(2, "0")}:00`;
   try {
-    const lista = await api<Tianguis[]>(`/tianguis?dia=${dia}&hora=${encodeURIComponent(horaTxt)}`);
+    // PB-006 responde {dia, hora, abiertos, puntos[{..., abierto}], cobertura}; se acepta también una lista simple.
+    const r = await api<Tianguis[] | { puntos: (Tianguis & { abierto?: boolean })[] }>(
+      `/tianguis?dia=${dia}&hora=${encodeURIComponent(horaTxt)}`,
+    );
+    const lista = Array.isArray(r) ? r : r.puntos.filter((p) => p.abierto !== false);
     return { lista, origen: "api" };
   } catch {
     return { lista: TIANGUIS_EJEMPLO, origen: "ejemplo" };
@@ -129,7 +133,16 @@ export async function cargarAlcaldias(): Promise<{ lista: Alcaldia[]; origen: Or
 /** Resumen del servidor si existe; si no, null y la vista calcula la cobertura en el navegador. */
 export async function cargarResumen(dia: number, hora: number): Promise<Resumen | null> {
   try {
-    return await api<Resumen>(`/sedeco/resumen?dia=${dia}&hora=${hora}`);
+    // PB-006 manda números sueltos y su tipo en tipo_campos; aquí se vuelven Dato<number>.
+    const r = await api<Record<string, unknown> & { tipo_campos?: Record<string, TipoDato> }>(
+      `/sedeco/resumen?dia=${dia}&hora=${String(hora).padStart(2, "0")}:00`,
+    );
+    const dato = (clave: string): Dato<number> | undefined => {
+      const v = r[clave];
+      if (typeof v === "number") return { valor: v, tipo_dato: r.tipo_campos?.[clave] ?? "estimado", fuente: "Pulso Barrial", periodo: "hoy" };
+      return (v as Dato<number> | undefined) ?? undefined;
+    };
+    return { altas_hoy: dato("altas_hoy"), poblacion_cubierta_pct: dato("poblacion_cubierta_pct") };
   } catch {
     return null;
   }
@@ -138,7 +151,9 @@ export async function cargarResumen(dia: number, hora: number): Promise<Resumen 
 /** Altas nuevas desde `desde` (segundos). Falla en silencio (404 incluido). */
 export async function cargarAltas(desde: number): Promise<{ ts: number; altas: Alta[] } | null> {
   try {
-    return await api<{ ts: number; altas: Alta[] }>(`/altas/live?desde=${desde}`);
+    // PB-008 responde {altas, desde, ultimo_ts}.
+    const r = await api<{ altas: Alta[]; ts?: number; ultimo_ts?: number }>(`/altas/live?desde=${desde}`);
+    return { ts: r.ts ?? r.ultimo_ts ?? desde, altas: r.altas ?? [] };
   } catch {
     return null;
   }
