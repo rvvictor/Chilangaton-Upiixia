@@ -2,72 +2,135 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ ficha.nombre or "Negocio de barrio" }} · Pulso Barrial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f14">
+  <title>{{ ficha.nombre or "Negocio de barrio" }} · colonIA</title>
   <meta name="description" content="{{ descripcion }}">
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 20px; line-height: 1.5; color: #1d1d1b; background: #fbf8f3; }
-    main { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; }
-    h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
-    h2 { font-size: 1.3rem; margin: 28px 0 8px; }
-    .giro { color: #5a5a55; margin: 0 0 16px; }
-    .descripcion { font-size: 1.1rem; margin: 0 0 8px; }
-    ul.lista { list-style: none; padding: 0; margin: 0; }
-    ul.lista li { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #e6e0d4; }
-    ul.lista strong { margin-left: auto; font-size: 1.2rem; }
-    ul.lista small { color: #5a5a55; width: 100%; }
-    .chip { display: inline-block; background: #efe6d6; border-radius: 999px; padding: 4px 14px; margin: 0 6px 6px 0; }
-    .badge { display: inline-block; background: #2f6b4f; color: #fff; border-radius: 8px; padding: 6px 12px; margin-top: 12px; }
-    .boton { display: block; text-align: center; background: #25d366; color: #0b2e16; font-weight: 700; text-decoration: none; border-radius: 12px; padding: 16px; margin-top: 28px; font-size: 1.2rem; }
-    .qr { text-align: center; margin-top: 36px; }
-    .qr img { width: 200px; height: 200px; max-width: 70vw; }
-    .pie { color: #5a5a55; font-size: 0.9rem; text-align: center; margin-top: 32px; }
+    /* colonIA tokens (web/DESIGN.md); inline so the page works offline and without dependencies. */
+    :root {
+      --fondo: #f6f7f4; --superficie: #ffffff; --superficie-2: #eef0ec; --texto: #0e1116; --texto-2: #4a5160;
+      --borde: #dde1db; --marca: #e6007e; --acento: #c8006e; --acento-suave: #ffe3f1; --cempasuchil: #ffb703;
+      --jade: #00a86b; --jade-texto: #00704a; --hero: #0b0f14; --hero-texto: #f4f5f7; --hero-texto-2: #a9b1bd;
+      --radio: 20px; --radio-grande: 28px; --sombra: 0 1px 2px rgb(14 17 22 / .06), 0 8px 24px rgb(14 17 22 / .07);
+      --display: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 18px; line-height: 1.5; color: var(--texto); background: var(--fondo); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .portada { position: relative; overflow: hidden; background: var(--hero); color: var(--hero-texto); padding: 28px 20px 44px; border-radius: 0 0 var(--radio-grande) var(--radio-grande); }
+    .portada::before { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 15% 0%, rgb(230 0 126 / .38), transparent 70%), radial-gradient(60% 50% at 100% 100%, rgb(255 183 3 / .18), transparent 70%); pointer-events: none; }
+    .portada > * { position: relative; }
+    .contenedor { max-width: 640px; margin: 0 auto; }
+    .antetitulo { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--hero-texto-2); margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+    .antetitulo .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--jade); box-shadow: 0 0 0 4px rgb(0 168 107 / .25); }
+    h1 { font-family: var(--display); font-weight: 800; letter-spacing: -.03em; line-height: .98; font-size: clamp(2.6rem, 11vw, 3.6rem); margin: 0 0 12px; text-wrap: balance; }
+    .giro { color: var(--hero-texto-2); margin: 0 0 18px; font-size: 1.05rem; }
+    .descripcion { margin: 0; font-size: 1.1rem; color: var(--hero-texto); max-width: 34ch; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 6px 14px; font-size: .9rem; font-weight: 600; background: rgb(255 255 255 / .1); color: var(--hero-texto); border: 1px solid rgb(255 255 255 / .16); }
+    .chip.mercomuna { background: var(--jade); border-color: var(--jade); color: #fff; }
+    main { padding: 0 16px 120px; }
+    section { margin-top: 32px; }
+    h2 { font-family: var(--display); font-weight: 800; letter-spacing: -.02em; font-size: 1.6rem; line-height: 1.1; margin: 0 0 14px; }
+    .productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
+    .producto { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 16px; box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 6px; min-height: 112px; }
+    .producto .nombre { font-weight: 600; font-size: 1.05rem; text-transform: capitalize; }
+    .producto .precio { font-family: var(--display); font-weight: 800; font-size: 1.9rem; line-height: 1; letter-spacing: -.02em; margin-top: auto; font-variant-numeric: tabular-nums; }
+    .producto .precio small { font-family: inherit; font-size: .9rem; font-weight: 600; color: var(--texto-2); letter-spacing: 0; }
+    .producto .fecha { font-size: .85rem; color: var(--texto-2); }
+    .tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); padding: 20px; box-shadow: var(--sombra); }
+    .fila { display: flex; gap: 14px; align-items: flex-start; }
+    .icono { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--acento-suave); color: var(--acento); }
+    .icono svg { width: 24px; height: 24px; }
+    .pagos { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .pagos li { border-radius: 999px; padding: 8px 16px; background: var(--superficie-2); font-weight: 600; text-transform: capitalize; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; border-radius: 999px; padding: 8px 16px; font-weight: 700; color: #fff; background: var(--jade-texto); }
+    .barra { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(to top, var(--fondo) 70%, transparent); }
+    .boton { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 640px; margin: 0 auto; min-height: 56px; border-radius: 16px; background: #128c4a; color: #fff; font-weight: 800; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 24px rgb(18 140 74 / .35); }
+    .boton:active { transform: translateY(1px); }
+    .boton svg { width: 26px; height: 26px; }
+    .qr { text-align: center; }
+    .qr img { width: 208px; height: 208px; max-width: 70vw; border-radius: 16px; background: #fff; padding: 8px; border: 1px solid var(--borde); }
+    .qr p { color: var(--texto-2); margin: 12px 0 0; }
+    .pie { margin-top: 40px; text-align: center; color: var(--texto-2); font-size: .95rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .logo { font-family: var(--display); font-weight: 800; letter-spacing: -.02em; color: var(--texto); }
+    .logo b { color: var(--marca); font-weight: 800; }
+    .logo-hex { width: 22px; height: 20px; }
+    :focus-visible { outline: 3px solid #1f3b8c; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
 <body>
-  <main>
-    <h1>{{ ficha.nombre or "Negocio de barrio" }}</h1>
-    {% if ficha.giro or ficha.colonia %}
-    <p class="giro">{{ ficha.giro or "" }}{% if ficha.giro and ficha.colonia %} · {% endif %}{{ ficha.colonia or "" }}</p>
-    {% endif %}
-    <p class="descripcion">{{ descripcion }}</p>
+  <header class="portada">
+    <div class="contenedor">
+      <p class="antetitulo"><span class="punto" aria-hidden="true"></span>Negocio de barrio{% if ficha.colonia %} · {{ ficha.colonia }}{% endif %}</p>
+      <h1>{{ ficha.nombre or "Negocio de barrio" }}</h1>
+      {% if ficha.giro %}<p class="giro">{{ ficha.giro }}</p>{% endif %}
+      <p class="descripcion">{{ descripcion }}</p>
+      {% if ficha.acepta_mercomuna %}
+      <div class="chips"><span class="chip mercomuna">Mercomuna</span></div>
+      {% endif %}
+    </div>
+  </header>
 
+  <main class="contenedor">
     {% if ficha.productos %}
-    <h2>Productos</h2>
-    <ul class="lista">
-      {% for p in ficha.productos %}
-      <li>
-        <span>{{ p.nombre }}</span>
-        {% if p.precio is not none %}<strong>${{ "%g"|format(p.precio) }}</strong>{% endif %}
-        {% if p.fecha %}<small>{{ p.fecha }}</small>{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
+    <section aria-labelledby="t-productos">
+      <h2 id="t-productos">Productos</h2>
+      <ul class="productos">
+        {% for p in ficha.productos %}
+        <li class="producto">
+          <span class="nombre">{{ p.nombre }}</span>
+          {% if p.fecha %}<span class="fecha">{{ p.fecha }}</span>{% endif %}
+          {% if p.precio is not none %}<span class="precio">${{ "%g"|format(p.precio) }}{% if p.unidad %} <small>/ {{ p.unidad }}</small>{% endif %}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
     {% endif %}
 
     {% if ficha.horario %}
-    <h2>Horario</h2>
-    <p>{{ ficha.horario }}</p>
+    <section aria-labelledby="t-horario">
+      <h2 id="t-horario">Horario</h2>
+      <div class="tarjeta fila">
+        <span class="icono" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <p style="margin:10px 0 0">{{ ficha.horario }}</p>
+      </div>
+    </section>
     {% endif %}
 
     {% if ficha.formas_pago or ficha.acepta_mercomuna %}
-    <h2>Formas de pago</h2>
-    <p>
-      {% for f in ficha.formas_pago %}<span class="chip">{{ f }}</span>{% endfor %}
-    </p>
-    {% if ficha.acepta_mercomuna %}<span class="badge">Acepta Mercomuna</span>{% endif %}
+    <section aria-labelledby="t-pago">
+      <h2 id="t-pago">Formas de pago</h2>
+      <div class="tarjeta">
+        {% if ficha.formas_pago %}
+        <ul class="pagos">{% for f in ficha.formas_pago %}<li>{{ f }}</li>{% endfor %}</ul>
+        {% endif %}
+        {% if ficha.acepta_mercomuna %}<span class="badge">Acepta Mercomuna</span>{% endif %}
+      </div>
+    </section>
     {% endif %}
 
-    {% if wa_url %}
-    <a class="boton" href="{{ wa_url }}" rel="noopener">Escribir por WhatsApp</a>
-    {% endif %}
-
-    <section class="qr">
+    <section class="qr" aria-label="Código QR">
       <img src="{{ qr }}" alt="Código QR para abrir esta página">
       <p>Escanea el código para abrir esta página.</p>
     </section>
 
-    <p class="pie">Página creada con Pulso Barrial</p>
+    <p class="pie">
+      Hecho con
+      <svg class="logo-hex" viewBox="0 0 48 44" aria-hidden="true"><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" fill="#e6007e"/><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" transform="translate(17 0)" fill="#ffb703"/><path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z" transform="translate(8.5 14.5)" fill="#00a86b"/></svg>
+      <span class="logo">colon<b>IA</b></span>
+    </p>
   </main>
+
+  {% if wa_url %}
+  <div class="barra">
+    <a class="boton" href="{{ wa_url }}" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3Z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+  {% endif %}
 </body>
 </html>
