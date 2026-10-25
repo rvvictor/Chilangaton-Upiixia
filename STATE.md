@@ -1,9 +1,9 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1792960806
-AVAILABLE: PB-034 PB-030 
-CLAIMED: PB-027 
+Updated: 1792960818
+AVAILABLE: PB-034 PB-027 PB-030 
+CLAIMED: -
 BLOCKED: -
 REVIEW: PB-016 PB-022 
 INTEGRATED: (29; last 12) ... PB-019 PB-020 PB-021 PB-023 PB-024 PB-025 PB-026 PB-028 PB-029 PB-031 PB-032 PB-033 
@@ -12,7 +12,6 @@ CANCELLED: -
 Claims (first 24; status --task ID shows detail):
 PB-016 | REVIEW | saus-1 | until 1792974281
 PB-022 | REVIEW | yojan-1 | until 1792973550
-PB-027 | CLAIMED | yojan-2 | until 1792963506
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
