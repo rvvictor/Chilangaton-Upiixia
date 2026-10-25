@@ -1,15 +1,13 @@
 import mapboxgl, { type ExpressionSpecification, type FilterSpecification } from "mapbox-gl";
 import { useEffect, useRef, useState } from "react";
 import type { Alta, CapaHex, ColeccionHex, Tianguis } from "./datos";
+import { coloresRampa, leerToken } from "../../lib/map/hex";
 import { movimientoReducido } from "./estilo";
 
 // Cámara inicial: 50° sobre Coyoacán con Iztapalapa a la vista (IDEA.md §4 paso 1).
 const CAMARA = { center: [-99.118, 19.352] as [number, number], zoom: 11.7, pitch: 55, bearing: -12 };
 // Entrada cinematográfica: arranca de lejos y plano, vuela a 55°. Con movimiento reducido arranca ya en CAMARA.
 const ENTRADA = { center: [-99.133, 19.4] as [number, number], zoom: 10.2, pitch: 0, bearing: 0 };
-const GRIS = "#c3c9d0";
-const RAMPA_IMPULSO = ["#ffeedd", "#fcc58b", "#f5914a", "#d9581b", "#9a3412"];
-const COLOR_ALCALDIA: Record<string, string> = { "09003": "#c2410c", "09007": "#0e5c58" };
 
 type Props = {
   hex: ColeccionHex;
@@ -28,10 +26,14 @@ const ALTURA_PROP: Record<CapaHex, string> = {
   impulso: "impulso",
 };
 
-const rampa = (): ExpressionSpecification =>
-  ["interpolate", ["linear"], ["coalesce", ["get", "impulso"], 0], 0, RAMPA_IMPULSO[0], 0.25, RAMPA_IMPULSO[1], 0.5, RAMPA_IMPULSO[2], 0.75, RAMPA_IMPULSO[3], 1, RAMPA_IMPULSO[4]];
+// Colores leídos de tokens.css (--pb-impulso-1…5) para que el mapa y la leyenda coincidan.
+const rampa = (): ExpressionSpecification => {
+  const r = coloresRampa("impulso");
+  return ["interpolate", ["linear"], ["coalesce", ["get", "impulso"], 0], 0, r[0], 0.25, r[1], 0.5, r[2], 0.75, r[3], 1, r[4]];
+};
 
 function pintarHex(map: mapboxgl.Map, capa: CapaHex, datoReal: boolean) {
+  const GRIS = leerToken("--pb-oculto");
   const oculto: ExpressionSpecification = ["==", ["get", "oculto"], true];
   const alturaPorCapa: ExpressionSpecification = ["*", ["coalesce", ["get", ALTURA_PROP[capa]], 0], 1200];
   map.setPaintProperty("hex-3d", "fill-extrusion-height", datoReal ? 0 : ["case", oculto, 0, alturaPorCapa]);
@@ -39,7 +41,7 @@ function pintarHex(map: mapboxgl.Map, capa: CapaHex, datoReal: boolean) {
     "case",
     oculto,
     GRIS,
-    datoReal ? ["match", ["get", "alcaldia_cvegeo"], "09003", COLOR_ALCALDIA["09003"], "09007", COLOR_ALCALDIA["09007"], GRIS] : rampa(),
+    datoReal ? ["match", ["get", "alcaldia_cvegeo"], "09003", leerToken("--pb-acento"), "09007", leerToken("--pb-anil"), GRIS] : rampa(),
   ]);
 }
 
@@ -159,8 +161,8 @@ export function MapaSedeco({ hex, capa, datoReal, tianguis, altas, seleccionado,
       el.className = "relative size-5";
       el.title = a.ficha?.nombre ?? "Nueva alta";
       el.innerHTML =
-        '<span class="absolute inset-0 rounded-full bg-[var(--pb-rosa,#db2777)] opacity-60 animate-ping motion-reduce:animate-none"></span>' +
-        '<span class="absolute inset-1 rounded-full border-2 border-(--pb-superficie) bg-[var(--pb-rosa,#db2777)]"></span>';
+        '<span class="absolute inset-0 rounded-full bg-[var(--pb-marca)] opacity-60 animate-ping motion-reduce:animate-none"></span>' +
+        '<span class="absolute inset-1 rounded-full border-2 border-(--pb-superficie) bg-[var(--pb-marca)]"></span>';
       marcas.set(a.id, new mapboxgl.Marker({ element: el }).setLngLat([lng, lat]).addTo(mapa));
     }
   }, [listo, altas]);

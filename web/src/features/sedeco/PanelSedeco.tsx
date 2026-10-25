@@ -1,4 +1,4 @@
-import { Etiqueta } from "../../lib/ui";
+import { Cifra as CifraUi, Etiqueta } from "../../lib/ui";
 import { Cifra } from "./Cifra";
 import { formato as cifra, VIDRIO } from "./estilo";
 import { DIAS, NOMBRE_ALCALDIA, type Alcaldia, type PropsHex, type TipoDato } from "./datos";
@@ -26,23 +26,23 @@ const DIAS_LARGOS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sáb
 
 function Kpi({ titulo, dato, decimales = 0, sufijo = "", grande = false, pulso = false }: { titulo: string; dato: Dato; decimales?: number; sufijo?: string; grande?: boolean; pulso?: boolean }) {
   return (
-    <div className={`flex min-w-0 flex-col gap-1 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-3.5 py-2.5 ${grande ? "col-span-2" : ""}`}>
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-[0.889rem] font-medium leading-tight text-(--pb-texto-2)">{titulo}</p>
-        {pulso && (
-          <span className="relative flex size-3" aria-hidden="true">
-            <span className="absolute inset-0 animate-ping rounded-full bg-[var(--pb-rosa,#db2777)] opacity-70 motion-reduce:animate-none" />
-            <span className="relative size-3 rounded-full bg-[var(--pb-rosa,#db2777)]" />
-          </span>
-        )}
-      </div>
-      <div className={`flex min-w-0 gap-x-3 gap-y-1 ${grande ? "flex-wrap items-end" : "flex-col"}`}>
-        <Cifra valor={dato.valor} decimales={decimales} sufijo={sufijo} className={`leading-none text-(--pb-texto) ${grande ? "text-[2.75rem]" : "text-[1.875rem]"}`} />
-        <div className="flex min-w-0 flex-col items-start gap-0.5">
-          <Etiqueta tipo={dato.tipo} fuente={dato.fuente} />
-          {grande && <span className="truncate text-[0.778rem] text-(--pb-texto-2)">Fuente: {dato.fuente}</span>}
-        </div>
-      </div>
+    <div className={`relative min-w-0 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-3.5 py-2.5 ${grande ? "col-span-2" : ""}`}>
+      {pulso && (
+        <span className="absolute right-3 top-3 flex size-3" aria-hidden="true">
+          <span className="absolute inset-0 animate-ping rounded-full bg-(--pb-marca) opacity-70 motion-reduce:animate-none" />
+          <span className="relative size-3 rounded-full bg-(--pb-marca)" />
+        </span>
+      )}
+      <CifraUi
+        valor={dato.valor}
+        etiqueta={titulo}
+        tipo={dato.tipo}
+        fuente={dato.fuente}
+        decimales={decimales}
+        sufijo={sufijo}
+        tamano={grande ? "lg" : "md"}
+        className={`gap-1 [&>span:first-child]:leading-none ${grande ? "flex-row! flex-wrap items-center gap-x-3 [&>span:nth-child(2)]:order-last [&>span:nth-child(2)]:basis-full" : ""}`}
+      />
     </div>
   );
 }
@@ -53,7 +53,7 @@ export function Panel(p: PanelProps) {
     ? { valor: p.cobertura.pct, tipo: p.cobertura.tipo, fuente: p.cobertura.fuente }
     : { valor: null, tipo: "estimado", fuente: "Calculando…" };
   return (
-    <div className={`flex h-full flex-col gap-2.5 overflow-y-auto rounded-[22px] p-3.5 ${VIDRIO}`}>
+    <div className={`flex h-full flex-col gap-2 overflow-y-auto rounded-[22px] p-3 ${VIDRIO}`}>
       <header className="flex items-center justify-between gap-3 px-1">
         <div className="min-w-0">
           <p className="text-[0.778rem] font-semibold uppercase tracking-[0.14em] text-(--pb-acento-fuerte)">Tablero SEDECO</p>
@@ -122,10 +122,10 @@ export function Panel(p: PanelProps) {
       {p.datoReal ? (
         <section aria-label="Dato CNBV por alcaldía" className="grid grid-cols-2 gap-2">
           {p.alcaldias.map((a) => (
-            <div key={a.cvegeo} className="flex min-w-0 flex-col gap-1 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-3.5 py-2.5">
+            <div key={a.cvegeo} className="flex min-w-0 flex-col gap-0.5 rounded-(--pb-radio-tarjeta) bg-(--pb-superficie)/90 px-3.5 py-2">
               <span className="text-base font-semibold text-(--pb-texto)">{a.municipio}</span>
-              <Cifra valor={a.tpv_por_adulto} decimales={2} className="text-[1.75rem] leading-none text-(--pb-texto)" />
-              <span className="text-[0.833rem] leading-tight text-(--pb-texto-2)">pagos con tarjeta por adulto · {a.trimestre}</span>
+              <Cifra valor={a.tpv_por_adulto} decimales={2} className="text-[1.5rem] leading-none text-(--pb-texto)" />
+              <span className="text-[0.833rem] leading-tight text-(--pb-texto-2)">pagos con tarjeta por adulto</span>
               <Etiqueta tipo={a.tipo_dato} fuente={`CNBV ${a.trimestre}`} className="self-start" />
             </div>
           ))}
@@ -146,7 +146,7 @@ export function Panel(p: PanelProps) {
             <span>bajo</span>
             <span className="flex items-center gap-1.5">
               <span className="inline-block size-3 rounded-sm bg-(--pb-oculto)" aria-hidden="true" />
-              gris: menos de 3 negocios, sin cifras
+              gris: menos de 3 negocios
             </span>
             <span>alto</span>
           </div>

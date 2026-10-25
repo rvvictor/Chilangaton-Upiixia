@@ -173,8 +173,8 @@ export default function Sedeco(_props: FeatureProps) {
             className={`pointer-events-auto flex items-center gap-3 rounded-2xl px-4 py-3 motion-safe:animate-[sedeco-toast_420ms_cubic-bezier(0.2,0.9,0.3,1.2)] ${VIDRIO}`}
           >
             <span className="relative flex size-3" aria-hidden="true">
-              <span className="absolute inset-0 animate-ping rounded-full bg-[var(--pb-rosa,#db2777)] opacity-70 motion-reduce:animate-none" />
-              <span className="relative size-3 rounded-full bg-[var(--pb-rosa,#db2777)]" />
+              <span className="absolute inset-0 animate-ping rounded-full bg-[var(--pb-marca)] opacity-70 motion-reduce:animate-none" />
+              <span className="relative size-3 rounded-full bg-[var(--pb-marca)]" />
             </span>
             <span className="text-base font-semibold text-(--pb-texto)">{toast.texto}</span>
           </div>
