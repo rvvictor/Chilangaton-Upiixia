@@ -1,163 +1,69 @@
 import { useEffect, useState } from "react";
 import type { FeatureProps } from "../../App";
 import { api } from "../../lib/api";
+import { Cifra, Etiqueta, Tarjeta } from "../../lib/ui";
+import { COLORES } from "./colores";
+import { Barras, Lineas, MapaAlcaldias } from "./graficas";
 import { MOCK } from "./mock";
-import type { Crecimiento, Punto, SerieAlcaldia, TipoDato } from "./tipos";
+import type { Crecimiento } from "./tipos";
 
 export const route = "crecimiento";
 export const label = "Crecimiento";
 export const order = 4;
 
 const POLL_MS = 5000;
-const COLORES = ["var(--pb-acento, #c2410c)", "var(--pb-tinta-2, #1d4ed8)"];
-
-const ETIQUETA: Record<TipoDato, { texto: string; clase: string }> = {
-  real: { texto: "Real", clase: "bg-emerald-100 text-emerald-900 border-emerald-700" },
-  estimado: { texto: "Estimado", clase: "bg-amber-100 text-amber-900 border-amber-700" },
-  simulado: { texto: "Simulado", clase: "bg-stone-200 text-stone-900 border-stone-600" },
-};
-
-function Etiqueta({ tipo }: { tipo: TipoDato }) {
-  const e = ETIQUETA[tipo];
-  return (
-    <span className={`inline-block rounded-md border px-2 py-0.5 text-base font-semibold ${e.clase}`}>
-      {e.texto}
-    </span>
-  );
-}
 
 function Fuente({ texto }: { texto: string }) {
-  return <p className="mt-1 text-base leading-snug text-stone-700">Fuente: {texto}</p>;
+  return <p className="mt-3 text-[0.833rem] leading-snug text-(--pb-texto-2)">Fuente: {texto}</p>;
 }
 
-function Tarjeta({
-  titulo,
-  tipo,
-  fuente,
-  children,
-}: {
-  titulo: string;
-  tipo: TipoDato;
-  fuente: string;
-  children: React.ReactNode;
-}) {
+function Esqueleto() {
   return (
-    <section
-      aria-label={titulo}
-      className="flex flex-col rounded-xl border border-stone-300 bg-white p-3"
-    >
-      <header className="flex items-start justify-between gap-2">
-        <h2 className="text-xl font-semibold text-stone-900">{titulo}</h2>
-        <Etiqueta tipo={tipo} />
-      </header>
-      <div className="flex-1 pt-1">{children}</div>
-      <Fuente texto={fuente} />
-    </section>
-  );
-}
-
-function Leyenda({ series }: { series: SerieAlcaldia[] }) {
-  return (
-    <ul className="flex flex-wrap gap-4 text-base text-stone-800">
-      {series.map((s, i) => (
-        <li key={s.alcaldia_cvegeo} className="flex items-center gap-2">
-          <span aria-hidden className="inline-block h-3 w-6 rounded" style={{ background: COLORES[i % 2] }} />
-          {s.alcaldia}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Lineas({ series }: { series: SerieAlcaldia[] }) {
-  const W = 360;
-  const H = 150;
-  const todos = series.flatMap((s) => s.puntos.map((p) => p.valor));
-  const max = Math.max(1, ...todos);
-  const min = Math.min(max - 1, ...todos) * 0.9;
-  const n = Math.max(1, (series[0]?.puntos.length ?? 1) - 1);
-  const xy = (p: Punto, i: number) =>
-    `${(i / n) * W},${H - ((p.valor - min) / (max - min)) * (H - 10) - 5}`;
-  const primero = series[0]?.puntos[0]?.periodo ?? "";
-  const ultimo = series[0]?.puntos.at(-1)?.periodo ?? "";
-  const resumen = series
-    .map((s) => `${s.alcaldia}: de ${s.puntos[0]?.valor ?? 0} a ${s.puntos.at(-1)?.valor ?? 0}`)
-    .join("; ");
-  return (
-    <figure>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-20 w-full" role="img" aria-label={`Serie trimestral ${primero} a ${ultimo}. ${resumen}`}>
-        <line x1="0" y1={H - 1} x2={W} y2={H - 1} stroke="#a8a29e" />
-        {series.map((s, i) => (
-          <polyline
-            key={s.alcaldia_cvegeo}
-            fill="none"
-            stroke={COLORES[i % 2]}
-            strokeWidth="3"
-            points={s.puntos.map(xy).join(" ")}
-          />
-        ))}
-      </svg>
-      <figcaption className="flex justify-between text-base text-stone-700">
-        <span>{primero}</span>
-        <span>{ultimo}</span>
-      </figcaption>
-      <Leyenda series={series} />
-    </figure>
-  );
-}
-
-function BarrasAnio({ series }: { series: SerieAlcaldia[] }) {
-  const max = Math.max(1, ...series.flatMap((s) => s.puntos.map((p) => p.valor)));
-  const periodos = series[0]?.puntos.map((p) => p.periodo) ?? [];
-  return (
-    <figure>
-      <div className="flex h-20 items-end gap-2" role="img" aria-label={series.map((s) => `${s.alcaldia}: ${s.puntos.map((p) => `${p.periodo} ${p.valor}`).join(", ")}`).join(". ")}>
-        {periodos.map((periodo, j) => (
-          <div key={periodo} className="flex h-full flex-1 flex-col justify-end">
-            <div className="flex h-full items-end gap-0.5">
-              {series.map((s, i) => (
-                <div
-                  key={s.alcaldia_cvegeo}
-                  title={`${s.alcaldia} ${periodo}: ${s.puntos[j]?.valor ?? 0}`}
-                  className="flex-1 rounded-t"
-                  style={{ height: `${((s.puntos[j]?.valor ?? 0) / max) * 100}%`, background: COLORES[i % 2] }}
-                />
-              ))}
-            </div>
-          </div>
+    <div role="status" aria-label="Cargando el panel de crecimiento" className="flex h-full flex-col gap-4 p-5">
+      <div className="h-10 w-2/5 animate-pulse rounded-(--pb-radio-control) bg-(--pb-superficie-2)" />
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="h-28 animate-pulse rounded-(--pb-radio-tarjeta) bg-(--pb-superficie-2)" />
         ))}
       </div>
-      <div className="flex gap-2 text-sm text-stone-700" aria-hidden>
-        {periodos.map((p) => (
-          <span key={p} className="flex-1 text-center">{`'${p.slice(2)}`}</span>
+      <div className="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-3">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="min-h-48 animate-pulse rounded-(--pb-radio-tarjeta) bg-(--pb-superficie-2)" />
         ))}
       </div>
-      <Leyenda series={series} />
-    </figure>
+    </div>
   );
 }
 
 function Rutas({ data }: { data: Crecimiento["rutas_por_hexagono"] }) {
   if (data.hexagonos.length === 0) {
     return (
-      <p className="text-lg text-stone-700">
+      <p className="text-lg text-(--pb-texto-2)">
         {data.archivo_disponible
           ? "Todavía no hay rutas registradas hoy."
-          : "Sin registro de rutas todavía: aparecerán cuando alguien arme una ruta."}
+          : "Aún no hay rutas: aparecerán en cuanto una vecina arme la suya."}
       </p>
     );
   }
   const max = Math.max(1, ...data.hexagonos.map((h) => h.rutas));
   return (
-    <ul className="flex flex-col gap-1.5" aria-label={`${data.total} rutas en total`}>
-      {data.hexagonos.slice(0, 6).map((h) => (
-        <li key={h.h3} className="flex items-center gap-2 text-base">
-          <span className="w-24 shrink-0 truncate font-mono text-stone-800" title={h.h3}>{h.h3.slice(0, 9)}</span>
-          <span className="h-4 rounded" style={{ width: `${(h.rutas / max) * 100}%`, background: COLORES[0] }} />
-          <span className="font-semibold text-stone-900">{h.rutas}</span>
+    <ol className="grid grid-cols-1 gap-x-8 gap-y-2 md:grid-cols-2" aria-label={`${data.total} paradas de ruta en total`}>
+      {data.hexagonos.slice(0, 6).map((h, i) => (
+        <li key={h.h3} className="grid grid-cols-[1.5rem_8.5rem_minmax(0,1fr)_2rem] items-center gap-2 text-base">
+          <span className="pb-cifra text-(--pb-texto-2)">{i + 1}</span>
+          <span className="truncate font-mono text-[0.833rem] text-(--pb-texto-2)" title={`Hexágono ${h.h3}`}>
+            {h.h3}
+          </span>
+          <span className="h-3 overflow-hidden rounded-full bg-(--pb-superficie-2)">
+            <span
+              className="block h-full rounded-full motion-safe:transition-[width] motion-safe:duration-700"
+              style={{ width: `${Math.max(6, (h.rutas / max) * 100)}%`, background: COLORES[0] }}
+            />
+          </span>
+          <span className="pb-cifra text-right font-semibold">{h.rutas}</span>
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 
@@ -187,92 +93,122 @@ export default function CrecimientoView(_props: FeatureProps) {
     };
   }, []);
 
-  if (!data) {
-    return (
-      <p role="status" className="p-8 text-xl text-stone-700">
-        Cargando el panel de crecimiento…
-      </p>
-    );
-  }
+  if (!data) return <Esqueleto />;
 
   const altas = data.altas_plataforma;
-  const muestra = data.demo_data;
+  const rutas = data.rutas_por_hexagono;
+  const escala = data.escala;
+  const trimestral = data.serie_trimestral;
+  const anual = data.altas_negocios_por_anio;
 
   return (
-    <div className="flex h-full flex-col gap-2 overflow-auto px-3 pt-2 pb-0.5 text-lg text-stone-900">
-      {(error || muestra) && (
-        <p role="status" className="rounded-lg border border-amber-700 bg-amber-50 px-4 py-1 text-lg text-amber-950">
-          {error && data.generado !== ""
-            ? "Sin conexión con el servidor: mostramos los últimos datos recibidos."
-            : error
-            ? "No pudimos conectar con el servidor. Mostramos datos de muestra (demo_data: true), no son cifras reales."
-            : "Modo demo: parte de estos datos son de muestra (demo_data: true)."}
-        </p>
-      )}
-
-      <div className="grid shrink-0 grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-3">
-        <section
-          aria-label="Altas en la plataforma hoy"
-          className="rounded-xl border-2 border-stone-900 bg-white p-3"
-        >
-          <div className="flex items-start justify-between gap-2">
-            <h2 className="text-xl font-semibold">Altas hoy</h2>
-            <Etiqueta tipo={altas.tipo_dato} />
+    <div className="h-full overflow-auto bg-(--pb-fondo)">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6">
+        <header className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-[0.778rem] font-semibold uppercase tracking-[0.14em] text-(--pb-acento)">Panel de crecimiento · SEDECO</p>
+            <h1 className="pb-display mt-1 text-[2rem] font-bold sm:text-[2.25rem]">La red crece colonia por colonia</h1>
           </div>
-          <p aria-live="polite" className="text-5xl font-bold tabular-nums" style={{ color: "var(--pb-acento, #c2410c)" }}>
-            {altas.hoy}
+          <p className="max-w-sm text-base leading-snug text-(--pb-texto-2)">
+            Cada alta por voz y cada ruta de compra se suman aquí en vivo. Se actualiza cada 5 segundos.
           </p>
-          <p className="text-base text-stone-800">
-            {altas.total} en total · cada 5 s
+        </header>
+
+        {(error || data.demo_data) && (
+          <p role="status" className="rounded-(--pb-radio-control) border border-(--pb-borde-fuerte) bg-(--pb-simulado-fondo) px-4 py-2 text-base text-(--pb-simulado-texto)">
+            {error && data.generado !== ""
+              ? "Sin conexión con el servidor: mostramos los últimos datos recibidos."
+              : error
+                ? "No pudimos conectar con el servidor. Mostramos datos de muestra (simulados), no son cifras reales."
+                : "Modo demo: parte de estos datos son de muestra (simulados)."}
           </p>
-          <Fuente texto={altas.archivo_disponible || error ? altas.fuente : `${altas.fuente} (aún sin altas)`} />
+        )}
+
+        <section aria-label="Cifras clave" className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <Tarjeta className="!px-5 !py-4 ring-2 ring-(--pb-acento-suave)">
+            <div aria-live="polite">
+              <Cifra valor={altas.hoy} etiqueta="Negocios dados de alta hoy por voz" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
+            </div>
+          </Tarjeta>
+          <Tarjeta className="!px-5 !py-4">
+            <Cifra valor={altas.total} etiqueta="Altas en la plataforma en total" tipo={altas.tipo_dato} fuente={altas.fuente} tamano="md" />
+          </Tarjeta>
+          <Tarjeta className="!px-5 !py-4">
+            <Cifra valor={rutas.total} etiqueta="Paradas de ruta en negocios de barrio" tipo={rutas.tipo_dato} fuente={rutas.fuente} tamano="md" />
+          </Tarjeta>
+          <Tarjeta className="!px-5 !py-4">
+            <Cifra
+              valor={escala.alcaldias_activas.length}
+              sufijo={` de ${escala.alcaldias_totales}`}
+              etiqueta="Alcaldías activas hoy"
+              tipo={escala.tipo_dato}
+              fuente={escala.fuente}
+              tamano="md"
+            />
+          </Tarjeta>
         </section>
 
-        <section
-          aria-label="Cómo escala"
-          className="rounded-xl border border-stone-300 bg-stone-50 p-3"
-        >
-          <div className="flex items-start justify-between gap-2">
-            <h2 className="text-xl font-semibold">Cómo escala a las {data.escala.alcaldias_totales} alcaldías</h2>
-            <Etiqueta tipo={data.escala.tipo_dato} />
-          </div>
-          <p className="mt-1">
-            Hoy funciona en <strong>{data.escala.alcaldias_activas.join(" e ")}</strong>. Para sumar otra
-            alcaldía basta con agregar su clave en la variable{" "}
-            <code className="rounded bg-white px-1.5 font-mono">{data.escala.parametro}</code>.
-          </p>
-          <p className="mt-1">
-            <strong>Costo:</strong> {data.escala.costo}
-          </p>
-          <ul className="mt-1 grid list-disc grid-cols-2 gap-x-6 pl-6 text-base leading-snug">
-            {data.escala.piezas.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
-        </section>
-      </div>
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+          <Tarjeta
+            antetitulo="Inclusión financiera"
+            titulo="Por trimestre y alcaldía"
+            accion={<Etiqueta tipo={trimestral[0]?.tipo_dato ?? "simulado"} />}
+            className="!p-5"
+          >
+            <p className="-mt-2 mb-1 text-base text-(--pb-texto-2)">{trimestral[0]?.indicador ?? ""}</p>
+            <Lineas series={trimestral} />
+            <Fuente texto={trimestral[0]?.fuente ?? "—"} />
+          </Tarjeta>
 
-      <div className="grid grid-cols-3 gap-3">
+          <Tarjeta
+            antetitulo="Negocios nuevos"
+            titulo="Altas por año"
+            accion={<Etiqueta tipo={anual[0]?.tipo_dato ?? "simulado"} />}
+            className="!p-5"
+          >
+            <p className="-mt-2 mb-1 text-base text-(--pb-texto-2)">Negocios que abrieron cada año</p>
+            <Barras series={anual} />
+            <Fuente texto={anual[0]?.fuente ?? "—"} />
+          </Tarjeta>
+
+          <Tarjeta
+            antetitulo="Cómo escala"
+            titulo={`A las ${escala.alcaldias_totales} alcaldías`}
+            accion={<Etiqueta tipo={escala.tipo_dato} />}
+            className="!p-5"
+          >
+            <div className="flex items-start gap-4">
+              <MapaAlcaldias activas={escala.alcaldias_activas} />
+              <div className="flex min-w-0 flex-col gap-2 text-base leading-snug">
+                <p>
+                  Activa en <strong>{escala.alcaldias_activas.join(" e ")}</strong>. Sumar otra = agregar su clave en{" "}
+                  <code className="rounded bg-(--pb-superficie-2) px-1.5 font-mono text-[0.833rem]">{escala.parametro}</code>.
+                </p>
+                <p className="rounded-(--pb-radio-control) bg-(--pb-real-fondo) px-3 py-2 text-(--pb-real-texto)">
+                  <strong>Costo:</strong> {escala.costo}
+                </p>
+              </div>
+            </div>
+            <ul className="mt-3 flex flex-col gap-1 text-[0.889rem] leading-snug text-(--pb-texto-2)">
+              {escala.piezas.map((p) => (
+                <li key={p} className="flex gap-2">
+                  <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-(--pb-acento)" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <Fuente texto={escala.fuente} />
+          </Tarjeta>
+        </div>
+
         <Tarjeta
-          titulo={data.serie_trimestral[0]?.indicador ?? "Inclusión financiera por trimestre"}
-          tipo={data.serie_trimestral[0]?.tipo_dato ?? "simulado"}
-          fuente={data.serie_trimestral[0]?.fuente ?? ""}
+          antetitulo="Demanda que llega al barrio"
+          titulo="Hexágonos por los que más pasan las rutas de compra"
+          accion={<Etiqueta tipo={rutas.tipo_dato} />}
+          className="!p-5"
         >
-          <Lineas series={data.serie_trimestral} />
-        </Tarjeta>
-        <Tarjeta
-          titulo="Altas de negocios por año"
-          tipo={data.altas_negocios_por_anio[0]?.tipo_dato ?? "simulado"}
-          fuente={data.altas_negocios_por_anio[0]?.fuente ?? ""}
-        >
-          <BarrasAnio series={data.altas_negocios_por_anio} />
-        </Tarjeta>
-        <Tarjeta
-          titulo="Rutas que pasaron por cada hexágono"
-          tipo={data.rutas_por_hexagono.tipo_dato}
-          fuente={data.rutas_por_hexagono.fuente}
-        >
-          <Rutas data={data.rutas_por_hexagono} />
+          <Rutas data={rutas} />
+          <Fuente texto={rutas.fuente} />
         </Tarjeta>
       </div>
     </div>
