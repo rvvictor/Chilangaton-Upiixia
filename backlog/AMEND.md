@@ -51,3 +51,14 @@ Append-only; the last section of an ID replaces its section in the backlog. Why:
 - **Acceptance:**
   - Fixtures con el nombre colonIA: regenerar sedeco_crecimiento.json desde la API renombrada
 - **Verify:** `uv run pytest -q app/tests/test_schemas.py`
+## PB-030 · Mapa invisible: mapbox-gl.css en capa components para que no anule absolute inset-0 (follow-up of PB-001)
+
+- **Type:** follow-up
+- **Priority:** P1
+- **Depends on:** PB-001
+- **Follow-up of:** PB-001
+- **Paths:** docs/notas/pb-030.md
+- **Freeze-Allowed:** no
+- **Acceptance:**
+  - Mapa invisible: mapbox-gl.css en capa components para que no anule absolute inset-0 (ya en main: web/src/index.css:6, entró con PB-021)
+- **Verify:** `grep -q 'mapbox-gl.css" layer(components)' web/src/index.css`
