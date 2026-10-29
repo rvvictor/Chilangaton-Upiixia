@@ -34,3 +34,4 @@ Why: a reversible option after 15 min keeps work moving.
 - 1792961253 | allow | Alexis | freeze exception: PB-034 | Why: dato simulado de altas hoy aparece como real en SEDECO
 - 1792967705 | PB-035 | follow-up of PB-016 by yojan-1: README con el UPIIXIA Agentic Kit y la presentación del producto | Why: same Paths, no scope change
 - 1792968164 | allow | JoahanMorales | freeze exception: PB-035 | Why: README final: producto, logro en 3 horas y UPIIXIA Agentic Kit
+- 1793295490 | allow | TU_NOMBRE | freeze exception: PB-030 | Why: mapa invisible en la demo: falta mapbox-gl.css
