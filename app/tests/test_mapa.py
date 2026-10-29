@@ -124,3 +124,14 @@ def test_resumen_altas_hoy_y_rutas(datos) -> None:
     assert body["rutas_por_hexagono"] == {"89x": 3}
     assert body["abiertos"] == 6 and body["poblacion_cubierta_pct"] > 0
     assert body["tipo_campos"]["poblacion_cubierta_pct"] == "estimado"
+
+
+def test_resumen_altas_de_demo_son_simuladas(datos) -> None:
+    hoy = datetime.now(mapa.ZONA).isoformat()
+    live = datos / "live"
+    (live / "altas.jsonl").write_text(json.dumps({"id": "a1", "ts": hoy}) + "\n")
+    assert client.get("/api/sedeco/resumen").json()["tipo_campos"]["altas_hoy"] == "real"
+    (live / "altas.jsonl").write_text(json.dumps({"id": "a2", "ts": hoy, "origen": "demo", "demo_data": True}) + "\n")
+    body = client.get("/api/sedeco/resumen").json()
+    assert body["altas_hoy"] == 1
+    assert body["tipo_campos"]["altas_hoy"] == "simulado"
