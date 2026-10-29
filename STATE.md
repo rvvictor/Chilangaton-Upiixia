@@ -1,16 +1,15 @@
 # STATE
 
 Phase: feature freeze; authorized fixes, rehearsal and submission only
-Updated: 1793296208
+Updated: 1793297145
 AVAILABLE: PB-030 
 CLAIMED: -
 BLOCKED: -
-REVIEW: PB-034 
-INTEGRATED: (33; last 12) ... PB-022 PB-023 PB-024 PB-025 PB-026 PB-027 PB-028 PB-029 PB-031 PB-032 PB-033 PB-035 
+REVIEW: -
+INTEGRATED: (34; last 12) ... PB-023 PB-024 PB-025 PB-026 PB-027 PB-028 PB-029 PB-031 PB-032 PB-033 PB-034 PB-035 
 CANCELLED: -
 
 Claims (first 24; status --task ID shows detail):
-PB-034 | REVIEW | alexis-2 | until 1792975785
 
 Blockers: BLOCKED tasks; use status --task ID --summary.
 Current decisions (last 5):
